@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class NoConnectionWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.signal_wifi_off,
+            size: 50,
+            color: Colors.grey,
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Text(
+            'لا يوجد انترنت',
+            style: TextStyle(
+              fontSize: 18.sp,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 6.h,
+          ),
+          Text(
+            'تأكد من أتصالك بالأنترنت',
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: Colors.grey,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
