@@ -1147,7 +1147,7 @@ class _ShipmentDetailsWithOneproducts
                                                           context: navigator
                                                               .currentContext!,
                                                           builder: (context) =>
-                                                              const Loading());
+                                                              const LoadingDialog());
                                                       await trackingProvider
                                                           .refreshHandoverQrCodeCourierToCustomer(data
                                                                       .shipmentById!
@@ -1304,7 +1304,8 @@ class _ShipmentDetailsWithOneproducts
                                               context:
                                                   navigator.currentContext!,
                                               barrierDismissible: false,
-                                              builder: (_) => const Loading());
+                                              builder: (_) =>
+                                                  const LoadingDialog());
                                           shipmentProvider
                                               .setShipmentFromInside(true);
                                           shipmentProvider.setCaptainShipmentId(
@@ -1648,7 +1649,7 @@ class _ShipmentDetailsWithOneproducts
               showDialog(
                   context: navigator.currentContext!,
                   barrierDismissible: false,
-                  builder: (_) => const Loading());
+                  builder: (_) => const LoadingDialog());
               await addShipmentProvider.cancelShipment(
                   shipmentId: data.shipmentById!.id!);
               if (addShipmentProvider.cancelShipmentState ==
@@ -1668,7 +1669,7 @@ class _ShipmentDetailsWithOneproducts
                 showDialog(
                     context: navigator.currentContext!,
                     barrierDismissible: false,
-                    builder: (context) => const Loading());
+                    builder: (context) => const LoadingDialog());
                 await data.getShipmentById(
                   id: data.shipmentById!.id!,
                   isFirstTime: false,

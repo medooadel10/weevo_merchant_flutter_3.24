@@ -538,7 +538,7 @@ class _MoreScreenState extends State<MoreScreen> {
     showDialog(
         context: navigator.currentContext!,
         barrierDismissible: false,
-        builder: (_) => const Loading());
+        builder: (_) => const LoadingDialog());
     await auth.logout(allDevices);
   }
 }

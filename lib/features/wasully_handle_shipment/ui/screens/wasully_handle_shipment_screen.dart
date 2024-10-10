@@ -184,7 +184,7 @@ class _WasullyHandleShipmentScreenState
                                                               context: navigator
                                                                   .currentContext!,
                                                               builder: (context) =>
-                                                                  const Loading());
+                                                                  const LoadingDialog());
                                                           await handleShipmentCubit
                                                               .refreshHandoverQrCodeMerchantToCourier(
                                                             widget.model
@@ -273,7 +273,7 @@ class _WasullyHandleShipmentScreenState
                                                                       context,
                                                                   builder:
                                                                       (context) =>
-                                                                          const Loading());
+                                                                          const LoadingDialog());
                                                               await handleShipmentCubit
                                                                   .refreshHandoverQrCodeCourierToCustomer(
                                                                       widget

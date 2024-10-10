@@ -70,7 +70,7 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
     final result = await _couriersRepo.getCouriers(id);
     // Initialize shippingOffers as an empty list if it's null
     shippingOffers ??= [];
-    if (result.success!) {
+    if (result.success) {
       List<ShippingOfferResponseBody> offers =
           result.data!.where((offer) => offer.shipmentId == id).toList();
       DateTime now = DateTime.now();
@@ -119,7 +119,7 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
   Future<void> acceptOffer(int id) async {
     emit(WasullyShippingOfferAcceptLoadingState());
     final result = await _couriersRepo.acceptOffer(id);
-    if (result.success!) {
+    if (result.success) {
       shippingOffers?.removeWhere((element) => element.id == id);
       emit(WasullyShippingOfferAcceptSuccessState(result.data!));
     } else {
@@ -130,7 +130,7 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
   Future<void> getShipmentStatus(int id) async {
     emit(WasullyShippingOffersLoadingState());
     final result = await _couriersRepo.getShipmentStatus(id);
-    if (result.success!) {
+    if (result.success) {
       courierAppliedToShipment = result.data == 'courier-applied-to-shipment';
       emit(WasullyShippingOffersSuccessState(shippingOffers!));
     } else {

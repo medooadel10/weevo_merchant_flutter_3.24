@@ -54,7 +54,7 @@ class WasullyDetailsBody extends StatelessWidget {
                             SliverToBoxAdapter(
                               child: BaseShipmentStatus
                                   .shipmentStatusMap[wasullyModel.status]!
-                                  .buildShipmentDetailsCourierHeader(context),
+                                  .buildWasullyDetailsCourierHeader(context),
                             ),
                             SliverAppBar(
                               pinned: false,

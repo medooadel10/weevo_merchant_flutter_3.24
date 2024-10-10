@@ -128,7 +128,7 @@ class CreditCardPayment extends StatelessWidget {
               showDialog(
                   context: navigator.currentContext!,
                   barrierDismissible: false,
-                  builder: (context) => const Loading());
+                  builder: (context) => const LoadingDialog());
               await weevoPlusProvider.payUsingCreditCard(
                 transactionId: planSubscription.cachedTransactionId!,
               );
@@ -145,7 +145,7 @@ class CreditCardPayment extends StatelessWidget {
                     showDialog(
                         context: navigator.currentContext!,
                         barrierDismissible: false,
-                        builder: (context) => const Loading());
+                        builder: (context) => const LoadingDialog());
                     await Preferences.instance.setWeevoPlusPlanId(
                         weevoPlusProvider
                             .creditCard!.transaction!.subscription!.planId

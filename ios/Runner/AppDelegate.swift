@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import Firebase
 import GoogleMaps
 
 @main
@@ -8,11 +9,13 @@ import GoogleMaps
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    GMSServices.provideAPIKey("AIzaSyCFEJSLahBCQGpt-97cEYymIeraGH7kbrw")
-    GeneratedPluginRegistrant.register(with: self)
-    if #available(iOS 10.0, *) {
-      UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-    }
+    FirebaseApp.configure()
+           GMSServices.provideAPIKey("AIzaSyCFEJSLahBCQGpt-97cEYymIeraGH7kbrw")
+           GeneratedPluginRegistrant.register(with: self)
+                if #available(iOS 10.0, *) {
+                          UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+                        }
+                        application.registerForRemoteNotifications()
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

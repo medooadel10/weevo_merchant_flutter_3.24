@@ -44,7 +44,7 @@ class ShipmentsCubit extends Cubit<ShipmentsStates> {
       currentPage,
       BaseShipmentStatus.shipmentStatusList[currentFilterIndex].status,
     );
-    if (result.success! && lastRequestedFilterIndex == currentFilterIndex) {
+    if (result.success && lastRequestedFilterIndex == currentFilterIndex) {
       hasMoreData = result.data?.shipments.length == pageSize;
       shipments?.addAll(result.data!.shipments);
       if ((isPaging && hasMoreData) || currentPage == 1) currentPage++;

@@ -251,7 +251,8 @@ class _ChooseCourierState extends State<ChooseCourier> {
                                   onAcceptOffer: () async {
                                     showDialog(
                                         context: navigator.currentContext!,
-                                        builder: (context) => const Loading());
+                                        builder: (context) =>
+                                            const LoadingDialog());
                                     DocumentSnapshot userToken =
                                         await FirebaseFirestore.instance
                                             .collection('courier_users')
@@ -444,7 +445,8 @@ class _ChooseCourierState extends State<ChooseCourier> {
                                     String token = userToken['fcmToken'];
                                     showDialog(
                                         context: navigator.currentContext!,
-                                        builder: (context) => const Loading());
+                                        builder: (context) =>
+                                            const LoadingDialog());
                                     FirebaseFirestore.instance
                                         .collection('courier_notifications')
                                         .doc(data.listOfOffers[i].driverId

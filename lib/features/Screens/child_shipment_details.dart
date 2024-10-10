@@ -324,7 +324,8 @@ class _ChildShipmentDetailsState extends State<ChildShipmentDetails> {
                                         showDialog(
                                             context: navigator.currentContext!,
                                             barrierDismissible: false,
-                                            builder: (_) => const Loading());
+                                            builder: (_) =>
+                                                const LoadingDialog());
                                         addShipmentProvider
                                             .setShipmentFromInside(true);
                                         addShipmentProvider
@@ -511,7 +512,7 @@ class _ChildShipmentDetailsState extends State<ChildShipmentDetails> {
               showDialog(
                   context: navigator.currentContext!,
                   barrierDismissible: false,
-                  builder: (context) => const Loading());
+                  builder: (context) => const LoadingDialog());
               await addShipmentProvider.cancelShipment(
                   shipmentId: data.bulkShipmentById!.id!);
               if (addShipmentProvider.cancelShipmentState ==
@@ -530,7 +531,7 @@ class _ChildShipmentDetailsState extends State<ChildShipmentDetails> {
                 showDialog(
                     context: navigator.currentContext!,
                     barrierDismissible: false,
-                    builder: (context) => const Loading());
+                    builder: (context) => const LoadingDialog());
 
                 if (status != 'available' && status != 'new') {
                   DocumentSnapshot userToken = await FirebaseFirestore.instance

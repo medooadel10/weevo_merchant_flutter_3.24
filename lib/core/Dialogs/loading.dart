@@ -4,10 +4,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../Utilits/colors.dart';
 
-class Loading extends StatelessWidget {
+class LoadingDialog extends StatelessWidget {
   final String? loadingContent;
 
-  const Loading({
+  const LoadingDialog({
     super.key,
     this.loadingContent,
   });

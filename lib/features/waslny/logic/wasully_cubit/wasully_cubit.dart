@@ -117,7 +117,7 @@ class WasullyCubit extends Cubit<WasullyStates> {
     emit(WasullyGetDataLoadingState());
     final int adddressId = Preferences.instance.getAddressId;
     final result = await _waslnyRepo.getAddresses();
-    if (result.success!) {
+    if (result.success) {
       if (result.data!.isNotEmpty) {
         _address =
             result.data!.singleWhere((element) => element.id == adddressId);
@@ -223,7 +223,7 @@ class WasullyCubit extends Cubit<WasullyStates> {
       sendingLng: senderAddressFill!.long.toString(),
     );
     final result = await _waslnyRepo.calculateDeliveryPrice(body);
-    if (result.success!) {
+    if (result.success) {
       deliveryPriceModel = result.data;
       deliveryPriceContoller.text = result.data!.price;
       emit(WasullyCalculateDeliveryPriceSuccessState(result.data!));
@@ -247,7 +247,7 @@ class WasullyCubit extends Cubit<WasullyStates> {
       }
       CreateWasullyRequestBody body = createWassalyBody(imagePath);
       final result = await _waslnyRepo.createWasully(body);
-      if (result.success!) {
+      if (result.success) {
         emit(WasullyCreateWasullySuccessState(result.data!.message));
       } else {
         emit(WasullyCreateWasullyErrorState(result.error!));
@@ -279,7 +279,7 @@ class WasullyCubit extends Cubit<WasullyStates> {
       if (imagePath != null) imageUrl = imagePath;
       CreateWasullyRequestBody body = createWassalyBody(imageUrl!);
       final result = await _waslnyRepo.updateWasully(wasullyModel!.id, body);
-      if (result.success!) {
+      if (result.success) {
         await _deleteImage();
         wasullyModel = result.data!;
         emit(WasullyCreateWasullySuccessState('تم تحديث الطلب بنجاح'));
@@ -304,7 +304,7 @@ class WasullyCubit extends Cubit<WasullyStates> {
       ),
       compressedImage.path.split('/').last,
     );
-    if (result.success!) return result.data!;
+    if (result.success) return result.data!;
     emit(WasullyCreateWasullyErrorState(result.error ?? ''));
     return null;
   }

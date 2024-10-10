@@ -97,7 +97,7 @@ class ShippingOfferButtons extends StatelessWidget {
                     context: navigator.currentContext!,
                     builder: (context) => PopScope(
                       onPopInvokedWithResult: (value, result) async => false,
-                      child: const Loading(),
+                      child: const LoadingDialog(),
                     ),
                     barrierDismissible: false,
                   );
@@ -120,7 +120,7 @@ class ShippingOfferButtons extends StatelessWidget {
                   String token = userToken['fcmToken'];
                   showDialog(
                       context: navigator.currentContext!,
-                      builder: (context) => const Loading(),
+                      builder: (context) => const LoadingDialog(),
                       barrierDismissible: false);
                   FirebaseFirestore.instance
                       .collection('courier_notifications')

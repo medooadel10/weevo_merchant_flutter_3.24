@@ -183,7 +183,7 @@ class _HandleShipmentState extends State<HandleShipment> {
                                                     context: navigator
                                                         .currentContext!,
                                                     builder: (context) =>
-                                                        const Loading());
+                                                        const LoadingDialog());
                                                 await shipmentTrackingProvider
                                                     .refreshHandoverQrCodeMerchantToCourier(
                                                         widget
@@ -274,7 +274,7 @@ class _HandleShipmentState extends State<HandleShipment> {
                                                         context: navigator
                                                             .currentContext!,
                                                         builder: (context) =>
-                                                            const Loading());
+                                                            const LoadingDialog());
                                                     await shipmentTrackingProvider
                                                         .refreshHandoverQrCodeCourierToCustomer(
                                                             widget.model

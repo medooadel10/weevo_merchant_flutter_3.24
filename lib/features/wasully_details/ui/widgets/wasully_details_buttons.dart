@@ -20,7 +20,7 @@ class WasullyDetailsButtons extends StatelessWidget {
           );
         }
         return BaseShipmentStatus.shipmentStatusMap[cubit.wasullyModel!.status]!
-            .buildShipmentDetailsButtons(context);
+            .buildWasullyDetailsButtons(context);
       },
     );
   }

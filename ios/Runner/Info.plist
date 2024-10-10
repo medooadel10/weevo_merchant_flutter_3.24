@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
-		<key>CADisableMinimumFrameDurationOnPhone</key>
-		<true/>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Weevo Merchant App</string>
+		<string>Weevo | ويفو</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -15,42 +13,56 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>weevo_merchant_app</string>
+		<string>Weevo App | تطبيق ويفو</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
-		<string>$(FLUTTER_BUILD_NAME)</string>
+		<string>$(MARKETING_VERSION)</string>
 		<key>CFBundleSignature</key>
 		<string>????</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>fb395016992501227</string>
+				</array>
+			</dict>
+		</array>
 		<key>CFBundleVersion</key>
-		<string>$(FLUTTER_BUILD_NUMBER)</string>
-		<key>LSRequiresIPhoneOS</key>
-		<true/>
-		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true/>
-		<key>UILaunchStoryboardName</key>
-		<string>LaunchScreen</string>
-		<key>UIMainStoryboardFile</key>
-		<string>Main</string>
-		<key>UISupportedInterfaceOrientations</key>
-		<array>
-			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
-		</array>
-		<key>UISupportedInterfaceOrientations~ipad</key>
-		<array>
-			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationPortraitUpsideDown</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
-		</array>
-		<key>UIStatusBarHidden</key>
-		<false/>
-		<key>NSFaceIDUsageDescription</key>
-		<string>Why is my app authenticating using face id?</string>
+		<string>$(CURRENT_PROJECT_VERSION)</string>
+		<key>FacebookAdvertiserIDCollectionEnabled</key>
+		<string>TRUE</string>
+		<key>FacebookAppID</key>
+		<string>983883016711681</string>
+		<key>FacebookAutoLogAppEventsEnabled</key>
+		<string>TRUE</string>
+		<key>FacebookClientToken</key>
+		<string>7e70fed1d9b815286041571ad50fec95</string>
+		<key>FacebookDisplayName</key>
+		<string>Weevo Merchant</string>
 		<key>FirebaseAppDelegateProxyEnabled</key>
 		<false/>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>https</string>
+			<string>http</string>
+			<string>fbapi</string>
+			<string>fb-messenger-api</string>
+			<string>fbauth2</string>
+			<string>fbshareextension</string>
+		</array>
+		<key>LSRequiresIPhoneOS</key>
+		<true/>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
+		<key>NSBonjourServices</key>
+		<array>
+			<string>_dartobservatory._tcp</string>
+		</array>
 		<key>NSCameraUsageDescription</key>
 		<string>allow Weevo Merchant to access your camera to change your account picture</string>
 		<key>NSFaceIDUsageDescription</key>
@@ -72,12 +84,23 @@
 			<string>fetch</string>
 			<string>remote-notification</string>
 		</array>
-		<key>NSUserNotificationUsageDescription</key>
-		<string>Would you like to receive notifications?</string>
-		<key>UIBackgroundModes</key>
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIMainStoryboardFile</key>
+		<string>Main</string>
+		<key>UISupportedInterfaceOrientations</key>
 		<array>
-			<string>fetch</string>
-			<string>remote-notification</string>
+			<string>UIInterfaceOrientationPortrait</string>
 		</array>
-	</dict>
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<false/>
+		<key>io.flutter.embedded_views_preview</key>
+		<true/>
+		<key>UIStatusBarHidden</key>
+		<false/>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+</dict>
 </plist>

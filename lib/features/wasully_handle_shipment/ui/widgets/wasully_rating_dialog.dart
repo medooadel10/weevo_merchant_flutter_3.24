@@ -295,7 +295,7 @@ class _WasullyRatingDialogState extends State<WasullyRatingDialog> {
                               }
                             },
                             builder: (context, state) {
-                              return const Loading();
+                              return const LoadingDialog();
                             },
                           ));
                   await cubit.reviewCourier(

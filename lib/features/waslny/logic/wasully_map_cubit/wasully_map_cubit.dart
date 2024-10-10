@@ -64,7 +64,7 @@ class WasullyMapCubit extends Cubit<WasullyMapStates> {
       if (query.isNotEmpty) {
         emit(WasullyMapSearchLoadingState());
         final result = await _waslyMapRepo.getPredictionList(query);
-        if (result.success!) {
+        if (result.success) {
           places = result.data ?? [];
           if (places.isNotEmpty) changeSearchContainerVisibility(true);
           emit(WasullyMapSearchSuccessState(places));
@@ -115,7 +115,7 @@ class WasullyMapCubit extends Cubit<WasullyMapStates> {
   void getFullAddress() async {
     emit(WasullyMapGetAddressLoadingState());
     final response = await _waslyMapRepo.getPlaceDetails(currentLocation);
-    if (response.success! && response.data!.isNotEmpty) {
+    if (response.success && response.data!.isNotEmpty) {
       var addressComponents = response.data![0].addressComponents;
       String state = addressComponents
           .singleWhere((element) =>

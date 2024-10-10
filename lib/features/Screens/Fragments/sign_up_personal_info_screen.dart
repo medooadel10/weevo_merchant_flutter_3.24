@@ -639,7 +639,7 @@ class _SignUpPersonalInfoState extends State<SignUpPersonalInfo> {
                         showDialog(
                             context: navigator.currentContext!,
                             barrierDismissible: false,
-                            builder: (context) => const Loading());
+                            builder: (context) => const LoadingDialog());
                         if (await authProvider
                                 .checkEmailExisted(_emailAddress!) &&
                             authProvider.existedState == NetworkState.SUCCESS) {
@@ -678,7 +678,7 @@ class _SignUpPersonalInfoState extends State<SignUpPersonalInfo> {
                               email: _emailAddress,
                               userType: _userTypeValueController.text,
                               password: _password,
-                              photo: _img!.path,
+                              photo: _img?.path,
                               // nationalIdNumber: _nationalIdNumber,
                               // commercialActivity: _commercialActivity,
                             ),

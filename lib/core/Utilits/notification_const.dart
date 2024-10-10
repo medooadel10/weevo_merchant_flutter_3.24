@@ -83,7 +83,7 @@ void notificationNavigation(
       showDialog(
           context: ctx,
           barrierDismissible: false,
-          builder: (_) => const Loading());
+          builder: (_) => const LoadingDialog());
       await auth.getShipmentStatus(
           ShipmentNotification.fromMap(data).shipmentId ?? 0);
       if (auth.shipmentStatusState == NetworkState.SUCCESS) {

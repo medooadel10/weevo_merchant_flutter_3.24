@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 import 'package:weevo_merchant_upgrade/firebase_options.dart';
 
 import 'core/Storage/shared_preference.dart';
@@ -52,15 +52,13 @@ void main() async {
     responseExpectationEnabled: true,
   );
   FirebaseMessaging.instance.setAutoInitEnabled(true);
-  if (Platform.isAndroid) {
-    Freshchat.setPushRegistrationToken(
-        await FirebaseMessaging.instance.getToken() ?? '');
-  }
+  Freshchat.setPushRegistrationToken(
+      await FirebaseMessaging.instance.getToken() ?? '');
+
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
-  if (Platform.isIOS) {
-    FirebaseNotification.iOSPermission();
-  }
+  FirebaseNotification.iOSPermission();
+
   setupGetIt();
   await Preferences.initPref();
   DioFactory.init();
@@ -85,6 +83,9 @@ class Weevo extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => WasullyDetailsCubit(getIt()),
+          ),
+          BlocProvider(
+            create: (context) => ShipmentDetailsCubit(getIt()),
           ),
           BlocProvider(
             create: (context) => WasullyHandleShipmentCubit(getIt()),

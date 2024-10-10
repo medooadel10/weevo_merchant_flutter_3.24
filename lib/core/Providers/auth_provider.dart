@@ -1065,7 +1065,7 @@ class AuthProvider with ChangeNotifier {
     try {
       showDialog(
           context: navigator.currentContext!,
-          builder: (context) => const Loading());
+          builder: (context) => const LoadingDialog());
       Response r = await HttpHelper.instance.httpPost(
         '${ApiConstants.baseUrl}/api/v2/merchant/register/check-otp',
         false,
@@ -1121,7 +1121,7 @@ class AuthProvider with ChangeNotifier {
       showDialog(
           context: navigator.currentContext!,
           barrierDismissible: false,
-          builder: (context) => const Loading());
+          builder: (context) => const LoadingDialog());
       Response r = await HttpHelper.instance.httpPost(
         '${ApiConstants.baseUrl}/api/v2/merchant/register/resend-otp',
         false,
@@ -1197,7 +1197,8 @@ class AuthProvider with ChangeNotifier {
   Future<void> deleteAccount() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => const Loading());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       Response r = await HttpHelper.instance.httpDelete(
         'deleted-account/${_preferences?.getUserId}',
         true,

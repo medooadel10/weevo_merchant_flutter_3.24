@@ -33,7 +33,7 @@ class WasullyHandleShipmentCubit extends Cubit<WasullyHandleShipmentState> {
     emit(WasullyHandleShipmentRefreshQrCodeStateLoading());
     final result = await _wasullyHandleShipmentRepo
         .refreshHandoverQrCodeMerchantToCourier(shipmentId);
-    if (result.success!) {
+    if (result.success) {
       emit(
           WasullyHandleShipmentRefreshQrCodeStateSuccess(qrCode: result.data!));
     } else {
@@ -49,7 +49,7 @@ class WasullyHandleShipmentCubit extends Cubit<WasullyHandleShipmentState> {
     emit(WasullyHandleShipmentRefreshQrCodeStateLoading());
     final result = await _wasullyHandleShipmentRepo
         .refreshHandoverQrCodeCourierToCustomer(shipmentId);
-    if (result.success!) {
+    if (result.success) {
       emit(
           WasullyHandleShipmentRefreshQrCodeStateSuccess(qrCode: result.data!));
     } else {
@@ -68,7 +68,7 @@ class WasullyHandleShipmentCubit extends Cubit<WasullyHandleShipmentState> {
     final result = await _wasullyHandleShipmentRepo
         .handleReturnedShipmentByValidatingHandoverQrCodeCourierToMerchant(
             shipmentId, qrCode);
-    if (result.success!) {
+    if (result.success) {
       try {
         await FirebaseFirestore.instance
             .collection('locations')
@@ -105,7 +105,7 @@ class WasullyHandleShipmentCubit extends Cubit<WasullyHandleShipmentState> {
       body: body,
       recommend: recommend,
     );
-    if (result.success!) {
+    if (result.success) {
       emit(WasullyHandleShipmentReviewCourierSuccess());
     } else {
       emit(

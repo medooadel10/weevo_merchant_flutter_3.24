@@ -326,7 +326,7 @@ class _ShareSaveQrCodeDialogState extends State<ShareSaveQrCodeDialog> {
     showDialog(
         context: navigator.currentContext!,
         barrierDismissible: false,
-        builder: (context) => const Loading());
+        builder: (context) => const LoadingDialog());
     try {
       RenderRepaintBoundary boundary = _globalKey.currentContext!
           .findRenderObject()! as RenderRepaintBoundary;
@@ -380,7 +380,7 @@ class _ShareSaveQrCodeDialogState extends State<ShareSaveQrCodeDialog> {
     showDialog(
         context: navigator.currentContext!,
         barrierDismissible: false,
-        builder: (context) => const Loading());
+        builder: (context) => const LoadingDialog());
     RenderRepaintBoundary boundary =
         _globalKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage(pixelRatio: 3.0);

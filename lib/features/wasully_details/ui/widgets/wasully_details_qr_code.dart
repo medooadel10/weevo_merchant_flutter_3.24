@@ -50,7 +50,7 @@ class WasullyDetailsQrCode extends StatelessWidget {
                           null)) {
                 showDialog(
                     context: navigator.currentContext!,
-                    builder: (context) => const Loading());
+                    builder: (context) => const LoadingDialog());
                 await refreshHandoverQrCodeMerchantToCourier(
                     cubit.wasullyModel!.id);
               } else {
@@ -80,7 +80,7 @@ class WasullyDetailsQrCode extends StatelessWidget {
                           null)) {
                 showDialog(
                     context: navigator.currentContext!,
-                    builder: (context) => const Loading());
+                    builder: (context) => const LoadingDialog());
                 await refreshHandoverQrCodeCourierToCustomer(
                     cubit.wasullyModel!.id);
               } else {

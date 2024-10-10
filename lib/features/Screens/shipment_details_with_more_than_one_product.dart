@@ -1058,7 +1058,7 @@ class _ShipmentDetailsWithMoreThanOneProductState
                                                           context: navigator
                                                               .currentContext!,
                                                           builder: (context) =>
-                                                              const Loading());
+                                                              const LoadingDialog());
                                                       await trackingProvider
                                                           .refreshHandoverQrCodeCourierToCustomer(data
                                                                       .shipmentById!
@@ -1187,7 +1187,7 @@ class _ShipmentDetailsWithMoreThanOneProductState
                                     showDialog(
                                         context: navigator.currentContext!,
                                         barrierDismissible: false,
-                                        builder: (_) => const Loading());
+                                        builder: (_) => const LoadingDialog());
                                     shipmentProvider
                                         .setShipmentFromInside(true);
                                     shipmentProvider.setCaptainShipmentId(
@@ -1525,7 +1525,7 @@ class _ShipmentDetailsWithMoreThanOneProductState
               showDialog(
                   context: navigator.currentContext!,
                   barrierDismissible: false,
-                  builder: (_) => const Loading());
+                  builder: (_) => const LoadingDialog());
               await addShipmentProvider.cancelShipment(
                   shipmentId: data.shipmentById!.id!);
               if (addShipmentProvider.cancelShipmentState ==
@@ -1544,7 +1544,7 @@ class _ShipmentDetailsWithMoreThanOneProductState
                 showDialog(
                     context: navigator.currentContext!,
                     barrierDismissible: false,
-                    builder: (_) => const Loading());
+                    builder: (_) => const LoadingDialog());
                 if (status != 'available' && status != 'new') {
                   DocumentSnapshot userToken = await FirebaseFirestore.instance
                       .collection('courier_users')
@@ -1572,7 +1572,8 @@ class _ShipmentDetailsWithMoreThanOneProductState
                       'shipment_id': data.shipmentById!.id,
                     },
                   });
-                   Provider.of<AuthProvider>(navigator.currentContext!, listen: false)
+                  Provider.of<AuthProvider>(navigator.currentContext!,
+                          listen: false)
                       .sendNotification(
                     title: 'تم إلغاء الشحنة',
                     body:
@@ -1593,7 +1594,8 @@ class _ShipmentDetailsWithMoreThanOneProductState
                 if (data.shipmentById!.courier != null) {
                   String merchantPhoneNumber =
                       Preferences.instance.getPhoneNumber;
-                  String courierPhoneNumber = data.shipmentById!.courier!.phone!;
+                  String courierPhoneNumber =
+                      data.shipmentById!.courier!.phone!;
 
                   String locationId =
                       '$courierPhoneNumber-$merchantPhoneNumber-${data.shipmentById!.id}';
@@ -1619,7 +1621,8 @@ class _ShipmentDetailsWithMoreThanOneProductState
               } else if (addShipmentProvider.cancelShipmentState ==
                   NetworkState.ERROR) {
                 MagicRouter.pop();
-                showDialog(context:navigator.currentContext!,
+                showDialog(
+                    context: navigator.currentContext!,
                     barrierDismissible: false,
                     builder: (context) => ActionDialog(
                           content: 'حدث خطأ من فضلك حاول مرة اخري',

@@ -9,4 +9,6 @@ class CityModel {
         ? CityModel(0, '')
         : CityModel(json['id'], json['name']);
   }
+
+  Map<String, dynamic> toJson() => {'id': id, 'name': name};
 }

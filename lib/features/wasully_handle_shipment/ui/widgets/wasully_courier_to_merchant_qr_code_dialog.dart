@@ -150,7 +150,7 @@ class WasullyCourierToMerchantQrCodeDialog extends StatelessWidget {
                                   }
                                 },
                                 builder: (context, state) {
-                                  return const Loading();
+                                  return const LoadingDialog();
                                 },
                               ));
                       await cubit

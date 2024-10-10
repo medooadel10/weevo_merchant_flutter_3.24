@@ -346,7 +346,7 @@ class _MezaPaymentState extends State<MezaPayment> {
                     showDialog(
                         context: navigator.currentContext!,
                         barrierDismissible: false,
-                        builder: (context) => const Loading());
+                        builder: (context) => const LoadingDialog());
                     await weevoPlusProvider.payUsingMeezaCard(
                       pan: _cardNumber!.split('-').join(),
                       expirationDate: _expirationDate!.split('/').join(),
@@ -369,7 +369,7 @@ class _MezaPaymentState extends State<MezaPayment> {
                           showDialog(
                               context: navigator.currentContext!,
                               barrierDismissible: false,
-                              builder: (context) => const Loading());
+                              builder: (context) => const LoadingDialog());
                           await weevoPlusProvider.checkPaymentStatus(
                               systemReferenceNumber: value,
                               transactionId:

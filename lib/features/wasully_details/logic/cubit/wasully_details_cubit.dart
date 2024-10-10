@@ -35,7 +35,7 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
   Future<void> getWassullyDetails(int id) async {
     emit(WasullyDetailsLoadingState());
     final result = await _wasullyDetailsRepo.getWasullyDetails(id);
-    if (result.success!) {
+    if (result.success) {
       wasullyModel = result.data;
       await _createDynamicLink(id);
       emit(WasullyDetailsSuccessState(wasullyModel!));
@@ -169,7 +169,7 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
         id: wasullyModel!.id,
         body: WasullyUpdatePriceRequestBody(price: priceController.text),
       );
-      if (result.success!) {
+      if (result.success) {
         wasullyModel = result.data;
         emit(WasullyUpdatePriceSuccessState(result.data!));
       } else {
@@ -190,7 +190,7 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
   void cancelWasully() async {
     emit(WasullyCancelLoadingState());
     final result = await _wasullyDetailsRepo.cancelWasully(wasullyModel!.id);
-    if (result.success!) {
+    if (result.success) {
       if (wasullyModel?.courier != null) {
         String merchantPhoneNumber = Preferences.instance.getPhoneNumber;
         String courierPhoneNumber = wasullyModel!.courier!.phone!;
@@ -213,7 +213,7 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
     emit(WasullyRestoreLoadingState());
     int id = wasullyModel!.id;
     final result = await _wasullyDetailsRepo.restoreWasully(id);
-    if (result.success!) {
+    if (result.success) {
       FirebaseFirestore.instance
           .collection('locations')
           .where('shipmentId', isEqualTo: wasullyModel!.slug)

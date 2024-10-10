@@ -80,7 +80,7 @@ class CourierToMerchantQrCodeScanner extends StatelessWidget {
                   onDataCallback: (String v) async {
                     if (v.isNotEmpty) {
                       Navigator.pop(c);
-                      showDialog(context: c, builder: (c) => Loading());
+                      showDialog(context: c, builder: (c) => LoadingDialog());
                       await trackingProvider
                           .handleReturnedShipmentByValidatingHandoverQrCodeCourierToMerchant(
                               model.shipmentId!, int.parse(v));

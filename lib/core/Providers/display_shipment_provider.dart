@@ -524,7 +524,7 @@ class DisplayShipmentProvider with ChangeNotifier {
       showDialog(
           context: navigator.currentContext!,
           barrierDismissible: false,
-          builder: (context) => const Loading());
+          builder: (context) => const LoadingDialog());
       Response r = await HttpHelper.instance.httpPost(
         'shipments/$shipmentId?_method=PUT',
         true,

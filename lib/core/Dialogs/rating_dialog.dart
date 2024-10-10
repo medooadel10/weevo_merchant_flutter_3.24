@@ -215,7 +215,7 @@ class _RatingDialogState extends State<RatingDialog> {
                   onTap: () async {
                     showDialog(
                         context: navigator.currentContext!,
-                        builder: (context) => const Loading());
+                        builder: (context) => const LoadingDialog());
                     await trackingProvider.reviewCourier(
                         shipmentId: widget.model.shipmentId,
                         rating: _ratePoint?.toInt(),
