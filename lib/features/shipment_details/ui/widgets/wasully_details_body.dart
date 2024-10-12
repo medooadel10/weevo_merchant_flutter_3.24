@@ -5,9 +5,9 @@ import 'package:weevo_merchant_upgrade/features/shipment_details/data/models/shi
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/ui/widgets/shipment_details_image.dart';
 
+import '../../../../core_new/data/models/shipment_status/base_shipment_status.dart';
 import '../../../../core_new/helpers/spacing.dart';
 import '../../../../core_new/widgets/custom_loading_indicator.dart';
-import '../../../wasully_details/data/models/shipment_status/base_shipment_status.dart';
 import 'shipment_details_app_bar.dart';
 import 'shipment_details_info.dart';
 import 'shipment_details_locations.dart';

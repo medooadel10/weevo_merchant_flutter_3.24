@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-import '../../../wasully_details/data/models/shipment_status/base_shipment_status.dart';
+import '../../../../core_new/data/models/shipment_status/base_shipment_status.dart';
 import '../../../wasully_details/data/models/wasully_model.dart';
 import '../../data/models/shipment_model.dart';
 import '../../data/repos/shipments_repo.dart';

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
-import 'package:weevo_merchant_upgrade/features/shipment_details/ui/shipment_details_screen.dart';
+import 'package:weevo_merchant_upgrade/features/Screens/shipment_details_display.dart';
 
 import '../../../../core/Providers/add_shipment_provider.dart';
 import '../../../../core/Utilits/colors.dart';
@@ -83,8 +83,8 @@ class _ShipmentTileState extends State<ShipmentTile> {
               }
             });
           } else {
-            MagicRouter.navigateTo(ShipmentDetailsScreen(
-              id: widget.shipment.id,
+            MagicRouter.navigateTo(ShipmentDetailsDisplay(
+              shipmentId: widget.shipment.id,
             ));
           }
         },

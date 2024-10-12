@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core_new/data/models/shipment_status/base_shipment_status.dart';
 import '../../../../core_new/widgets/custom_loading_indicator.dart';
-import '../../data/models/shipment_status/base_shipment_status.dart';
 import '../../logic/cubit/wasully_details_cubit.dart';
 import '../../logic/cubit/wasully_details_state.dart';
 
