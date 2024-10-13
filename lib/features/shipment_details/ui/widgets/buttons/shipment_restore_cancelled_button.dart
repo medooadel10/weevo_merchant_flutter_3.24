@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
-import '../../../../core/Utilits/colors.dart';
-import '../../../../core_new/helpers/toasts.dart';
-import '../../../../core_new/router/router.dart';
-import '../../../../core_new/widgets/custom_loading_indicator.dart';
-import '../../../Widgets/weevo_button.dart';
-import '../../../shipments/ui/screens/shipments_screen.dart';
+import '../../../../../core/Utilits/colors.dart';
+import '../../../../../core_new/helpers/toasts.dart';
+import '../../../../../core_new/router/router.dart';
+import '../../../../../core_new/widgets/custom_loading_indicator.dart';
+import '../../../../Widgets/weevo_button.dart';
+import '../../../../shipments/ui/screens/shipments_screen.dart';
 
 class ShipmentRestoreCancelledButton extends StatelessWidget {
   const ShipmentRestoreCancelledButton({super.key});
@@ -35,7 +35,7 @@ class ShipmentRestoreCancelledButton extends StatelessWidget {
             width: double.infinity,
             child: WeevoButton(
               onTap: () {
-                // context.read<ShipmentDetailsCubit>().restoreWasully();
+                context.read<ShipmentDetailsCubit>().restoreCancelledShipment();
               },
               title: 'إضافة الطلب',
               color: weevoPrimaryOrangeColor,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +7,7 @@ import 'package:weevo_merchant_upgrade/features/shipment_details/data/models/shi
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
 import '../../../../core_new/helpers/spacing.dart';
-import 'wasully_details_price_info.dart';
+import 'shipment_details_price_info.dart';
 
 class ShipmentDetailsInfo extends StatelessWidget {
   final ShipmentDetailsModel? shipmentDetails;
@@ -16,8 +18,9 @@ class ShipmentDetailsInfo extends StatelessWidget {
     return BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
       builder: (context, state) {
         final cubit = context.read<ShipmentDetailsCubit>();
-        final product =
-            cubit.shipmentDetails!.products[cubit.currentProductIndex];
+        log('Price ${shipmentDetails?.expectedShippingCost}');
+        log('Price ${shipmentDetails?.agreedShippingCost}');
+        log('Price ${shipmentDetails?.agreedShippingCostAfterDiscount}');
         return Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(
@@ -37,30 +40,6 @@ class ShipmentDetailsInfo extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Text(
-                      product.productInfo.name,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  horizontalSpace(4),
-                  IconButton(
-                    onPressed: () =>
-                        context.read<ShipmentDetailsCubit>().shareWasully(),
-                    icon: const Icon(
-                      Icons.share,
-                    ),
-                  ),
-                ],
-              ),
-              verticalSpace(10),
               SizedBox(
                 width: double.infinity,
                 child: Column(
@@ -72,7 +51,7 @@ class ShipmentDetailsInfo extends StatelessWidget {
                       direction: Axis.horizontal,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
-                        WasullyDetailsPriceInfo(
+                        ShipmentDetailsPriceInfo(
                           priceImage: 'weevo_money',
                           price: shipmentDetails?.amount ?? '',
                           title: 'قيمة الطلب',
@@ -89,14 +68,18 @@ class ShipmentDetailsInfo extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image.asset(
-                              'assets/images/shipment_inside_online_icon.png',
+                              cubit.shipmentDetails!.paymentMethod == 'cod'
+                                  ? 'assets/images/shipment_inside_cod_icon.png'
+                                  : 'assets/images/shipment_inside_online_icon.png',
                               height: 20.h,
                               width: 20.w,
                               fit: BoxFit.contain,
                             ),
                             horizontalSpace(2),
                             Text(
-                              'مدفوع أونلاين',
+                              cubit.shipmentDetails!.paymentMethod == 'cod'
+                                  ? 'دفع مقدم'
+                                  : 'مدفوع أونلاين',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 12.sp,
@@ -115,25 +98,11 @@ class ShipmentDetailsInfo extends StatelessWidget {
                       runSpacing: 5,
                       direction: Axis.horizontal,
                       children: [
-                        WasullyDetailsPriceInfo(
+                        ShipmentDetailsPriceInfo(
                           priceImage: 'van_icon',
                           price:
                               '${shipmentDetails!.agreedShippingCostAfterDiscount ?? shipmentDetails!.agreedShippingCost ?? shipmentDetails!.expectedShippingCost}',
                           title: 'رسوم التوصيل',
-                        ),
-                        Text(
-                          '|',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 12.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        WasullyDetailsPriceInfo(
-                          priceImage: 'van_icon',
-                          price: product.productInfo.weight,
-                          title: 'الوزن',
-                          subTitle: 'كيلو',
                         ),
                       ],
                     ),

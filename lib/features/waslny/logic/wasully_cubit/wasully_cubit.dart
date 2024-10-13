@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -11,6 +10,7 @@ import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import '../../../../core/Models/address.dart';
 import '../../../../core/Models/address_fill.dart';
 import '../../../../core/Providers/add_shipment_provider.dart';
+import '../../../../core/Providers/map_provider.dart';
 import '../../../../core/Storage/shared_preference.dart';
 import '../../../../core/Utilits/constants.dart';
 import '../../../../core_new/helpers/wasully_delivery_service.dart';
@@ -73,7 +73,7 @@ class WasullyCubit extends Cubit<WasullyStates> {
   void getInitData(WasullyModel? wasully, BuildContext context) async {
     senderPhoneController.text = Preferences.instance.getPhoneNumber;
     if (wasully == null) {
-      getAddress();
+      getAddress(context);
       return;
     }
     wasullyModel = wasully;
@@ -113,27 +113,15 @@ class WasullyCubit extends Cubit<WasullyStates> {
   AddressFill? recieverAddressFill;
   AddressFill? senderAddressFill;
 
-  void getAddress() async {
-    emit(WasullyGetDataLoadingState());
-    final int adddressId = Preferences.instance.getAddressId;
-    final result = await _waslnyRepo.getAddresses();
-    if (result.success) {
-      if (result.data!.isNotEmpty) {
-        _address =
-            result.data!.singleWhere((element) => element.id == adddressId);
-        recieverAddressFill = AddressFill(
-          street: _address?.name ?? '',
-          lat: double.parse(_address?.lat ?? '0.0'),
-          long: double.parse(_address?.lng ?? '0.0'),
-          administrativeArea: _address?.state ?? '',
-          subAdministrativeArea: _address?.city ?? '',
-        );
-      }
-      emit(WasullyGetDataSuccessState());
-    } else {
-      log(result.error ?? '');
-      emit(WasullyGetDataErrorState(result.error ?? ''));
-    }
+  void getAddress(context) async {
+    _address = Provider.of<MapProvider>(context, listen: false).fullAddress;
+    recieverAddressFill = AddressFill(
+      street: _address?.name ?? '',
+      lat: double.parse(_address?.lat ?? '0.0'),
+      long: double.parse(_address?.lng ?? '0.0'),
+      administrativeArea: _address?.state ?? '',
+      subAdministrativeArea: _address?.city ?? '',
+    );
   }
 
   void changeRecieverAddress(AddressFill address) {

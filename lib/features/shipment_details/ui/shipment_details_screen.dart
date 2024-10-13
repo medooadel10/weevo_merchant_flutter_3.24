@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +10,7 @@ import '../../../core/Models/shipment_notification.dart';
 import '../../../core/Providers/auth_provider.dart';
 import '../../../core/router/router.dart';
 import '../../wasully_shipping_offers/ui/screens/wasully_shipping_offers_screen.dart';
-import 'widgets/wasully_details_body.dart';
+import 'widgets/shipment_details_body.dart';
 
 class ShipmentDetailsScreen extends StatefulWidget {
   final int id;
@@ -59,10 +61,11 @@ class _ShipmentDetailsScreenState extends State<ShipmentDetailsScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
       builder: (context, state) {
+        log('Status : ${context.read<ShipmentDetailsCubit>().shipmentDetails?.status}');
         return Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
-            child: WasullyDetailsBody(
+            child: ShipmentDetailsBody(
               id: widget.id,
             ),
           ),

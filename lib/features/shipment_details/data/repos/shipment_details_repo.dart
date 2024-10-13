@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:weevo_merchant_upgrade/core_new/networking/data_result.dart';
 import 'package:weevo_merchant_upgrade/core_new/networking/dio_factory.dart';
@@ -29,10 +31,14 @@ class ShipmentDetailsRepo {
 
   Future<DataResult<void>> cancelShipment(int shipmentId) async {
     try {
-      await DioFactory.getData(
-          url: '${ApiConstants.shipmentsUrl}/$shipmentId/cancel');
+      await DioFactory.postData(
+        url: '${ApiConstants.shipmentsUrl}/$shipmentId/cancel',
+        token: Preferences.instance.getAccessToken,
+        data: {},
+      );
       return DataResult.success(null);
     } on DioException catch (e) {
+      log('cancel shipment error ${e.response?.data['message']}');
       return DataResult.error(
         e.response?.data['message'] ??
             e.message ??
@@ -49,7 +55,27 @@ class ShipmentDetailsRepo {
         url: '${ApiConstants.shipmentsUrl}/$shipmentId',
         data: {
           'expected_shipping_cost': cost,
+          'agreed_shipping_cost_after_discount': cost,
         },
+        token: Preferences.instance.getAccessToken,
+      );
+      return DataResult.success(null);
+    } on DioException catch (e) {
+      return DataResult.error(
+        e.response?.data['message'] ??
+            e.message ??
+            e.error?.toString() ??
+            'حدث خطأ ما, الرجاء المحاولة مرة اخرى',
+      );
+    }
+  }
+
+  Future<DataResult<void>> restoreCancelledShipment(int shipmentId) async {
+    try {
+      await DioFactory.postData(
+        url: '${ApiConstants.shipmentsUrl}/$shipmentId/restore-cancelled',
+        data: {},
+        token: Preferences.instance.getAccessToken,
       );
       return DataResult.success(null);
     } on DioException catch (e) {

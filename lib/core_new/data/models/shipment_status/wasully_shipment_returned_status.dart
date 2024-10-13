@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'base_shipment_status.dart';
 
-class WasullyShipmentReturnedStatus extends BaseShipmentStatus {
+class ShipmentReturnedStatus extends BaseShipmentStatus {
   @override
   Widget buildWasullyDetailsButtons(BuildContext context) {
     return Container();

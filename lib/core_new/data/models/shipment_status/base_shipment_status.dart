@@ -11,24 +11,24 @@ import 'wasully_shipment_returned_status.dart';
 
 abstract class BaseShipmentStatus {
   static Map<String, BaseShipmentStatus> shipmentStatusMap = {
-    'available': WasullyShipmentAvailableStatus(),
-    'merchant-accepted-shipping-offer': WasullyShipmentMerchantAcceptedStatus(),
-    'on-the-way-to-get-shipment-from-merchant': WasullyShipmentOnTheWayStatus(),
+    'available': ShipmentAvailableStatus(),
+    'merchant-accepted-shipping-offer': ShipmentMerchantAcceptedStatus(),
+    'on-the-way-to-get-shipment-from-merchant': ShipmentOnTheWayStatus(),
     'courier-applied-to-shipment': WasullyShipmentAppliedStatus(),
-    'on-delivery': WasullyShipmentOnDeliveryStatus(),
-    'delivered': WasullyShipmentDeliveredStatus(),
-    'returned': WasullyShipmentReturnedStatus(),
-    'cancelled': WasullyShipmentCancelledStatus(),
+    'on-delivery': ShipmentOnDeliveryStatus(),
+    'delivered': ShipmentDeliveredStatus(),
+    'returned': ShipmentReturnedStatus(),
+    'cancelled': ShipmentCancelledStatus(),
   };
 
   static List<BaseShipmentStatus> shipmentStatusList = [
-    WasullyShipmentAvailableStatus(),
-    WasullyShipmentMerchantAcceptedStatus(),
-    WasullyShipmentOnTheWayStatus(),
-    WasullyShipmentOnDeliveryStatus(),
-    WasullyShipmentDeliveredStatus(),
-    WasullyShipmentReturnedStatus(),
-    WasullyShipmentCancelledStatus(),
+    ShipmentAvailableStatus(),
+    ShipmentMerchantAcceptedStatus(),
+    ShipmentOnTheWayStatus(),
+    ShipmentOnDeliveryStatus(),
+    ShipmentDeliveredStatus(),
+    ShipmentReturnedStatus(),
+    ShipmentCancelledStatus(),
   ];
 
   Widget buildWasullyDetailsButtons(BuildContext context);

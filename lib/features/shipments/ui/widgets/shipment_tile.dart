@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
-import 'package:weevo_merchant_upgrade/features/Screens/shipment_details_display.dart';
 
 import '../../../../core/Providers/add_shipment_provider.dart';
 import '../../../../core/Utilits/colors.dart';
@@ -14,6 +13,7 @@ import '../../../../core_new/helpers/spacing.dart';
 import '../../../../core_new/router/router.dart';
 import '../../../../core_new/widgets/custom_image.dart';
 import '../../../Screens/child_shipment_details.dart';
+import '../../../Screens/shipment_details_display.dart';
 import '../../../Widgets/slide_dotes.dart';
 import '../../../products/data/models/shipment_product_model.dart';
 import '../../../wasully_details/data/models/wasully_model.dart';
@@ -86,6 +86,8 @@ class _ShipmentTileState extends State<ShipmentTile> {
             MagicRouter.navigateTo(ShipmentDetailsDisplay(
               shipmentId: widget.shipment.id,
             ));
+            // MagicRouter.navigateTo(
+            //     ShipmentDetailsScreen(id: widget.shipment.id));
           }
         },
         child: Card(

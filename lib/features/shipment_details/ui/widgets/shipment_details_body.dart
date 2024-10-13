@@ -3,19 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/data/models/shipment_details_model.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
-import 'package:weevo_merchant_upgrade/features/shipment_details/ui/widgets/shipment_details_image.dart';
+import 'package:weevo_merchant_upgrade/features/shipment_details/ui/widgets/shipment_details_header.dart';
 
 import '../../../../core_new/data/models/shipment_status/base_shipment_status.dart';
 import '../../../../core_new/helpers/spacing.dart';
 import '../../../../core_new/widgets/custom_loading_indicator.dart';
 import 'shipment_details_app_bar.dart';
+import 'shipment_details_buttons.dart';
 import 'shipment_details_info.dart';
 import 'shipment_details_locations.dart';
-import 'wasully_details_buttons.dart';
 
-class WasullyDetailsBody extends StatelessWidget {
+class ShipmentDetailsBody extends StatelessWidget {
   final int? id;
-  const WasullyDetailsBody({super.key, this.id});
+  const ShipmentDetailsBody({super.key, this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +61,10 @@ class WasullyDetailsBody extends StatelessWidget {
                               snap: true,
                               leading: null,
                               automaticallyImplyLeading: false,
-                              expandedHeight: 200.h,
+                              expandedHeight: 250.h,
                               backgroundColor: Colors.transparent,
                               flexibleSpace: FlexibleSpaceBar(
-                                background: ShipmentDetailsImage(
+                                background: ShipmentDetailsHeader(
                                   image: shipmentDetails
                                       .products[cubit.currentProductIndex]
                                       .productInfo
@@ -91,7 +91,7 @@ class WasullyDetailsBody extends StatelessWidget {
                       ),
                     ),
                     verticalSpace(10),
-                    const WasullyDetailsButtons(),
+                    const ShipmentDetailsButtons(),
                   ],
                 ),
               ),

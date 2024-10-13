@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/Utilits/colors.dart';
 import '../../../../../core_new/helpers/spacing.dart';
+import '../../../../features/shipment_details/ui/widgets/buttons/shipment_restore_cancelled_button.dart';
 import '../../../../features/shipment_details/ui/widgets/buttons/shipment_update_shipment_btn.dart';
-import '../../../../features/shipment_details/ui/widgets/shipment_restore_cancelled_button.dart';
 import '../../../../features/wasully_details/ui/widgets/buttons/wasully_update_shipment_btn.dart';
 import '../../../../features/wasully_details/ui/widgets/wasully_restore_cancelled_button.dart';
 import 'base_shipment_status.dart';
 
-class WasullyShipmentCancelledStatus extends BaseShipmentStatus {
+class ShipmentCancelledStatus extends BaseShipmentStatus {
   @override
   Widget buildWasullyDetailsButtons(BuildContext context) {
     return Row(

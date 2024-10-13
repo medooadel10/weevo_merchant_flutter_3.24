@@ -10,7 +10,7 @@ import '../../../../features/wasully_details/ui/widgets/buttons/wasully_increase
 import '../../../../features/wasully_details/ui/widgets/buttons/wasully_update_shipment_btn.dart';
 import 'base_shipment_status.dart';
 
-class WasullyShipmentAvailableStatus extends BaseShipmentStatus {
+class ShipmentAvailableStatus extends BaseShipmentStatus {
   @override
   Widget buildWasullyDetailsButtons(BuildContext context) {
     return Column(

@@ -4,12 +4,12 @@ import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 
 import '../../../../core_new/helpers/spacing.dart';
 
-class WasullyDetailsPriceInfo extends StatelessWidget {
+class ShipmentDetailsPriceInfo extends StatelessWidget {
   final String priceImage;
   final String price;
   final String title;
   final String subTitle;
-  const WasullyDetailsPriceInfo({
+  const ShipmentDetailsPriceInfo({
     super.key,
     required this.priceImage,
     required this.price,

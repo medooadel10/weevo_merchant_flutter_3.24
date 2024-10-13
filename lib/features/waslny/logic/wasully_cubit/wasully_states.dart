@@ -17,15 +17,6 @@ class WasullyChangeImageState extends WasullyStates {
   WasullyChangeImageState(this.image);
 }
 
-class WasullyGetDataLoadingState extends WasullyStates {}
-
-class WasullyGetDataSuccessState extends WasullyStates {}
-
-class WasullyGetDataErrorState extends WasullyStates {
-  final String error;
-  WasullyGetDataErrorState(this.error);
-}
-
 class WasullyChangeRecieverAddressState extends WasullyStates {
   final AddressFill address;
   WasullyChangeRecieverAddressState(this.address);

@@ -9,10 +9,11 @@ class ProductModel {
   final int shipmentId;
   final double price;
   final double? total;
+  final int qty;
   final ProductInfoModel productInfo;
 
   ProductModel(this.id, this.productId, this.shipmentId, this.price, this.total,
-      this.productInfo);
+      this.productInfo, this.qty);
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);

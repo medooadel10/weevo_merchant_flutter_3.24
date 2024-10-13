@@ -5,8 +5,8 @@ import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shi
 import '../../../../core_new/data/models/shipment_status/base_shipment_status.dart';
 import '../../../../core_new/widgets/custom_loading_indicator.dart';
 
-class WasullyDetailsButtons extends StatelessWidget {
-  const WasullyDetailsButtons({super.key});
+class ShipmentDetailsButtons extends StatelessWidget {
+  const ShipmentDetailsButtons({super.key});
 
   @override
   Widget build(BuildContext context) {

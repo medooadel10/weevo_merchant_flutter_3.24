@@ -76,6 +76,7 @@ class ShipmentUpdatePriceDialog extends StatelessWidget {
                 listener: (context, state) {
                   if (state is UpdatePriceSuccess) {
                     showToast('تم تحديث سعر بنجاح');
+                    cubit.getShipmentDetails(cubit.shipmentDetails!.id);
                     MagicRouter.pop();
                   }
                   if (state is UpdatePriceError) {

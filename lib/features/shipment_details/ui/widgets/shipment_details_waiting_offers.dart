@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/Screens/choose_courier.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
 import '../../../../core/Models/shipment_notification.dart';
@@ -8,7 +9,6 @@ import '../../../../core/Providers/auth_provider.dart';
 import '../../../../core/Utilits/colors.dart';
 import '../../../../core/router/router.dart';
 import '../../../../core_new/helpers/spacing.dart';
-import '../../../wasully_shipping_offers/ui/screens/wasully_shipping_offers_screen.dart';
 
 class ShipmentDetailsWaitingOffers extends StatelessWidget {
   const ShipmentDetailsWaitingOffers({super.key});
@@ -20,8 +20,7 @@ class ShipmentDetailsWaitingOffers extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         MagicRouter.navigateTo(
-          WasullyShippingOffersScreen(
-            id: cubit.shipmentDetails!.id,
+          ChooseCourier(
             shipmentNotification: ShipmentNotification(
               merchantName: authProvider.name,
               merchantImage: authProvider.photo,

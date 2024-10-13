@@ -17,12 +17,12 @@ import '../../../../core_new/networking/api_constants.dart';
 import '../../../../core_new/networking/dio_factory.dart';
 import '../../../wasully_handle_shipment/ui/widgets/wasully_courier_to_merchant_qr_code_dialog.dart';
 
-class WasullyDetailsQrCode extends StatelessWidget {
+class ShipmentDetailsQrCode extends StatelessWidget {
   final String locationId;
   final String status;
   final String courierNationalId;
   final String merchantNationalId;
-  const WasullyDetailsQrCode(
+  const ShipmentDetailsQrCode(
       {super.key,
       required this.locationId,
       required this.status,

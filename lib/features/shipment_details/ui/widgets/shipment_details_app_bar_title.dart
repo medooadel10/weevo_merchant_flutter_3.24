@@ -40,7 +40,7 @@ class ShipmentDetailsAppBarTitle extends StatelessWidget {
                 cubit.shipmentDetails?.status != 'available' &&
                 cubit.shipmentDetails?.status != 'cancelled' &&
                 cubit.shipmentDetails?.status != 'returned')
-              WasullyDetailsQrCode(
+              ShipmentDetailsQrCode(
                 courierNationalId: cubit.courierNationalId,
                 merchantNationalId: cubit.merchantNationalId,
                 locationId: cubit.locationId,

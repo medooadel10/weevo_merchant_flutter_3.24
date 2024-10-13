@@ -9,7 +9,7 @@ import '../../../../features/wasully_details/ui/widgets/buttons/wasully_track_sh
 import '../../../../features/wasully_details/ui/widgets/wasully_details_courier_header.dart';
 import 'base_shipment_status.dart';
 
-class WasullyShipmentOnTheWayStatus extends BaseShipmentStatus {
+class ShipmentOnTheWayStatus extends BaseShipmentStatus {
   @override
   Widget buildWasullyDetailsButtons(BuildContext context) {
     return Row(

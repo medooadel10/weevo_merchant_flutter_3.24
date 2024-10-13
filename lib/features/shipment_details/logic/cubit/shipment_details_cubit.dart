@@ -61,13 +61,26 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
   final priceForm = GlobalKey<FormState>();
 
   void updateShippingCost() async {
-    emit(const ShipmentDetailsState.updatePriceLoading());
-    final result = await _shipmentDetailsRepo.updateShippingCost(
-        shipmentDetails!.id, shippingCostContoller.text);
+    if (priceForm.currentState!.validate()) {
+      emit(const ShipmentDetailsState.updatePriceLoading());
+      final result = await _shipmentDetailsRepo.updateShippingCost(
+          shipmentDetails!.id, shippingCostContoller.text);
+      if (result.success) {
+        emit(const ShipmentDetailsState.updatePriceSuccess());
+      } else {
+        emit(ShipmentDetailsState.updatePriceError(result.error!));
+      }
+    }
+  }
+
+  void restoreCancelledShipment() async {
+    emit(const ShipmentDetailsState.restoreCancelLoading());
+    final result = await _shipmentDetailsRepo
+        .restoreCancelledShipment(shipmentDetails!.id);
     if (result.success) {
-      emit(const ShipmentDetailsState.updatePriceSuccess());
+      emit(const ShipmentDetailsState.restoreCancelSuccess());
     } else {
-      emit(ShipmentDetailsState.updatePriceError(result.error!));
+      emit(ShipmentDetailsState.restoreCancelError(result.error!));
     }
   }
 
