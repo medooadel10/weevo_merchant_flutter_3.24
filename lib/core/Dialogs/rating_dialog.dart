@@ -16,7 +16,6 @@ import '../Utilits/colors.dart';
 import '../Utilits/constants.dart';
 import '../router/router.dart';
 import 'action_dialog.dart';
-import 'loading.dart';
 
 class RatingDialog extends StatefulWidget {
   final ShipmentTrackingModel model;
@@ -213,9 +212,6 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 WeevoButton(
                   onTap: () async {
-                    showDialog(
-                        context: navigator.currentContext!,
-                        builder: (context) => const LoadingDialog());
                     await trackingProvider.reviewCourier(
                         shipmentId: widget.model.shipmentId,
                         rating: _ratePoint?.toInt(),
@@ -297,6 +293,7 @@ class _RatingDialogState extends State<RatingDialog> {
                                 ),
                               )));
                     } else if (trackingProvider.state == NetworkState.ERROR) {
+                      MagicRouter.pop();
                       showDialog(
                           context: navigator.currentContext!,
                           barrierDismissible: false,

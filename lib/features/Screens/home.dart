@@ -67,6 +67,7 @@ class _HomeState extends State<Home> {
         Provider.of<AddShipmentProvider>(context, listen: false);
     _authProvider.initialFCM(context);
     _authProvider.initialOpenedAppFCM(context);
+
     checkNetwork();
   }
 

@@ -42,7 +42,7 @@ class HttpHelper {
         await AuthProvider.listenFalse(navigator.currentContext!).authLogin();
         await getData();
       } else {
-        MagicRouter.navigateAndPopAll(OnBoarding());
+        MagicRouter.navigateAndPopAll(const OnBoarding());
       }
     }
     log('response -> ${r.body}');
@@ -66,7 +66,7 @@ class HttpHelper {
         await AuthProvider.listenFalse(navigator.currentContext!).authLogin();
         await getData();
       } else {
-        MagicRouter.navigateAndPopAll(OnBoarding());
+        MagicRouter.navigateAndPopAll(const OnBoarding());
       }
     }
     log('response -> ${r.body}');
@@ -90,7 +90,7 @@ class HttpHelper {
         await AuthProvider.listenFalse(navigator.currentContext!).authLogin();
         await getData();
       } else {
-        MagicRouter.navigateAndPopAll(OnBoarding());
+        MagicRouter.navigateAndPopAll(const OnBoarding());
       }
     }
     log('response -> ${r.body}');
@@ -114,7 +114,7 @@ class HttpHelper {
         await AuthProvider.listenFalse(navigator.currentContext!).authLogin();
         await getData();
       } else {
-        MagicRouter.navigateAndPopAll(OnBoarding());
+        MagicRouter.navigateAndPopAll(const OnBoarding());
       }
     }
     log('response -> ${r.body}');

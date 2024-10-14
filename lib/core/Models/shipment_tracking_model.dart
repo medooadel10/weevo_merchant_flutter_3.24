@@ -6,10 +6,15 @@ class ShipmentTrackingModel {
   String? deliveringCity;
   String? receivingState;
   String? receivingCity;
-  String? deliveringLat;
-  String? deliveringLng;
+  String? receivingStreet;
+  String? receivingLandmark;
+  String? receivingBuildingNumber;
+  String? receivingFloor;
+  String? receivingApartment;
   String? receivingLat;
   String? receivingLng;
+  String? deliveringLat;
+  String? deliveringLng;
   double? fromLat;
   double? fromLng;
   int? hasChildren;
@@ -27,9 +32,10 @@ class ShipmentTrackingModel {
   String? status;
   String? courierPhone;
   String? locationIdStatus;
-  String? deliveringStreet;
-  String? receivingStreet;
+  String? wasullyId;
   WasullyModel? wasullyModel;
+  String? deliveringStreet;
+  String? merchantRating;
 
   ShipmentTrackingModel({
     this.shipmentId,
@@ -37,12 +43,17 @@ class ShipmentTrackingModel {
     this.deliveringCity,
     this.receivingState,
     this.receivingCity,
-    this.deliveringLat,
+    this.receivingStreet,
+    this.receivingLandmark,
+    this.receivingBuildingNumber,
+    this.receivingFloor,
+    this.receivingApartment,
     this.receivingLat,
+    this.receivingLng,
+    this.deliveringLat,
     this.merchantNationalId,
     this.courierNationalId,
     this.deliveringLng,
-    this.receivingLng,
     this.fromLat,
     this.paymentMethod,
     this.fromLng,
@@ -58,9 +69,10 @@ class ShipmentTrackingModel {
     this.courierName,
     this.locationIdStatus,
     this.courierPhone,
-    this.deliveringStreet,
-    this.receivingStreet,
+    this.wasullyId,
     this.wasullyModel,
+    this.deliveringStreet,
+    this.merchantRating,
   });
 
   factory ShipmentTrackingModel.fromJson(Map<String, dynamic> map) {
@@ -94,36 +106,39 @@ class ShipmentTrackingModel {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'shipment_id': shipmentId,
-        'delivery_state': deliveringState,
-        'delivery_city': deliveringCity,
-        'receiving_state': receivingState,
-        'receiving_city': receivingCity,
-        'delivery_lat': deliveringLat,
-        'delivering_lng': deliveringLng,
-        'receiving_lat': receivingLat,
-        'receiving_lng': receivingLng,
-        'from_lat': fromLat,
-        'client_phone': clientPhone,
-        'merchant_national_id': merchantNationalId,
-        'courier_national_id': courierNationalId,
-        'from_lng': fromLng,
-        'merchant_id': merchantId,
-        'courier_id': courierId,
-        'status': status,
-        'payment_method': paymentMethod,
-        'has_children': hasChildren,
-        'merchant_image': merchantImage,
-        'merchant_name': merchantName,
-        'merchant_phone': merchantPhone,
-        'courier_phone': courierPhone,
-        'courier_name': courierName,
-        'location_id_Status': locationIdStatus,
-        'courier_image': courierImage,
-      };
-
-  @override
-  String toString() =>
-      'ShipmentTrackingModel{shipmentId: $shipmentId, deliveringState: $deliveringState, deliveringCity: $deliveringCity, receivingState: $receivingState, receivingCity: $receivingCity, deliveringLat: $deliveringLat, deliveringLng: $deliveringLng, fromLat: $fromLat, fromLng: $fromLng, hasChildren: $hasChildren, merchantId: $merchantId, courierId: $courierId, courierNationalId: $courierNationalId, merchantNationalId: $merchantNationalId, paymentMethod: $paymentMethod, merchantImage: $merchantImage, courierImage: $courierImage, merchantName: $merchantName, courierName: $courierName, merchantPhone: $merchantPhone, clientPhone: $clientPhone, status: $status, courierPhone: $courierPhone, locationIdStatus: $locationIdStatus}';
+  Map<String, dynamic> toJson() {
+    return {
+      'shipment_id': shipmentId?.toString(),
+      'delivery_state': deliveringState,
+      'delivery_city': deliveringCity,
+      'receiving_state': receivingState,
+      'receiving_city': receivingCity,
+      'receiving_street': receivingStreet,
+      'receiving_landmark': receivingLandmark,
+      'receiving_building_number': receivingBuildingNumber,
+      'receiving_floor': receivingFloor,
+      'receiving_apartment': receivingApartment,
+      'receiving_lat': receivingLat,
+      'receiving_lng': receivingLng,
+      'delivery_lat': deliveringLat,
+      'delivering_lng': deliveringLng,
+      'from_lat': fromLat?.toString(),
+      'client_phone': clientPhone,
+      'merchant_national_id': merchantNationalId,
+      'courier_national_id': courierNationalId,
+      'from_lng': fromLng?.toString(),
+      'merchant_id': merchantId?.toString(),
+      'courier_id': courierId?.toString(),
+      'status': status,
+      'payment_method': paymentMethod,
+      'has_children': hasChildren?.toString(),
+      'merchant_image': merchantImage,
+      'merchant_name': merchantName,
+      'merchant_phone': merchantPhone,
+      'courier_phone': courierPhone,
+      'courier_name': courierName,
+      'location_id_Status': locationIdStatus,
+      'courier_image': courierImage,
+    };
+  }
 }

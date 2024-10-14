@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
+import '../../../../core/Dialogs/courier_to_merchant_qr_code_dialog.dart';
 import '../../../../core/Dialogs/loading.dart';
 import '../../../../core/Dialogs/qr_dialog_code.dart';
 import '../../../../core/Dialogs/share_save_qr_code_dialog.dart';
@@ -15,7 +16,6 @@ import '../../../../core/Storage/shared_preference.dart';
 import '../../../../core/Utilits/colors.dart';
 import '../../../../core_new/networking/api_constants.dart';
 import '../../../../core_new/networking/dio_factory.dart';
-import '../../../wasully_handle_shipment/ui/widgets/wasully_courier_to_merchant_qr_code_dialog.dart';
 
 class ShipmentDetailsQrCode extends StatelessWidget {
   final String locationId;
@@ -112,7 +112,8 @@ class ShipmentDetailsQrCode extends StatelessWidget {
               showDialog(
                 context: navigator.currentContext!,
                 barrierDismissible: false,
-                builder: (ctx) => WasullyCourierToMerchantQrCodeDialog(
+                builder: (ctx) => CourierToMerchantQrCodeScanner(
+                  parentContext: navigator.currentContext!,
                   model: ShipmentTrackingModel(
                     courierNationalId: courierNationalId,
                     merchantNationalId: merchantNationalId,

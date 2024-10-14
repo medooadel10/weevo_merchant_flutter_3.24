@@ -5,10 +5,10 @@ import '../../features/Screens/child_shipment_details.dart';
 import '../../features/Screens/choose_courier.dart';
 import '../../features/Screens/handle_shipment.dart';
 import '../../features/Screens/merchant_warehouse.dart';
-import '../../features/Screens/shipment_details_display.dart';
 import '../../features/Screens/shipment_splash.dart';
 import '../../features/Screens/wallet.dart';
 import '../../features/Screens/weevo_plus_screen.dart';
+import '../../features/shipment_details/ui/shipment_details_screen.dart';
 import '../Dialogs/loading.dart';
 import '../Dialogs/wallet_dialog.dart';
 import '../Models/chat_data.dart';
@@ -58,8 +58,9 @@ void notificationNavigation(
   switch (type) {
     case 'cancel_shipment':
       if (ShipmentTrackingModel.fromJson(data).hasChildren == 0) {
-        Navigator.pushNamed(ctx, ShipmentDetailsDisplay.id,
-            arguments: ShipmentTrackingModel.fromJson(data).shipmentId);
+        MagicRouter.navigateTo(ShipmentDetailsScreen(
+          id: ShipmentTrackingModel.fromJson(data).shipmentId!,
+        ));
       } else {
         Navigator.pushNamed(ctx, ChildShipmentDetails.id,
             arguments: ShipmentTrackingModel.fromJson(data).shipmentId);
@@ -96,9 +97,9 @@ void notificationNavigation(
           );
         } else {
           if (ShipmentNotification.fromMap(data).childrenShipment == 0) {
-            Navigator.pushNamed(
-                navigator.currentContext!, ShipmentDetailsDisplay.id,
-                arguments: ShipmentNotification.fromMap(data).shipmentId);
+            MagicRouter.navigateTo(ShipmentDetailsScreen(
+              id: ShipmentTrackingModel.fromJson(data).shipmentId!,
+            ));
           } else {
             Navigator.pushNamed(
                 navigator.currentContext!, ChildShipmentDetails.id,
@@ -127,8 +128,9 @@ void notificationNavigation(
       break;
     case 'shipment':
       if (data['has_children'] == 0) {
-        Navigator.pushNamed(ctx, ShipmentDetailsDisplay.id,
-            arguments: data['shipment_id']);
+        MagicRouter.navigateTo(ShipmentDetailsScreen(
+          id: data['shipment_id'],
+        ));
       } else {
         Navigator.pushNamed(ctx, ChildShipmentDetails.id,
             arguments: data['shipment_id']);

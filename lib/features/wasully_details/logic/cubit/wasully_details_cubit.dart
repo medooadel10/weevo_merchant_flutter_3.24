@@ -56,11 +56,8 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
           .get();
       courierNationalId = courierToken['national_id'];
       log('courier national id: $courierNationalId');
-      DocumentSnapshot merchantToken = await FirebaseFirestore.instance
-          .collection('merchant_users')
-          .doc(wasullyModel?.merchantId.toString())
-          .get();
-      merchantNationalId = merchantToken['national_id'];
+
+      merchantNationalId = Preferences.instance.getPhoneNumber;
       log('location id: $merchantNationalId');
       if (merchantNationalId.hashCode >= courierNationalId.hashCode) {
         locationId =

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/shipment_details/ui/shipment_details_screen.dart';
 
 import '../../core/Models/chat_data.dart';
 import '../../core/Providers/auth_provider.dart';
@@ -16,7 +17,6 @@ import '../Widgets/chat_error_msg.dart';
 import '../Widgets/chat_list.dart';
 import '../Widgets/chat_loading.dart';
 import 'home.dart';
-import 'shipment_details_display.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'ChatScreen';
@@ -149,9 +149,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      await Navigator.pushNamed(
-                          context, ShipmentDetailsDisplay.id,
-                          arguments: widget.chatData.shipmentId);
+                      await MagicRouter.navigateTo(
+                        ShipmentDetailsScreen(id: widget.chatData.shipmentId),
+                      );
                     },
                     child: Image.asset(
                       'assets/images/circle_truck.png',

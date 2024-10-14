@@ -1254,7 +1254,7 @@ class _AddProductState extends State<AddProduct> {
                                                           : productImage,
                                                       merchantId: int.parse(
                                                           _authProvider.id!),
-                                                      price: int.parse(
+                                                      price: double.parse(
                                                           productPrice!),
                                                     ),
                                                   );
@@ -1276,7 +1276,7 @@ class _AddProductState extends State<AddProduct> {
                                                       image: _img != null
                                                           ? '${_img!.path}'
                                                           : productImage,
-                                                      price: int.parse(
+                                                      price: double.parse(
                                                           productPrice!),
                                                     ),
                                                   );

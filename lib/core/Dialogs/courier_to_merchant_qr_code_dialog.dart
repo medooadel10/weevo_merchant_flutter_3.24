@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +82,8 @@ class CourierToMerchantQrCodeScanner extends StatelessWidget {
                   onDataCallback: (String v) async {
                     if (v.isNotEmpty) {
                       Navigator.pop(c);
-                      showDialog(context: c, builder: (c) => LoadingDialog());
+                      showDialog(
+                          context: c, builder: (c) => const LoadingDialog());
                       await trackingProvider
                           .handleReturnedShipmentByValidatingHandoverQrCodeCourierToMerchant(
                               model.shipmentId!, int.parse(v));
@@ -96,17 +99,18 @@ class CourierToMerchantQrCodeScanner extends StatelessWidget {
                         );
                         DocumentSnapshot userToken = await FirebaseFirestore
                             .instance
-                            .collection('merchant_users')
-                            .doc(model.merchantId.toString())
+                            .collection('courier_users')
+                            .doc(model.courierId.toString())
                             .get();
                         String token = userToken['fcmToken'];
+                        log('The token : $token');
+                        log('The data : ${model.toJson()}');
+
                         authProvider.sendNotification(
-                            title: model.wasullyModel != null
-                                ? 'تم ارتجاع طلبك بنجاح'
-                                : 'تم ارتجاع شحنتك بنجاح',
+                            title: 'تم ارتجاع شحنتك بنجاح',
                             body: model.wasullyModel != null
                                 ? 'تم ارتجاع طلبك بنجاح برجاء تقييم طلبك مع التاجر ${authProvider.name}'
-                                : 'تم ارتجاع شحنتك بنجاح برجاء تقييم شحنتك مع التاجر ${authProvider.name}',
+                                : 'تم ارتجاع طلبك بنجاح برجاء تقييم طلبك مع التاجر ${authProvider.name}',
                             toToken: token,
                             image: authProvider.photo != null &&
                                     authProvider.photo!.isNotEmpty
@@ -140,7 +144,7 @@ class CourierToMerchantQrCodeScanner extends StatelessWidget {
                             builder: (c) => DoneDialog(
                                   content: model.wasullyModel != null
                                       ? 'تم ارتجاع طلبك بنجاح'
-                                      : 'تم ارتجاع شحنتك بنجاح',
+                                      : 'تم ارتجاع طلبك بنجاح',
                                   onDoneCallback: () {
                                     MagicRouter.pop();
                                   },

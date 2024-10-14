@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +24,6 @@ class ShipmentDetailsCourierHeader extends StatelessWidget {
     ShipmentDetailsCubit cubit = context.read<ShipmentDetailsCubit>();
     ShipmentDetailsModel? data = cubit.shipmentDetails;
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    log('Courier: ${data?.courier?.toJson()}');
     return Container(
       margin: EdgeInsets.only(
         bottom: 10.0.h,

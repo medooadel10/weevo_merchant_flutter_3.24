@@ -32,7 +32,6 @@ import '../../features/Screens/product_details.dart';
 import '../../features/Screens/profile_information.dart';
 import '../../features/Screens/promo_code.dart';
 import '../../features/Screens/reset_password.dart';
-import '../../features/Screens/shipment_details_display.dart';
 import '../../features/Screens/shipment_splash.dart';
 import '../../features/Screens/shipment_tracking_map.dart';
 import '../../features/Screens/sign_up.dart';
@@ -188,13 +187,6 @@ Route<dynamic>? getOnGenerateRoute(RouteSettings settings) {
         isDuplicate: arg.isDuplicate,
         product: arg.product,
         from: arg.from ?? '',
-      ),
-    );
-  } else if (settings.name == ShipmentDetailsDisplay.id) {
-    final int id = settings.arguments as int;
-    return MaterialPageRoute(
-      builder: (_) => ShipmentDetailsDisplay(
-        shipmentId: id,
       ),
     );
   } else if (settings.name == ChildShipmentDetails.id) {

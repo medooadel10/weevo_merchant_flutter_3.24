@@ -175,7 +175,9 @@ class _HorizontalReusableItemState extends State<HorizontalReusableItem> {
                                             context: navigator.currentContext!,
                                             builder: (context) =>
                                                 ProductPriceEdit(
-                                              price: widget.product.price ?? 0,
+                                              price: widget.product.price
+                                                      ?.toDouble() ??
+                                                  0.0,
                                               onDone: (String s) {
                                                 shipmentProvider
                                                     .updateShipmentProduct(
@@ -196,7 +198,7 @@ class _HorizontalReusableItemState extends State<HorizontalReusableItem> {
                                                     merchantId: widget
                                                         .product.merchantId,
                                                     image: widget.product.image,
-                                                    price: int.parse(s),
+                                                    price: double.parse(s),
                                                     quantity:
                                                         widget.product.quantity,
                                                   ),

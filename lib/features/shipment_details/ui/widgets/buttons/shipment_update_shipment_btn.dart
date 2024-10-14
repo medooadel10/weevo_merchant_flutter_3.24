@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weevo_merchant_upgrade/core/Models/display_child_details.dart';
 import 'package:weevo_merchant_upgrade/core/Providers/add_shipment_provider.dart';
 import 'package:weevo_merchant_upgrade/core_new/router/router.dart';
+import 'package:weevo_merchant_upgrade/features/shipment_details/data/models/shipment_details_model.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
 import '../../../../../core/Utilits/colors.dart';
@@ -40,15 +42,15 @@ class ShipmentUpdateShipmentBtn extends StatelessWidget {
             showToast('لا يمكن تعديل الطلب بسبب تم استرجاع الطلب');
             return;
           }
+          log('cubit.shipmentDetails -> ${cubit.shipmentDetails!.toJson()}');
           shipmentProvider.setIsUpdatedFromServer(true);
           shipmentProvider.setDataFromServer(
-            model:
-                DisplayChildDetails.fromJson(cubit.shipmentDetails!.toJson()),
+            model: cubit.shipmentDetails!,
           );
           MagicRouter.navigateTo(
             const AddShipment(),
           ).then((value) {
-            if (value is DisplayChildDetails) {
+            if (value is ShipmentDetailsModel) {
               cubit.getShipmentDetails(cubit.shipmentDetails!.id);
             }
           });

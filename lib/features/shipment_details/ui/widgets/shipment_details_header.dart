@@ -58,9 +58,16 @@ class ShipmentDetailsHeader extends StatelessWidget {
                               horizontalSpace(10),
                               Row(
                                 children: [
-                                  const Icon(
-                                    Icons.category,
-                                    color: weevoPrimaryOrangeColor,
+                                  CustomImage(
+                                    imageUrl: cubit
+                                        .shipmentDetails!
+                                        .products[index]
+                                        .productInfo
+                                        .productCategory
+                                        .image,
+                                    width: 20.w,
+                                    height: 20.h,
+                                    fit: BoxFit.contain,
                                   ),
                                   horizontalSpace(5),
                                   Text(
@@ -77,7 +84,6 @@ class ShipmentDetailsHeader extends StatelessWidget {
                               ),
                             ],
                           ),
-                          verticalSpace(5),
                           Text(
                             cubit.shipmentDetails!.products[index].productInfo
                                 .description,
@@ -138,13 +144,14 @@ class ShipmentDetailsHeader extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(12.0),
                       ),
-                      color: Colors.white,
+                      color: weevoPrimaryOrangeColor,
                     ),
                     child: Text(
                       'الكمية : ${cubit.shipmentDetails?.products[index].qty}',
                       style: TextStyle(
                         fontSize: 12.0.sp,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -156,11 +163,11 @@ class ShipmentDetailsHeader extends StatelessWidget {
             autoPlay: false,
             enableInfiniteScroll: false,
             enlargeCenterPage: true,
-            viewportFraction: 0.85,
+            viewportFraction: 1,
             onPageChanged: (index, reason) {
               cubit.changeProductIndex(index);
             },
-            height: double.infinity,
+            height: 260.h,
           ),
         );
       },

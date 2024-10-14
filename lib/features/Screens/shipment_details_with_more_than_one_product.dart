@@ -1466,9 +1466,9 @@ class _ShipmentDetailsWithMoreThanOneProductState
                                         .setShipmentFromWhere(oneShipment);
                                     shipmentProvider
                                         .setIsUpdatedFromServer(true);
-                                    shipmentProvider.setDataFromServer(
-                                      model: data.shipmentById!,
-                                    );
+                                    // shipmentProvider.setDataFromServer(
+                                    //   model: data.shipmentById!,
+                                    // );
                                     Navigator.pushReplacementNamed(
                                       context,
                                       AddShipment.id,

@@ -140,8 +140,7 @@ class WasullyCourierToMerchantQrCodeDialog extends StatelessWidget {
                                     showDialog(
                                       context: navigator.currentContext!,
                                       builder: (context) => WalletDialog(
-                                        msg:
-                                            'الكود الذي أدخلته غبي صحيح\nيرجي التأكد من الكود\nوأعادة المحاولة مرة آخري',
+                                        msg: state.error,
                                         onPress: () {
                                           MagicRouter.pop();
                                         },

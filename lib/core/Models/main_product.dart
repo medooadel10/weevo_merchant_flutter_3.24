@@ -12,7 +12,7 @@ class MainProduct {
   int? perPage;
   String? prevPageUrl;
   int? to;
-  int? total;
+  num? total;
 
   MainProduct(
       {this.currentPage,

@@ -10,9 +10,9 @@ class CustomRangeTextInputFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     if (newValue.text == '')
-      return TextEditingValue();
+      return const TextEditingValue();
     else if (int.parse(newValue.text) < max)
-      return TextEditingValue().copyWith(text: max.toString());
+      return const TextEditingValue().copyWith(text: max.toString());
     return newValue;
   }
 }

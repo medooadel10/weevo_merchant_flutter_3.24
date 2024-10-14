@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
+import 'package:weevo_merchant_upgrade/features/Screens/handle_shipment.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
 import '../../../../../core/Models/shipment_tracking_model.dart';
@@ -9,7 +13,6 @@ import '../../../../../core/Utilits/colors.dart';
 import '../../../../../core/router/router.dart';
 import '../../../../../core_new/helpers/toasts.dart';
 import '../../../../Widgets/weevo_button.dart';
-import '../../../../wasully_handle_shipment/ui/screens/wasully_handle_shipment_screen.dart';
 
 class ShipmentTrackShipmentBtn extends StatelessWidget {
   const ShipmentTrackShipmentBtn({super.key});
@@ -40,13 +43,10 @@ class ShipmentTrackShipmentBtn extends StatelessWidget {
               .doc(data.courierId.toString())
               .get();
           String courierNationalId = courierToken['national_id'];
-          DocumentSnapshot merchantToken = await FirebaseFirestore.instance
-              .collection('merchant_users')
-              .doc(data.merchantId.toString())
-              .get();
-          String merchantNationalId = merchantToken['national_id'];
+          String merchantNationalId = Preferences.instance.getPhoneNumber;
+          log('PHOOOONE $merchantNationalId $courierNationalId');
           MagicRouter.navigateTo(
-            WasullyHandleShipmentScreen(
+            HandleShipment(
               model: ShipmentTrackingModel(
                 courierNationalId: courierNationalId,
                 merchantNationalId: merchantNationalId,

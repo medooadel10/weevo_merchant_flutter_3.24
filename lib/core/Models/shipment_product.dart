@@ -5,8 +5,8 @@ class ShipmentProduct {
   int? shipmentId;
   int? productId;
   int? qty;
-  int? price;
-  int? total;
+  dynamic price;
+  dynamic total;
   String? createdAt;
   String? updatedAt;
   ShipmentProductInfo? productInfo;

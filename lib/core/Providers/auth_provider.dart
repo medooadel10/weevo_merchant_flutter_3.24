@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart' as dio;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,8 +33,8 @@ import '../../features/Screens/handle_shipment.dart';
 import '../../features/Screens/home.dart';
 import '../../features/Screens/merchant_warehouse.dart';
 import '../../features/Screens/onboarding_screens.dart';
-import '../../features/Screens/shipment_details_display.dart';
 import '../../features/Screens/wallet.dart';
+import '../../features/shipment_details/ui/shipment_details_screen.dart';
 import '../../features/wasully_handle_shipment/ui/widgets/wasully_rating_dialog.dart';
 import '../../main.dart';
 import '../Dialogs/action_dialog.dart';
@@ -1550,10 +1551,10 @@ class AuthProvider with ChangeNotifier {
           if (ShipmentTrackingModel.fromJson(json.decode(m?.data['data']))
                   .hasChildren ==
               0) {
-            Navigator.pushReplacementNamed(ctx, ShipmentDetailsDisplay.id,
-                arguments:
-                    ShipmentTrackingModel.fromJson(json.decode(m?.data['data']))
-                        .shipmentId);
+            MagicRouter.navigateAndPop(ShipmentDetailsScreen(
+              id: ShipmentTrackingModel.fromJson(json.decode(m?.data['data']))
+                  .shipmentId!,
+            ));
           } else {
             Navigator.pushReplacementNamed(ctx, ChildShipmentDetails.id,
                 arguments:
@@ -1756,32 +1757,37 @@ class AuthProvider with ChangeNotifier {
         'screen_to': screenTo,
       },
     );
-    await DioFactory.postData(
-      url:
-          'https://fcm.googleapis.com/v1/projects/$firebaseProjectName/messages:send',
-      data: {
-        "message": {
-          "token": toToken,
-          "notification": {
-            "title": title,
-            "body": body,
-            "image": image,
-          },
-          'data': data,
-          "android": {
+    try {
+      log('TOKKKEN : $toToken');
+      await DioFactory.postData(
+        url:
+            'https://fcm.googleapis.com/v1/projects/$firebaseProjectName/messages:send',
+        data: {
+          "message": {
+            "token": toToken,
             "notification": {
-              "click_action": "FLUTTER_NOTIFICATION_CLICK",
-              "sound": "default"
+              "title": title,
+              "body": body,
+              "image": image,
             },
-            "priority": "high"
+            'data': data,
+            "android": {
+              "notification": {
+                "click_action": "FLUTTER_NOTIFICATION_CLICK",
+                "sound": "default"
+              },
+              "priority": "high"
+            }
           }
-        }
-      },
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${Preferences.instance.getFCMAccessToken}',
-      },
-    );
+        },
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${Preferences.instance.getFCMAccessToken}',
+        },
+      );
+    } on dio.DioException catch (e) {
+      log('Notification error -> ${e.response?.data() ?? e.toString()}');
+    }
   }
 
   Future<void> sendBetterOfferNotification(
@@ -1903,10 +1909,11 @@ class AuthProvider with ChangeNotifier {
                 break;
               case shipmentScreen:
                 if (ShipmentTrackingModel.fromJson(m.data).hasChildren == 0) {
-                  Navigator.pushReplacementNamed(
-                      context, ShipmentDetailsDisplay.id,
-                      arguments:
-                          ShipmentTrackingModel.fromJson(m.data).shipmentId);
+                  MagicRouter.navigateAndPop(ShipmentDetailsScreen(
+                    id: ShipmentTrackingModel.fromJson(
+                            json.decode(m.data['data']))
+                        .shipmentId!,
+                  ));
                 } else {
                   Navigator.pushReplacementNamed(
                       context, ChildShipmentDetails.id,
@@ -2045,10 +2052,11 @@ class AuthProvider with ChangeNotifier {
                 break;
               case shipmentScreen:
                 if (ShipmentTrackingModel.fromJson(m.data).hasChildren == 0) {
-                  Navigator.pushReplacementNamed(
-                      context, ShipmentDetailsDisplay.id,
-                      arguments:
-                          ShipmentTrackingModel.fromJson(m.data).shipmentId);
+                  MagicRouter.navigateAndPop(ShipmentDetailsScreen(
+                    id: ShipmentTrackingModel.fromJson(
+                            json.decode(m.data['data']))
+                        .shipmentId!,
+                  ));
                 } else {
                   Navigator.pushReplacementNamed(
                       context, ChildShipmentDetails.id,

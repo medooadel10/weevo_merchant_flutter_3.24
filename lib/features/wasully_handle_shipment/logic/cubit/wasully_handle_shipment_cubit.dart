@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -77,6 +79,7 @@ class WasullyHandleShipmentCubit extends Cubit<WasullyHandleShipmentState> {
           'status': 'returned',
         });
       } on FirebaseException catch (e) {
+        log('error in handleReturnedShipmentByValidatingHandoverQrCodeCourierToMerchant -> ${e.message}');
         emit(WasullyHandleShipmentHandleReturnedShipmentStateError(
             error: e.message!));
       }

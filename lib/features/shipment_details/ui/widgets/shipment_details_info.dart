@@ -54,7 +54,7 @@ class ShipmentDetailsInfo extends StatelessWidget {
                         ShipmentDetailsPriceInfo(
                           priceImage: 'weevo_money',
                           price: shipmentDetails?.amount ?? '',
-                          title: 'قيمة الطلب',
+                          title: 'قيمة الطلب الكلي',
                         ),
                         Text(
                           '|',

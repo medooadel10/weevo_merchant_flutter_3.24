@@ -13,13 +13,13 @@ import '../../features/Screens/Fragments/add_shipment_2.dart';
 import '../../features/Screens/Fragments/add_shipment_3.dart';
 import '../../features/Screens/Fragments/add_shipment_4.dart';
 import '../../features/Widgets/loading_dialog.dart';
+import '../../features/shipment_details/data/models/shipment_details_model.dart';
 import '../Dialogs/action_dialog.dart';
 import '../Models/address.dart';
 import '../Models/child_shipment.dart';
 import '../Models/city.dart';
 import '../Models/country.dart';
 import '../Models/coupon_model.dart';
-import '../Models/display_child_details.dart';
 import '../Models/price_from_distance.dart';
 import '../Models/product_model.dart';
 import '../Models/shipment_model.dart';
@@ -265,7 +265,7 @@ class AddShipmentProvider with ChangeNotifier {
   }
 
   void setDataFromServer({
-    required DisplayChildDetails model,
+    required ShipmentDetailsModel model,
   }) {
     _shipmentId = model.id;
     _realDeliveryDateTime = model.dateToDeliverShipment;
@@ -276,30 +276,29 @@ class AddShipmentProvider with ChangeNotifier {
         ? paymentList[1].paymentMethodTitle
         : paymentList[0].paymentMethodTitle;
     _landmarkName = model.receivingLandmark;
-    _cityName = getCityNameById(int.parse(model.receivingState ?? '0'),
-        int.parse(model.receivingCity ?? '0'));
-    _stateName = getStateNameById(int.parse(model.receivingState ?? '0'));
+    _cityName = getCityNameById(int.tryParse(model.receivingState) ?? 0,
+        int.tryParse(model.receivingCity) ?? 0);
+    _stateName = getStateNameById(int.tryParse(model.receivingState) ?? 0);
     _clientPhoneNumber = model.clientPhone;
     _otherDetails = model.notes;
     _chosenProducts = model.products
-            ?.map((e) => Product(
-                  id: e.productInfo?.id,
-                  name: e.productInfo?.name,
-                  width: e.productInfo?.width,
-                  height: e.productInfo?.height,
-                  length: e.productInfo?.length,
-                  weight: e.productInfo?.weight,
-                  quantity: e.qty,
-                  image: e.productInfo?.image,
-                  price: e.price,
-                  description: e.productInfo?.description,
-                  categoryId: e.productInfo?.categoryId,
-                ))
-            .toList() ??
-        [];
-    _shipmentFee = model.shippingCost;
+        .map((e) => Product(
+              id: e.productInfo.id,
+              name: e.productInfo.name,
+              width: e.productInfo.width,
+              height: e.productInfo.height,
+              length: e.productInfo.length,
+              weight: e.productInfo.weight,
+              quantity: e.qty,
+              image: e.productInfo.image,
+              price: e.price,
+              description: e.productInfo.description,
+              categoryId: e.productInfo.categoryId,
+            ))
+        .toList();
+    _shipmentFee = model.expectedShippingCost ?? '0';
     // _productTotalPrice = model.amount;
-    _total = double.parse(model.amount ?? '0');
+    _total = double.parse(model.amount);
     _isNotEmpty = _chosenProducts.isNotEmpty;
     notifyListeners();
   }
@@ -339,6 +338,7 @@ class AddShipmentProvider with ChangeNotifier {
           'coupon': shipment.coupon,
           'amount': shipment.amount,
           'expected_shipping_cost': shipment.shippingCost,
+          'agreed_shipping_cost_after_discount': shipment.shippingCost,
           'merchant_id': userId,
           'products': shipment.products
               ?.map((e) => {

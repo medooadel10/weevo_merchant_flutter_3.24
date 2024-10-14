@@ -56,6 +56,8 @@ class WasullyHandleShipmentRepo {
       );
       return DataResult.success(null);
     } on DioException catch (e) {
+      log('error in handleReturnedShipmentByValidatingHandoverQrCodeCourierToMerchant -> ${e.message}');
+
       if (e.response?.statusCode == 401) {
         return DataResult.error('حدث خطأ ما, الرجاء المحاولة مرة اخرى');
       } else {

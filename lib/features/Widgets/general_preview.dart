@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/Dialogs/action_dialog.dart';
 import '../../core/Providers/auth_provider.dart';
 import '../../core/Providers/map_provider.dart';
 import '../../core/Providers/product_provider.dart';
@@ -133,23 +132,24 @@ class _GeneralPreviewState extends State<GeneralPreview> {
                     );
                     log(mapProvider.state.name);
                     log(productProvider.productState!.name);
-                    if (mapProvider.state == NetworkState.WAITING ||
-                        productProvider.productState == NetworkState.WAITING) {
-                      showDialog(
-                        context: navigator.currentContext!,
-                        builder: (ctx) => const ActionDialog(
-                          content: 'برجاء الانتظار',
-                        ),
-                      );
-                      Future.delayed(const Duration(milliseconds: 800), () {
-                        MagicRouter.pop();
-                      });
-                    } else {
-                      Navigator.pushNamed(
-                        navigator.currentContext!,
-                        ShipmentSplash.id,
-                      );
-                    }
+                    // if (mapProvider.state == NetworkState.WAITING ||
+                    //     productProvider.productState == NetworkState.WAITING) {
+                    //   showDialog(
+                    //     context: navigator.currentContext!,
+                    //     builder: (ctx) => const ActionDialog(
+                    //       content: 'برجاء الانتظار',
+                    //     ),
+                    //   );
+                    //   Future.delayed(const Duration(milliseconds: 800), () {
+                    //     MagicRouter.pop();
+                    //   });
+                    // } else {
+
+                    // }
+                    Navigator.pushNamed(
+                      navigator.currentContext!,
+                      ShipmentSplash.id,
+                    );
                   },
                   child: Container(
                     margin: const EdgeInsets.all(4.0),

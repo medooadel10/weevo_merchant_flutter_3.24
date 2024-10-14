@@ -19,10 +19,10 @@ import '../../core/Utilits/constants.dart';
 import '../../core/router/router.dart';
 import '../../core_new/networking/api_constants.dart';
 import '../Widgets/courier_item.dart';
+import '../shipment_details/ui/shipment_details_screen.dart';
 import '../shipments/ui/screens/shipments_screen.dart';
 import 'child_shipment_details.dart';
 import 'home.dart';
-import 'shipment_details_display.dart';
 
 class ChooseCourier extends StatefulWidget {
   static const String id = 'Choose_Courier';
@@ -86,9 +86,9 @@ class _ChooseCourierState extends State<ChooseCourier> {
                       _t?.cancel();
                       _dialogOpened = false;
                       if (widget.shipmentNotification.childrenShipment == 0) {
-                        Navigator.pushReplacementNamed(
-                            context, ShipmentDetailsDisplay.id,
-                            arguments: widget.shipmentNotification.shipmentId);
+                        MagicRouter.navigateAndPop(ShipmentDetailsScreen(
+                          id: widget.shipmentNotification.shipmentId!,
+                        ));
                       } else {
                         Navigator.pushReplacementNamed(
                             context, ChildShipmentDetails.id,
@@ -328,11 +328,10 @@ class _ChooseCourierState extends State<ChooseCourier> {
                                         displayShipmentProvider
                                             .setAcceptNewShipment(true);
                                         MagicRouter.pop();
-                                        Navigator.pushReplacementNamed(
-                                            navigator.currentContext!,
-                                            ShipmentDetailsDisplay.id,
-                                            arguments: data
-                                                .listOfOffers[i].shipmentId);
+                                        MagicRouter.navigateAndPop(
+                                            ShipmentDetailsScreen(
+                                          id: data.listOfOffers[i].shipmentId!,
+                                        ));
                                       } else if (_chooseCaptainProvider.state ==
                                           NetworkState.ERROR) {
                                         MagicRouter.pop();

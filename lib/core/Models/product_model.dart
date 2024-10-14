@@ -4,7 +4,7 @@ class Product {
   int? id;
   String? name;
   String? description;
-  int? price;
+  dynamic price;
   int? categoryId;
   String? image;
   String? length;

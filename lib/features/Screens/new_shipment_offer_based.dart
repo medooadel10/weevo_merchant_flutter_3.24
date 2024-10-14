@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
+import 'package:weevo_merchant_upgrade/features/shipment_details/ui/shipment_details_screen.dart';
 
 import '../../core/Providers/auth_provider.dart';
 import '../../core/Providers/display_shipment_provider.dart';
@@ -15,7 +16,6 @@ import '../Widgets/bulk_item.dart';
 import '../Widgets/network_error_widget.dart';
 import 'child_shipment_details.dart';
 import 'home.dart';
-import 'shipment_details_display.dart';
 
 class NewShipmentHost extends StatefulWidget {
   static const String id = 'New_Shipments_Host';
@@ -149,24 +149,25 @@ class _NewShipmentHostState extends State<NewShipmentHost> {
                                   ),
                                   itemBuilder: (BuildContext ctx, int i) =>
                                       BulkItem(
-                                    bulkShipment: data.offerBasedShipments[i],
-                                    onItemPressed: () => data
-                                            .offerBasedShipments[i]
-                                            .children!
-                                            .isNotEmpty
-                                        ? Navigator.pushReplacementNamed(
-                                            context,
-                                            ChildShipmentDetails.id,
-                                            arguments:
-                                                data.offerBasedShipments[i].id,
-                                          )
-                                        : Navigator.pushReplacementNamed(
-                                            context,
-                                            ShipmentDetailsDisplay.id,
-                                            arguments:
-                                                data.offerBasedShipments[i].id,
-                                          ),
-                                  ),
+                                          bulkShipment:
+                                              data.offerBasedShipments[i],
+                                          onItemPressed: () => data
+                                                  .offerBasedShipments[i]
+                                                  .children!
+                                                  .isNotEmpty
+                                              ? Navigator.pushReplacementNamed(
+                                                  context,
+                                                  ChildShipmentDetails.id,
+                                                  arguments: data
+                                                      .offerBasedShipments[i]
+                                                      .id,
+                                                )
+                                              : MagicRouter.navigateAndPop(
+                                                  ShipmentDetailsScreen(
+                                                      id: data
+                                                          .offerBasedShipments[
+                                                              i]
+                                                          .id!))),
                                   itemCount: data.offerBasedShipments.length,
                                 ),
                                 data.offerBasedNextPageLoading

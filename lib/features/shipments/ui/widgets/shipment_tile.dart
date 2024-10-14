@@ -13,9 +13,9 @@ import '../../../../core_new/helpers/spacing.dart';
 import '../../../../core_new/router/router.dart';
 import '../../../../core_new/widgets/custom_image.dart';
 import '../../../Screens/child_shipment_details.dart';
-import '../../../Screens/shipment_details_display.dart';
 import '../../../Widgets/slide_dotes.dart';
 import '../../../products/data/models/shipment_product_model.dart';
+import '../../../shipment_details/ui/shipment_details_screen.dart';
 import '../../../wasully_details/data/models/wasully_model.dart';
 import '../../../wasully_details/ui/screens/wasully_details_screen.dart';
 import '../../data/models/shipment_model.dart';
@@ -83,11 +83,11 @@ class _ShipmentTileState extends State<ShipmentTile> {
               }
             });
           } else {
-            MagicRouter.navigateTo(ShipmentDetailsDisplay(
-              shipmentId: widget.shipment.id,
-            ));
-            // MagicRouter.navigateTo(
-            //     ShipmentDetailsScreen(id: widget.shipment.id));
+            // MagicRouter.navigateTo(ShipmentDetailsDisplay(
+            //   shipmentId: widget.shipment.id,
+            // ));
+            MagicRouter.navigateTo(
+                ShipmentDetailsScreen(id: widget.shipment.id));
           }
         },
         child: Card(

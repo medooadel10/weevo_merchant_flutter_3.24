@@ -10,12 +10,14 @@ class CustomImage extends StatelessWidget {
   final double height;
   final double width;
   final double radius;
+  final BoxFit fit;
   const CustomImage({
     super.key,
     required this.imageUrl,
     this.height = 100,
     this.width = 100,
     this.radius = 8.0,
+    this.fit = BoxFit.cover,
   });
 
   @override
@@ -34,7 +36,7 @@ class CustomImage extends StatelessWidget {
                 ? imageUrl!
                 : '${ApiConstants.baseUrl}$imageUrl',
         width: width.w,
-        fit: BoxFit.cover,
+        fit: fit,
         placeholder: (context, url) => const CustomShimmer(),
         errorWidget: (context, url, error) => Container(
           width: width.w,

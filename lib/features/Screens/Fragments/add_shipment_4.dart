@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
+import 'package:weevo_merchant_upgrade/features/shipment_details/ui/shipment_details_screen.dart';
 
 import '../../../core/Dialogs/action_dialog.dart';
 import '../../../core/Providers/add_shipment_provider.dart';
@@ -13,7 +14,6 @@ import '../../../main.dart';
 import '../../Widgets/loading_widget.dart';
 import '../../Widgets/one_shipment_display.dart';
 import '../choose_courier.dart';
-import '../shipment_details_display.dart';
 
 class AddShipment4 extends StatelessWidget {
   const AddShipment4({super.key});
@@ -174,10 +174,14 @@ class AddShipment4 extends StatelessWidget {
                         shipmentProvider.setIndex(0);
                         shipmentProvider.shipments.clear();
                         shipmentProvider.setIsUpdatedFromServer(false);
-                        Navigator.pushReplacementNamed(
-                            navigator.currentContext!,
-                            ShipmentDetailsDisplay.id,
-                            arguments: shipmentProvider.shipmentId);
+                        Navigator.pushReplacement(
+                          navigator.currentContext!,
+                          MaterialPageRoute(
+                            builder: (context) => ShipmentDetailsScreen(
+                              id: shipmentProvider.shipmentId!,
+                            ),
+                          ),
+                        );
                       } else if (shipmentProvider.state ==
                           NetworkState.LOGOUT) {
                         check(

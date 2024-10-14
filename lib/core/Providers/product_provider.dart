@@ -226,11 +226,13 @@ class ProductProvider with ChangeNotifier {
         true,
       );
       if (r.statusCode >= 200 && r.statusCode < 300) {
+        log('products -> ${json.decode(r.body)}');
         MainProduct main = MainProduct.fromJson(jsonDecode(r.body));
         _products = main.data!;
         _productIsEmpty = _products.isEmpty;
         _productState = NetworkState.SUCCESS;
       } else {
+        log('products -> ${r.statusCode}');
         _productState = NetworkState.ERROR;
       }
     } catch (e) {

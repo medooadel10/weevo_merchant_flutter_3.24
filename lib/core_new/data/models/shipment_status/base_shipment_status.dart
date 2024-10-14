@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'wasully_shipment_applied_status.dart';
-import 'wasully_shipment_available_status.dart';
-import 'wasully_shipment_cancelled_status.dart';
-import 'wasully_shipment_delivered_status.dart';
-import 'wasully_shipment_merchant_accepted_status.dart';
-import 'wasully_shipment_on_delivery_status.dart';
-import 'wasully_shipment_on_the_way_status.dart';
-import 'wasully_shipment_returned_status.dart';
+import 'shipment_applied_status.dart';
+import 'shipment_available_status.dart';
+import 'shipment_cancelled_status.dart';
+import 'shipment_delivered_status.dart';
+import 'shipment_merchant_accepted_status.dart';
+import 'shipment_on_delivery_status.dart';
+import 'shipment_on_the_way_status.dart';
+import 'shipment_returned_status.dart';
 
 abstract class BaseShipmentStatus {
   static Map<String, BaseShipmentStatus> shipmentStatusMap = {

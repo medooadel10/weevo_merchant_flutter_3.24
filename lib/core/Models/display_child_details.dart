@@ -1,3 +1,5 @@
+import '../../core_new/data/models/city_model.dart';
+import '../../core_new/data/models/state_model.dart';
 import 'display_shipment_courier.dart';
 import 'shipment_product.dart';
 
@@ -49,10 +51,10 @@ class DisplayChildDetails {
   String? deletedAt;
   List<ShipmentProduct>? products;
   DisplayShipmentCourier? courier;
-  ReceivingStateModel? receivingStateModel;
-  ReceivingCityModel? receivingCityModel;
-  ReceivingStateModel? deliveringStateModel;
-  ReceivingCityModel? deliveringCityModel;
+  StateModel? receivingStateModel;
+  CityModel? receivingCityModel;
+  StateModel? deliveringStateModel;
+  CityModel? deliveringCityModel;
   DisplayChildDetails(
       {this.id,
       this.parentId,
@@ -157,16 +159,16 @@ class DisplayChildDetails {
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
     receivingStateModel = json['receiving_state_model'] != null
-        ? ReceivingStateModel.fromJson(json['receiving_state_model'])
+        ? StateModel.fromJson(json['receiving_state_model'])
         : null;
     receivingCityModel = json['receiving_city_model'] != null
-        ? ReceivingCityModel.fromJson(json['receiving_city_model'])
+        ? CityModel.fromJson(json['receiving_city_model'])
         : null;
     deliveringStateModel = json['delivering_state_model'] != null
-        ? ReceivingStateModel.fromJson(json['delivering_state_model'])
+        ? StateModel.fromJson(json['delivering_state_model'])
         : null;
     deliveringCityModel = json['delivering_city_model'] != null
-        ? ReceivingCityModel.fromJson(json['delivering_city_model'])
+        ? CityModel.fromJson(json['delivering_city_model'])
         : null;
     if (json['products'] != null) {
       products = [];
@@ -248,80 +250,6 @@ class DisplayChildDetails {
     if (courier != null) {
       data['courier'] = courier?.toJson();
     }
-    return data;
-  }
-}
-
-class ReceivingStateModel {
-  int? id;
-  String? name;
-  int? countryId;
-  String? createdAt;
-  String? updatedAt;
-  String? deletedAt;
-
-  ReceivingStateModel(
-      {this.id,
-      this.name,
-      this.countryId,
-      this.createdAt,
-      this.updatedAt,
-      this.deletedAt});
-
-  ReceivingStateModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    countryId = json['country_id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    deletedAt = json['deleted_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['country_id'] = countryId;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['deleted_at'] = deletedAt;
-    return data;
-  }
-}
-
-class ReceivingCityModel {
-  int? id;
-  String? name;
-  int? stateId;
-  String? createdAt;
-  String? updatedAt;
-  String? deletedAt;
-
-  ReceivingCityModel(
-      {this.id,
-      this.name,
-      this.stateId,
-      this.createdAt,
-      this.updatedAt,
-      this.deletedAt});
-
-  ReceivingCityModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    stateId = json['state_id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    deletedAt = json['deleted_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['state_id'] = stateId;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['deleted_at'] = deletedAt;
     return data;
   }
 }

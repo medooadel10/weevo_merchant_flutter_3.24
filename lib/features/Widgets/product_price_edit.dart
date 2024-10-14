@@ -5,7 +5,7 @@ import '../../core/Utilits/colors.dart';
 import 'edit_text.dart';
 
 class ProductPriceEdit extends StatefulWidget {
-  final int price;
+  final double price;
   final Function(String) onDone;
 
   const ProductPriceEdit({

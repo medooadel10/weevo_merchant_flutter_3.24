@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
 
 import '../../../../../core/Models/shipment_tracking_model.dart';
 import '../../../../../core/Providers/auth_provider.dart';
@@ -41,11 +42,8 @@ class WasullyTrackShipmentBtn extends StatelessWidget {
               .doc(data.courierId.toString())
               .get();
           String courierNationalId = courierToken['national_id'];
-          DocumentSnapshot merchantToken = await FirebaseFirestore.instance
-              .collection('merchant_users')
-              .doc(data.merchantId.toString())
-              .get();
-          String merchantNationalId = merchantToken['national_id'];
+
+          String merchantNationalId = Preferences.instance.getPhoneNumber;
           MagicRouter.navigateTo(
             WasullyHandleShipmentScreen(
               model: ShipmentTrackingModel(

@@ -159,7 +159,7 @@ class _OneShipmentDisplayState extends State<OneShipmentDisplay> {
                           ),
                           Expanded(
                             child: Text(
-                              '${addShipmentProvider.getStateNameById(int.parse(widget.shipment.receivingState!))} - ${addShipmentProvider.getCityNameById(int.parse(widget.shipment.receivingState!), int.parse(widget.shipment.receivingCity!))}',
+                              '${addShipmentProvider.getStateNameById(int.tryParse(widget.shipment.receivingState ?? '0') ?? 0)} - ${addShipmentProvider.getCityNameById(int.tryParse(widget.shipment.receivingState ?? '0') ?? 0, int.tryParse(widget.shipment.receivingCity ?? '0') ?? 0)}',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(

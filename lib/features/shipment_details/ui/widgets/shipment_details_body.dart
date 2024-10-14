@@ -55,26 +55,15 @@ class ShipmentDetailsBody extends StatelessWidget {
                                   .shipmentStatusMap[shipmentDetails.status]!
                                   .buildShipmentDetailsCourierHeader(context),
                             ),
-                            SliverAppBar(
-                              pinned: false,
-                              floating: true,
-                              snap: true,
-                              leading: null,
-                              automaticallyImplyLeading: false,
-                              expandedHeight: 250.h,
-                              backgroundColor: Colors.transparent,
-                              flexibleSpace: FlexibleSpaceBar(
-                                background: ShipmentDetailsHeader(
-                                  image: shipmentDetails
-                                      .products[cubit.currentProductIndex]
-                                      .productInfo
-                                      .image,
-                                ),
-                              ),
-                            ),
                             SliverToBoxAdapter(
                               child: Column(
                                 children: [
+                                  ShipmentDetailsHeader(
+                                    image: shipmentDetails
+                                        .products[cubit.currentProductIndex]
+                                        .productInfo
+                                        .image,
+                                  ),
                                   verticalSpace(10),
                                   ShipmentDetailsInfo(
                                     shipmentDetails: shipmentDetails,

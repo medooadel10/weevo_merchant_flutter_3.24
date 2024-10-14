@@ -57,7 +57,8 @@ class WasullyDetailsRepo {
       return DataResult(
         success: true,
       );
-    } on DioException {
+    } on DioException catch (e) {
+      log('cancel wasully error $id-> ${e.response?.data}');
       return DataResult.error('حدث خطأ ما, الرجاء المحاولة مرة اخرى');
     }
   }

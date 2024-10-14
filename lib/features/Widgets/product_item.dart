@@ -72,7 +72,7 @@ class _ProductItemState extends State<ProductItem> {
                       borderRadius: BorderRadius.circular(20.0),
                       child: CustomImage(
                         imageUrl: widget.product.image,
-                        height: 150.0.h,
+                        height: 110.0.h,
                         width: size.width,
                       ),
                     ),
