@@ -126,8 +126,16 @@ class CourierToMerchantQrCodeScanner extends StatelessWidget {
                           String merchantPhoneNumber =
                               Preferences.instance.getPhoneNumber;
                           String courierPhoneNumber = model.courierPhone ?? '';
-                          String locationId =
-                              '$courierPhoneNumber-$merchantPhoneNumber-${model.shipmentId}';
+                          String locationId = '';
+                          if (merchantPhoneNumber.hashCode >=
+                              courierPhoneNumber.hashCode) {
+                            locationId =
+                                '$merchantPhoneNumber-$courierPhoneNumber-${model.shipmentId}';
+                          } else {
+                            locationId =
+                                '$courierPhoneNumber-$merchantPhoneNumber-${model.shipmentId}';
+                          }
+
                           FirebaseFirestore.instance
                               .collection('locations')
                               .doc(locationId)

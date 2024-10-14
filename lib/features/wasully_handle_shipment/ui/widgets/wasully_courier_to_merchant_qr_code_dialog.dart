@@ -109,8 +109,17 @@ class WasullyCourierToMerchantQrCodeDialog extends StatelessWidget {
                                           Preferences.instance.getPhoneNumber;
                                       String? courierPhoneNumber =
                                           model.wasullyModel?.courier?.phone;
-                                      String? locationId =
-                                          '$courierPhoneNumber-$merchantPhoneNumber-${model.wasullyModel?.id}';
+
+                                      String locationId = '';
+                                      if (merchantPhoneNumber.hashCode >=
+                                          courierPhoneNumber.hashCode) {
+                                        locationId =
+                                            '$merchantPhoneNumber-$courierPhoneNumber-${model.wasullyModel?.id}';
+                                      } else {
+                                        locationId =
+                                            '$courierPhoneNumber-$merchantPhoneNumber-${model.wasullyModel?.id}';
+                                      }
+
                                       FirebaseFirestore.instance
                                           .collection('locations')
                                           .doc(locationId)

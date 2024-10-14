@@ -10,6 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/logic/cubit/bulk_shipment_cubit.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 import 'package:weevo_merchant_upgrade/firebase_options.dart';
 
@@ -86,6 +87,9 @@ class Weevo extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ShipmentDetailsCubit(getIt()),
+          ),
+          BlocProvider(
+            create: (context) => BulkShipmentCubit(getIt()),
           ),
           BlocProvider(
             create: (context) => WasullyHandleShipmentCubit(getIt()),

@@ -191,8 +191,15 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
       if (wasullyModel?.courier != null) {
         String merchantPhoneNumber = Preferences.instance.getPhoneNumber;
         String courierPhoneNumber = wasullyModel!.courier!.phone!;
-        String locationId =
-            '$courierPhoneNumber-$merchantPhoneNumber-${wasullyModel!.id}';
+        String locationId = '';
+        if (merchantPhoneNumber.hashCode >= courierPhoneNumber.hashCode) {
+          locationId =
+              '$merchantPhoneNumber-$courierPhoneNumber-${wasullyModel!.id}';
+        } else {
+          locationId =
+              '$courierPhoneNumber-$merchantPhoneNumber-${wasullyModel!.id}';
+        }
+
         FirebaseFirestore.instance.collection('locations').doc(locationId).set(
           {
             'status': 'closed',

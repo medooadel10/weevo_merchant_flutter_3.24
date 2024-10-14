@@ -27,7 +27,9 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
 
   ShipmentDetailsModel? shipmentDetails;
 
-  Future<void> getShipmentDetails(int shipmentId) async {
+  Future<void> getShipmentDetails(int shipmentId,
+      {bool clearShipment = true}) async {
+    if (clearShipment) shipmentDetails = null;
     emit(const ShipmentDetailsState.loading());
     log('get shipment details');
     final result = await _shipmentDetailsRepo.getShipmentDetails(shipmentId);
@@ -167,7 +169,7 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
               ),
             );
           }
-          getShipmentDetails(shipmentDetails!.id);
+          getShipmentDetails(shipmentDetails!.id, clearShipment: false);
         }
       });
     } catch (e) {

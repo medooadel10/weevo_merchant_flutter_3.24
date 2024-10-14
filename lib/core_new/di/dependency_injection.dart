@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import '../../core/Storage/shared_preference.dart';
+import '../../features/bulk_shipment_details/data/repos/bulk_shipment_details_repo.dart';
 import '../../features/shipment_details/data/repos/shipment_details_repo.dart';
 import '../../features/shipments/data/repos/shipments_repo.dart';
 import '../../features/waslny/data/repos/waslny_map_repo.dart';
@@ -29,6 +30,9 @@ Future<void> setupGetIt() async {
 
   // Shipment Details
   getIt.registerLazySingleton(() => ShipmentDetailsRepo());
+
+  // Bulk Shipment Details
+  getIt.registerLazySingleton(() => BulkShipmentDetailsRepo());
 
   // Couriers
   getIt.registerLazySingleton(() => WasullyShippingOffersRepo());

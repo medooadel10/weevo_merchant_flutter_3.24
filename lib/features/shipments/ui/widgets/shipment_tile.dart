@@ -155,6 +155,10 @@ class _ShipmentTileState extends State<ShipmentTile> {
         MagicRouter.navigateTo(ChildShipmentDetails(
           shipmentId: widget.shipment.id,
         ));
+
+        // MagicRouter.navigateTo(BulkShipmentDetailsScreen(
+        //   shipmentId: widget.shipment.id,
+        // ));
       },
       child: Stack(
         children: [

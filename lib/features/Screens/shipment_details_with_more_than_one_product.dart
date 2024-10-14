@@ -1596,9 +1596,15 @@ class _ShipmentDetailsWithMoreThanOneProductState
                       Preferences.instance.getPhoneNumber;
                   String courierPhoneNumber =
                       data.shipmentById!.courier!.phone!;
-
-                  String locationId =
-                      '$courierPhoneNumber-$merchantPhoneNumber-${data.shipmentById!.id}';
+           String locationId = '';
+                  if (merchantPhoneNumber.hashCode >=
+                      courierPhoneNumber.hashCode) {
+                    locationId =
+                        '$merchantPhoneNumber-$courierPhoneNumber-${data.shipmentById!.id}';
+                  } else {
+                    locationId =
+                        '$courierPhoneNumber-$merchantPhoneNumber-${data.shipmentById!.id}';
+                  }
                   FirebaseFirestore.instance
                       .collection('locations')
                       .doc(locationId)

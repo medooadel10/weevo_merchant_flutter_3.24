@@ -584,9 +584,18 @@ class _ChildShipmentDetailsState extends State<ChildShipmentDetails> {
                       Preferences.instance.getPhoneNumber;
                   String courierPhoneNumber =
                       data.bulkShipmentById!.courier!.phone!;
-                  String locationId =
-                      '$courierPhoneNumber-$merchantPhoneNumber-${data.bulkShipmentById!.id}';
-                  FirebaseFirestore.instance
+
+                  String locationId = '';
+                  if (merchantPhoneNumber.hashCode >=
+                      courierPhoneNumber.hashCode) {
+                    locationId =
+                        '$merchantPhoneNumber-$courierPhoneNumber-${data.bulkShipmentById!.id}';
+                  } else {
+                    locationId =
+                        '$courierPhoneNumber-$merchantPhoneNumber-${data.bulkShipmentById!.id}';
+                  }
+
+                                    FirebaseFirestore.instance
                       .collection('locations')
                       .doc(locationId)
                       .set(
