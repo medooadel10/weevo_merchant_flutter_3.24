@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 
 import '../../../../core_new/data/models/shipment_status/base_shipment_status.dart';
+import '../../../bulk_shipment_details/data/models/bulk_shipment_model.dart';
 import '../../../wasully_details/data/models/wasully_model.dart';
 import '../../data/models/shipment_model.dart';
 import '../../data/repos/shipments_repo.dart';
@@ -55,7 +56,7 @@ class ShipmentsCubit extends Cubit<ShipmentsStates> {
     }
   }
 
-  void updateOneShipment(WasullyModel wasullyModel) {
+  void updateOneWasully(WasullyModel wasullyModel) {
     ShipmentModel shipmentModel = shipments!.singleWhere(
       (element) => element.id == wasullyModel.id,
     );
@@ -76,6 +77,30 @@ class ShipmentsCubit extends Cubit<ShipmentsStates> {
     );
     int index = shipments!.indexWhere(
       (element) => element.id == wasullyModel.id,
+    );
+    shipments![index] = newShipment;
+    emit(ShipmentsSuccessState(shipments ?? []));
+  }
+
+  void updateOneBulkShipment(BulkShipmentModel bulkShipmentModel) {
+    ShipmentModel shipmentModel = shipments!.singleWhere(
+      (element) => element.id == bulkShipmentModel.id,
+    );
+    ShipmentModel newShipment = shipmentModel.copyWith(
+      id: bulkShipmentModel.id,
+      price: bulkShipmentModel.agreedShippingCostAfterDiscount ??
+          bulkShipmentModel.agreedShippingCost ??
+          bulkShipmentModel.expectedShippingCost,
+      amount: bulkShipmentModel.amount,
+      deliveringCityModel: bulkShipmentModel.deliveringCityModel,
+      deliveringStateModel: bulkShipmentModel.deliveringStateModel,
+      receivingCityModel: bulkShipmentModel.receivingCityModel,
+      receivingStateModel: bulkShipmentModel.receivingStateModel,
+      receivingStreet: bulkShipmentModel.receivingStreet,
+      deliveringStreet: bulkShipmentModel.deliveringStreet,
+    );
+    int index = shipments!.indexWhere(
+      (element) => element.id == bulkShipmentModel.id,
     );
     shipments![index] = newShipment;
     emit(ShipmentsSuccessState(shipments ?? []));

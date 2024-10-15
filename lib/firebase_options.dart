@@ -63,8 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '183711190435',
     projectId: 'weevo-bfa67',
     storageBucket: 'weevo-bfa67.appspot.com',
-    androidClientId: '183711190435-2kodenssv355a57vmgfnce2crh0pdvgb.apps.googleusercontent.com',
+    androidClientId:
+        '183711190435-2kodenssv355a57vmgfnce2crh0pdvgb.apps.googleusercontent.com',
     iosBundleId: 'com.weevo.merchantApp',
   );
-
 }

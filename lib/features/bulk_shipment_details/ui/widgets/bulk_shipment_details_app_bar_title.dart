@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
+import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/logic/cubit/bulk_shipment_cubit.dart';
 
 import '../../../../core/Utilits/colors.dart';
 import '../../../../core_new/helpers/spacing.dart';
@@ -14,9 +14,9 @@ class BulkShipmentDetailsAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
+    return BlocBuilder<BulkShipmentCubit, BulkShipmentState>(
       builder: (context, state) {
-        final cubit = context.read<ShipmentDetailsCubit>();
+        final cubit = context.read<BulkShipmentCubit>();
         return Row(
           children: [
             Expanded(
@@ -33,13 +33,13 @@ class BulkShipmentDetailsAppBarTitle extends StatelessWidget {
               ),
             ),
             horizontalSpace(5),
-            if (cubit.shipmentDetails != null &&
-                cubit.shipmentDetails?.status == 'available')
+            if (cubit.bulkShipmentModel != null &&
+                cubit.bulkShipmentModel?.status == 'available')
               const BulkShipmentDetailsWaitingOffers(),
-            if (cubit.shipmentDetails != null &&
-                cubit.shipmentDetails?.status != 'available' &&
-                cubit.shipmentDetails?.status != 'cancelled' &&
-                cubit.shipmentDetails?.status != 'returned')
+            if (cubit.bulkShipmentModel != null &&
+                cubit.bulkShipmentModel?.status != 'available' &&
+                cubit.bulkShipmentModel?.status != 'cancelled' &&
+                cubit.bulkShipmentModel?.status != 'returned')
               BulkShipmentDetailsQrCode(
                 courierNationalId: cubit.courierNationalId,
                 merchantNationalId: cubit.merchantNationalId,

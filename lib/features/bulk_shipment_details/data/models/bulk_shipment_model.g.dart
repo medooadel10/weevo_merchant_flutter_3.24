@@ -71,11 +71,19 @@ BulkShipmentModel _$BulkShipmentModelFromJson(Map<String, dynamic> json) =>
           ? null
           : StateModel.fromJson(
               json['delivering_state_model'] as Map<String, dynamic>?),
-      children: (json['children'] as List<dynamic>?)
-          ?.map((e) => ShipmentDetailsModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      receivingCityModel: json['receiving_city_model'] == null
+          ? null
+          : CityModel.fromJson(
+              json['receiving_city_model'] as Map<String, dynamic>?),
+      deliveringCityModel: json['delivering_city_model'] == null
+          ? null
+          : CityModel.fromJson(
+              json['delivering_city_model'] as Map<String, dynamic>?),
       products: (json['products'] as List<dynamic>?)
           ?.map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      children: (json['children'] as List<dynamic>?)
+          ?.map((e) => ShipmentDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       courier: json['courier'] == null
           ? null
@@ -141,7 +149,9 @@ Map<String, dynamic> _$BulkShipmentModelToJson(BulkShipmentModel instance) =>
       'flags': instance.flags,
       'receiving_state_model': instance.receivingStateModel,
       'delivering_state_model': instance.deliveringStateModel,
-      'children': instance.children,
+      'receiving_city_model': instance.receivingCityModel,
+      'delivering_city_model': instance.deliveringCityModel,
       'products': instance.products,
+      'children': instance.children,
       'courier': instance.courier,
     };

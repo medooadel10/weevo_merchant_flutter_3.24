@@ -72,7 +72,6 @@ class WasullyCourierToMerchantQrCodeDialog extends StatelessWidget {
               MagicRouter.pop();
               showDialog(
                 context: navigator.currentContext!,
-                barrierDismissible: false,
                 builder: (c) => QrCodeScanner(
                   onDataCallback: (String v) async {
                     if (v.isNotEmpty) {

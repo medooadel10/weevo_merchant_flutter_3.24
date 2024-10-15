@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -20,16 +22,17 @@ class WasullyMapCubit extends Cubit<WasullyMapStates> {
   Future<void> getCurrentUserLocation(GoogleMapController controller) async {
     if (await _isLocationServiceEnabled() &&
         await _isLocationPermissionGranted()) {
+      log('location permission granted');
       _userPosition = await Geolocator.getCurrentPosition();
       currentLocation =
           LatLng(_userPosition!.latitude, _userPosition!.longitude);
       mapController = controller;
       _animateToUserPosition();
     }
+    log('location permission granted');
   }
 
   final location.Location _location = location.Location();
-
   Future<bool> _isLocationServiceEnabled() async {
     bool serviceEnabled = await _location.serviceEnabled();
     if (!serviceEnabled) {

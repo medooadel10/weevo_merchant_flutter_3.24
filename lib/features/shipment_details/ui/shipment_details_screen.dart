@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
+import 'package:weevo_merchant_upgrade/features/Screens/choose_courier.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
 import '../../../core/Models/shipment_notification.dart';
 import '../../../core/Providers/auth_provider.dart';
 import '../../../core/router/router.dart';
-import '../../wasully_shipping_offers/ui/screens/wasully_shipping_offers_screen.dart';
 import 'widgets/shipment_details_body.dart';
 
 class ShipmentDetailsScreen extends StatefulWidget {
@@ -37,8 +37,7 @@ class _ShipmentDetailsScreenState extends State<ShipmentDetailsScreen> {
     cubit.streamShipmentStatus(navigator.currentContext!);
     if (widget.navigateToOffers) {
       MagicRouter.navigateTo(
-        WasullyShippingOffersScreen(
-          id: cubit.shipmentDetails!.id,
+        ChooseCourier(
           shipmentNotification: ShipmentNotification(
             merchantName: authProvider.name,
             merchantImage: authProvider.photo,

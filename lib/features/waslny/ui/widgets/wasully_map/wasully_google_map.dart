@@ -24,6 +24,7 @@ class WasullyGoogleMap extends StatelessWidget {
           myLocationButtonEnabled: false,
           onMapCreated: (GoogleMapController controller) async {
             cubit.mapController = controller;
+            cubit.getCurrentUserLocation(cubit.mapController!);
             await cubit.mapController?.animateCamera(
               CameraUpdate.newCameraPosition(
                 CameraPosition(

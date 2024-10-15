@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 
 import '../../features/Screens/chat_screen.dart';
-import '../../features/Screens/child_shipment_details.dart';
 import '../../features/Screens/choose_courier.dart';
 import '../../features/Screens/handle_shipment.dart';
 import '../../features/Screens/merchant_warehouse.dart';
@@ -62,8 +62,10 @@ void notificationNavigation(
           id: ShipmentTrackingModel.fromJson(data).shipmentId!,
         ));
       } else {
-        Navigator.pushNamed(ctx, ChildShipmentDetails.id,
-            arguments: ShipmentTrackingModel.fromJson(data).shipmentId);
+        MagicRouter.navigateTo(
+          BulkShipmentDetailsScreen(
+              shipmentId: ShipmentTrackingModel.fromJson(data).shipmentId!),
+        );
       }
       break;
     case 'tracking':
@@ -101,9 +103,10 @@ void notificationNavigation(
               id: ShipmentTrackingModel.fromJson(data).shipmentId!,
             ));
           } else {
-            Navigator.pushNamed(
-                navigator.currentContext!, ChildShipmentDetails.id,
-                arguments: ShipmentNotification.fromMap(data).shipmentId);
+            MagicRouter.navigateTo(
+              BulkShipmentDetailsScreen(
+                  shipmentId: ShipmentNotification.fromMap(data).shipmentId!),
+            );
           }
         }
       } else if (auth.shipmentStatusState == NetworkState.ERROR) {
@@ -132,8 +135,9 @@ void notificationNavigation(
           id: data['shipment_id'],
         ));
       } else {
-        Navigator.pushNamed(ctx, ChildShipmentDetails.id,
-            arguments: data['shipment_id']);
+        MagicRouter.navigateTo(
+          BulkShipmentDetailsScreen(shipmentId: data['shipment_id']),
+        );
       }
       break;
   }

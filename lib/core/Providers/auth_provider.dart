@@ -20,6 +20,7 @@ import 'package:local_auth/local_auth.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/core_new/networking/api_constants.dart';
+import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 
 import '../../core_new/networking/dio_factory.dart';
 import '../../features/Screens/Fragments/sign_up_personal_info_screen.dart';
@@ -27,7 +28,6 @@ import '../../features/Screens/Fragments/sign_up_phone_verification.dart';
 import '../../features/Screens/after_registration.dart';
 import '../../features/Screens/before_registration.dart';
 import '../../features/Screens/chat_screen.dart';
-import '../../features/Screens/child_shipment_details.dart';
 import '../../features/Screens/choose_courier.dart';
 import '../../features/Screens/handle_shipment.dart';
 import '../../features/Screens/home.dart';
@@ -1556,10 +1556,12 @@ class AuthProvider with ChangeNotifier {
                   .shipmentId!,
             ));
           } else {
-            Navigator.pushReplacementNamed(ctx, ChildShipmentDetails.id,
-                arguments:
-                    ShipmentTrackingModel.fromJson(json.decode(m?.data['data']))
-                        .shipmentId);
+            MagicRouter.navigateAndPop(
+              BulkShipmentDetailsScreen(
+                  shipmentId: ShipmentTrackingModel.fromJson(
+                          json.decode(m?.data['data']))
+                      .shipmentId!),
+            );
           }
           break;
         case handleShipmentScreen:
@@ -1915,10 +1917,12 @@ class AuthProvider with ChangeNotifier {
                         .shipmentId!,
                   ));
                 } else {
-                  Navigator.pushReplacementNamed(
-                      context, ChildShipmentDetails.id,
-                      arguments:
-                          ShipmentTrackingModel.fromJson(m.data).shipmentId);
+                  MagicRouter.navigateAndPop(
+                    BulkShipmentDetailsScreen(
+                        shipmentId: ShipmentTrackingModel.fromJson(
+                                json.decode(m.data['data']))
+                            .shipmentId!),
+                  );
                 }
                 break;
               case walletScreen:
@@ -2058,10 +2062,12 @@ class AuthProvider with ChangeNotifier {
                         .shipmentId!,
                   ));
                 } else {
-                  Navigator.pushReplacementNamed(
-                      context, ChildShipmentDetails.id,
-                      arguments:
-                          ShipmentTrackingModel.fromJson(m.data).shipmentId);
+                  MagicRouter.navigateAndPop(
+                    BulkShipmentDetailsScreen(
+                        shipmentId: ShipmentTrackingModel.fromJson(
+                                json.decode(m.data['data']))
+                            .shipmentId!),
+                  );
                 }
                 break;
               case walletScreen:

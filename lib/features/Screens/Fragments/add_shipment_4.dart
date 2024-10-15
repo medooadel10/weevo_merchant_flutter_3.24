@@ -13,7 +13,7 @@ import '../../../core_new/router/router.dart';
 import '../../../main.dart';
 import '../../Widgets/loading_widget.dart';
 import '../../Widgets/one_shipment_display.dart';
-import '../choose_courier.dart';
+import '../../bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 
 class AddShipment4 extends StatelessWidget {
   const AddShipment4({super.key});
@@ -308,11 +308,21 @@ class AddShipment4 extends StatelessWidget {
                         if (chooseCaptainProvider.state ==
                             NetworkState.SUCCESS) {
                           shipmentProvider.setShipmentFromInside(false);
-                          Navigator.pushReplacementNamed(
-                            navigator.currentContext!,
-                            ChooseCourier.id,
-                            arguments: shipmentProvider.shipmentNotification,
-                          );
+                          if (shipmentProvider.shipments.length > 1) {
+                            MagicRouter.navigateAndPop(
+                              BulkShipmentDetailsScreen(
+                                shipmentId: shipmentProvider.captainShipmentId!,
+                                navigateToOffers: true,
+                              ),
+                            );
+                          } else {
+                            MagicRouter.navigateAndPop(
+                              ShipmentDetailsScreen(
+                                id: shipmentProvider.captainShipmentId!,
+                                navigateToOffers: true,
+                              ),
+                            );
+                          }
                           shipmentProvider.setIndex(0);
                           shipmentProvider.shipments.clear();
                         } else if (chooseCaptainProvider.state ==

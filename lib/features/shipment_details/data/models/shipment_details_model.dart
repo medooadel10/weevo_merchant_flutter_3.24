@@ -58,7 +58,7 @@ class ShipmentDetailsModel {
   final String updatedAt;
   final String createdAt;
   final List<ProductModel> products;
-  final List<ShipmentDetailsModel> children;
+  final List<ShipmentDetailsModel>? children;
   final CourierModel? courier;
 
   ShipmentDetailsModel(
@@ -168,7 +168,7 @@ class ShipmentDetailsModel {
         'updated_at': updatedAt,
         'created_at': createdAt,
         'products': products.map((e) => e.toJson()).toList(),
-        'children': children.map((e) => e.toJson()).toList(),
+        'children': children?.map((e) => e.toJson()).toList(),
         'courier': courier?.toJson(),
       };
 }

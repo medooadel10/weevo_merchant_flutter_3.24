@@ -1,19 +1,18 @@
-import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
+import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/data/models/bulk_shipment_model.dart';
 
 import '../../../../core/Providers/add_shipment_provider.dart';
 import '../../../../core/Utilits/colors.dart';
 import '../../../../core_new/helpers/spacing.dart';
 import '../../../../core_new/router/router.dart';
 import '../../../../core_new/widgets/custom_image.dart';
-import '../../../Screens/child_shipment_details.dart';
 import '../../../Widgets/slide_dotes.dart';
+import '../../../bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 import '../../../products/data/models/shipment_product_model.dart';
 import '../../../shipment_details/ui/shipment_details_screen.dart';
 import '../../../wasully_details/data/models/wasully_model.dart';
@@ -37,8 +36,6 @@ class _ShipmentTileState extends State<ShipmentTile> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    log('Status : ${widget.shipment.status}');
-
     return SizedBox(
       height: 180.h,
       child: widget.shipment.products == null ||
@@ -53,7 +50,6 @@ class _ShipmentTileState extends State<ShipmentTile> {
                 enableInfiniteScroll: false,
                 viewportFraction: 1.0,
                 enlargeCenterPage: true,
-                enlargeStrategy: CenterPageEnlargeStrategy.height,
                 aspectRatio: 1.0,
                 initialPage: 0,
                 height: double.infinity,
@@ -79,7 +75,7 @@ class _ShipmentTileState extends State<ShipmentTile> {
               if (value is WasullyModel) {
                 navigator.currentContext!
                     .read<ShipmentsCubit>()
-                    .updateOneShipment(value);
+                    .updateOneWasully(value);
               }
             });
           } else {
@@ -95,7 +91,7 @@ class _ShipmentTileState extends State<ShipmentTile> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
-          elevation: 2,
+          elevation: 0,
           margin: EdgeInsets.zero,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Column(
@@ -152,13 +148,13 @@ class _ShipmentTileState extends State<ShipmentTile> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        MagicRouter.navigateTo(ChildShipmentDetails(
+        MagicRouter.navigateTo(BulkShipmentDetailsScreen(
           shipmentId: widget.shipment.id,
-        ));
-
-        // MagicRouter.navigateTo(BulkShipmentDetailsScreen(
-        //   shipmentId: widget.shipment.id,
-        // ));
+        )).then((value) {
+          if (value is BulkShipmentModel) {
+            navigator.currentContext!.read<ShipmentsCubit>().getShipments();
+          }
+        });
       },
       child: Stack(
         children: [
@@ -167,7 +163,7 @@ class _ShipmentTileState extends State<ShipmentTile> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
-            elevation: 2,
+            elevation: 0,
             margin: EdgeInsets.zero,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: CarouselSlider.builder(

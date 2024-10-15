@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:weevo_merchant_upgrade/core/Dialogs/rating_dialog.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/data/models/shipment_details_model.dart';
 
 import '../../../../core/Models/shipment_tracking_model.dart';
 import '../../../../core/Providers/auth_provider.dart';
 import '../../../../core/router/router.dart';
-import '../../../wasully_handle_shipment/ui/widgets/wasully_rating_dialog.dart';
 import '../../data/repos/shipment_details_repo.dart';
 
 part 'shipment_details_cubit.freezed.dart';
@@ -138,7 +138,7 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
             AuthProvider authProvider =
                 Provider.of(navigator.currentContext!, listen: false);
             MagicRouter.navigateAndPopAll(
-              WasullyRatingDialog(
+              RatingDialog(
                 model: ShipmentTrackingModel(
                   courierNationalId: courierNationalId,
                   merchantNationalId: merchantNationalId,

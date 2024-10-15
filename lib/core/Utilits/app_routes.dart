@@ -13,7 +13,6 @@ import '../../features/Screens/change_your_email.dart';
 import '../../features/Screens/change_your_password.dart';
 import '../../features/Screens/change_your_phone_number.dart';
 import '../../features/Screens/chat_screen.dart';
-import '../../features/Screens/child_shipment_details.dart';
 import '../../features/Screens/choose_courier.dart';
 import '../../features/Screens/end_payment.dart';
 import '../../features/Screens/handle_shipment.dart';
@@ -189,14 +188,16 @@ Route<dynamic>? getOnGenerateRoute(RouteSettings settings) {
         from: arg.from ?? '',
       ),
     );
-  } else if (settings.name == ChildShipmentDetails.id) {
-    final int shipmentId = settings.arguments as int;
-    return MaterialPageRoute(
-      builder: (_) => ChildShipmentDetails(
-        shipmentId: shipmentId,
-      ),
-    );
-  } else if (settings.name == AddAddress.id) {
+  }
+  //  else if (settings.name == ChildShipmentDetails.id) {
+  //   final int shipmentId = settings.arguments as int;
+  //   return MaterialPageRoute(
+  //     builder: (_) => ChildShipmentDetails(
+  //       shipmentId: shipmentId,
+  //     ),
+  //   );
+  // }
+  else if (settings.name == AddAddress.id) {
     final FillAddressArg arg = settings.arguments as FillAddressArg;
     return MaterialPageRoute(
       builder: (_) => AddAddress(

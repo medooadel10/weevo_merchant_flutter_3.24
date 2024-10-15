@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 
 import '../../core/Dialogs/action_dialog.dart';
 import '../../core/Dialogs/loading.dart';
@@ -20,8 +21,6 @@ import '../../core/router/router.dart';
 import '../../core_new/networking/api_constants.dart';
 import '../Widgets/courier_item.dart';
 import '../shipment_details/ui/shipment_details_screen.dart';
-import '../shipments/ui/screens/shipments_screen.dart';
-import 'child_shipment_details.dart';
 import 'home.dart';
 
 class ChooseCourier extends StatefulWidget {
@@ -90,9 +89,9 @@ class _ChooseCourierState extends State<ChooseCourier> {
                           id: widget.shipmentNotification.shipmentId!,
                         ));
                       } else {
-                        Navigator.pushReplacementNamed(
-                            context, ChildShipmentDetails.id,
-                            arguments: widget.shipmentNotification.shipmentId);
+                        MagicRouter.navigateAndPop(BulkShipmentDetailsScreen(
+                          shipmentId: widget.shipmentNotification.shipmentId!,
+                        ));
                       }
                     },
                   ));
@@ -123,8 +122,7 @@ class _ChooseCourierState extends State<ChooseCourier> {
             _authProvider.setFromOutsideNotification(false);
             Navigator.pushReplacementNamed(context, Home.id);
           } else {
-            displayShipmentProvider.setShipmentFromHome(true);
-            MagicRouter.navigateAndPop(const ShipmentsScreen());
+            MagicRouter.pop();
           }
           return false;
         },
@@ -139,7 +137,7 @@ class _ChooseCourierState extends State<ChooseCourier> {
                       Navigator.pushReplacementNamed(context, Home.id);
                     } else {
                       displayShipmentProvider.setShipmentFromHome(true);
-                      MagicRouter.navigateAndPop(const ShipmentsScreen());
+                      MagicRouter.pop();
                     }
                   },
                   icon: const Icon(
@@ -412,12 +410,11 @@ class _ChooseCourierState extends State<ChooseCourier> {
                                         displayShipmentProvider
                                             .setFromChildrenReview(true);
                                         MagicRouter.pop();
-                                        Navigator.pushReplacementNamed(
-                                            navigator.currentContext!,
-                                            ChildShipmentDetails.id,
-                                            arguments: widget
-                                                .shipmentNotification
-                                                .shipmentId);
+                                        MagicRouter.navigateAndPop(
+                                            BulkShipmentDetailsScreen(
+                                                shipmentId: widget
+                                                    .shipmentNotification
+                                                    .shipmentId!));
                                       } else if (_chooseCaptainProvider.state ==
                                           NetworkState.ERROR) {
                                         MagicRouter.pop();

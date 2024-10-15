@@ -227,13 +227,13 @@ class WasullyCubit extends Cubit<WasullyStates> {
       return;
     }
     if (formKey.currentState!.validate() && validateAddress()) {
-      emit(WasullyCreateWasullyLoadingState());
       final String? imagePath = await uploadAndGetImage();
       if (imagePath == null) {
         emit(WasullyCreateWasullyErrorState('الرجاء أختيار الصورة'));
         return;
       }
       CreateWasullyRequestBody body = createWassalyBody(imagePath);
+      emit(WasullyCreateWasullyLoadingState());
       final result = await _waslnyRepo.createWasully(body);
       if (result.success) {
         emit(WasullyCreateWasullySuccessState(result.data!.message));

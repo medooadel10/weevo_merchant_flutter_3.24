@@ -108,7 +108,6 @@ class WasullyDetailsQrCode extends StatelessWidget {
             } else if (status == 'handingOverReturnedShipmentToMerchant') {
               showDialog(
                 context: navigator.currentContext!,
-                barrierDismissible: false,
                 builder: (ctx) => WasullyCourierToMerchantQrCodeDialog(
                   model: ShipmentTrackingModel(
                     courierNationalId: courierNationalId,

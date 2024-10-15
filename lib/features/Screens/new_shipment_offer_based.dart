@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
+import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/ui/shipment_details_screen.dart';
 
 import '../../core/Providers/auth_provider.dart';
@@ -14,7 +15,6 @@ import '../../core/Utilits/constants.dart';
 import '../../core/router/router.dart';
 import '../Widgets/bulk_item.dart';
 import '../Widgets/network_error_widget.dart';
-import 'child_shipment_details.dart';
 import 'home.dart';
 
 class NewShipmentHost extends StatefulWidget {
@@ -155,12 +155,12 @@ class _NewShipmentHostState extends State<NewShipmentHost> {
                                                   .offerBasedShipments[i]
                                                   .children!
                                                   .isNotEmpty
-                                              ? Navigator.pushReplacementNamed(
-                                                  context,
-                                                  ChildShipmentDetails.id,
-                                                  arguments: data
-                                                      .offerBasedShipments[i]
-                                                      .id,
+                                              ? MagicRouter.navigateAndPop(
+                                                  BulkShipmentDetailsScreen(
+                                                      shipmentId: data
+                                                          .offerBasedShipments[
+                                                              i]
+                                                          .id!),
                                                 )
                                               : MagicRouter.navigateAndPop(
                                                   ShipmentDetailsScreen(

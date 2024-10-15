@@ -111,7 +111,6 @@ class ShipmentDetailsQrCode extends StatelessWidget {
             } else if (status == 'handingOverReturnedShipmentToMerchant') {
               showDialog(
                 context: navigator.currentContext!,
-                barrierDismissible: false,
                 builder: (ctx) => CourierToMerchantQrCodeScanner(
                   parentContext: navigator.currentContext!,
                   model: ShipmentTrackingModel(
@@ -167,7 +166,7 @@ class ShipmentDetailsQrCode extends StatelessWidget {
     try {
       final response = await DioFactory.postData(
         url:
-            '${ApiConstants.baseUrl}/api/v1/merchant/wasuliy/wasuliy/$shipmentId/refresh-handover-qrcode-mtc',
+            '${ApiConstants.baseUrl}/api/v1/merchant/shipments/$shipmentId/refresh-handover-qrcode-mtc',
         data: {},
         token: token,
       );
@@ -183,7 +182,7 @@ class ShipmentDetailsQrCode extends StatelessWidget {
     try {
       final response = await DioFactory.postData(
         url:
-            '${ApiConstants.baseUrl}/api/v1/merchant/wasuliy/wasuliy/$shipmentId/refresh-handover-qrcode-ctc',
+            '${ApiConstants.baseUrl}/api/v1/merchant/shipments/$shipmentId/refresh-handover-qrcode-ctc',
         data: {},
         token: token,
       );

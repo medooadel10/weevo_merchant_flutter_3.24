@@ -63,8 +63,8 @@ ShipmentDetailsModel _$ShipmentDetailsModelFromJson(
       (json['products'] as List<dynamic>)
           .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      (json['children'] as List<dynamic>)
-          .map((e) => ShipmentDetailsModel.fromJson(e as Map<String, dynamic>))
+      (json['children'] as List<dynamic>?)
+          ?.map((e) => ShipmentDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['courier'] == null
           ? null
