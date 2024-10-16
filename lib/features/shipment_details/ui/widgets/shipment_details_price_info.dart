@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weevo_merchant_upgrade/core/Utilits/colors.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 
 import '../../../../core_new/helpers/spacing.dart';
@@ -30,14 +31,28 @@ class ShipmentDetailsPriceInfo extends StatelessWidget {
           fit: BoxFit.contain,
         ),
         horizontalSpace(4),
-        Text(
-          '$title : ${price.toStringAsFixed0()} $subTitle',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 12.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
+        Row(
+          children: [
+            Text(
+              '$title : ',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            horizontalSpace(2),
+            Text(
+              ' ${double.tryParse(price)?.toString().toStringAsFixed0() ?? price} $subTitle',
+              style: TextStyle(
+                color: weevoPrimaryBlueColor,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
       ],
     );

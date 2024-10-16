@@ -13,6 +13,8 @@ import '../../core/Storage/shared_preference.dart';
 import '../../core/Utilits/colors.dart';
 import '../../core/Utilits/constants.dart';
 import '../../core/router/router.dart';
+import 'home.dart';
+import 'onboarding_screens.dart';
 
 class Splash extends StatefulWidget {
   static String id = 'Splash';
@@ -37,6 +39,7 @@ class _SplashState extends State<Splash> {
   }
 
   void mainInit() async {
+    await Future.delayed(const Duration(seconds: 1));
     if (await _authProvider.checkConnection()) {
       packageInfo = await PackageInfo.fromPlatform();
       setState(() {});
@@ -68,7 +71,11 @@ class _SplashState extends State<Splash> {
           );
         } else {
           await _authProvider.getInitMessage();
-          _authProvider.setAppVersion(appVersion: packageInfo?.version);
+          if (Preferences.instance.getAccessToken.isEmpty) {
+            MagicRouter.navigateAndPopAll(const OnBoarding());
+          } else {
+            MagicRouter.navigateAndPopAll(const Home());
+          }
         }
       } else if (_authProvider.merchantCriticalUpdateState ==
           NetworkState.ERROR) {
@@ -145,7 +152,7 @@ class _SplashState extends State<Splash> {
                       ? 'رقم الأصدار ${packageInfo?.version}'
                       : '',
                   style: TextStyle(fontSize: 14.0.sp, color: Colors.black),
-                )
+                ),
               ],
             ),
           ),

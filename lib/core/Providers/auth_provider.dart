@@ -1349,21 +1349,7 @@ class AuthProvider with ChangeNotifier {
         'logout?logout_other_devices=$logoutOtherDevices',
         true,
       );
-      if (r.statusCode >= 200 && r.statusCode < 300) {
-        await _preferences?.clearUser();
-        MagicRouter.pop();
-        MagicRouter.navigateAndPopAll(const BeforeRegistration());
-      } else {
-        showDialog(
-            context: navigator.currentContext!,
-            builder: (_) => ActionDialog(
-                  content: '${json.decode(r.body)['message']}',
-                  approveAction: 'حسناً',
-                  onApproveClick: () {
-                    Navigator.pop(navigator.currentContext!);
-                  },
-                ));
-      }
+      if (r.statusCode >= 200 && r.statusCode < 300) {}
     } catch (e) {
       log('error from logout user -> ${e.toString()}');
     }

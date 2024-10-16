@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weevo_merchant_upgrade/core/Utilits/colors.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/data/models/shipment_details_model.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
@@ -81,7 +82,7 @@ class ShipmentDetailsInfo extends StatelessWidget {
                                   ? 'دفع مقدم'
                                   : 'مدفوع أونلاين',
                               style: TextStyle(
-                                color: Colors.black,
+                                color: weevoPrimaryBlueColor,
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -100,12 +101,17 @@ class ShipmentDetailsInfo extends StatelessWidget {
                       children: [
                         ShipmentDetailsPriceInfo(
                           priceImage: 'van_icon',
-                          price:
-                              '${shipmentDetails!.agreedShippingCostAfterDiscount ?? shipmentDetails!.agreedShippingCost ?? shipmentDetails!.expectedShippingCost}',
+                          price: shipmentDetails!.flags == 'fixAmount'
+                              ? 'مدفوعة'
+                              : '${shipmentDetails!.agreedShippingCostAfterDiscount ?? shipmentDetails!.agreedShippingCost ?? shipmentDetails!.expectedShippingCost}',
                           title: 'رسوم التوصيل',
+                          subTitle: shipmentDetails!.flags == 'fixAmount'
+                              ? ''
+                              : 'جنيه',
                         ),
                       ],
                     ),
+                    verticalSpace(5),
                   ],
                 ),
               ),

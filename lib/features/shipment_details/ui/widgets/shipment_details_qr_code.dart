@@ -16,6 +16,7 @@ import '../../../../core/Storage/shared_preference.dart';
 import '../../../../core/Utilits/colors.dart';
 import '../../../../core_new/networking/api_constants.dart';
 import '../../../../core_new/networking/dio_factory.dart';
+import '../../../../core_new/router/router.dart';
 
 class ShipmentDetailsQrCode extends StatelessWidget {
   final String locationId;
@@ -54,6 +55,7 @@ class ShipmentDetailsQrCode extends StatelessWidget {
                     builder: (context) => const LoadingDialog());
                 await refreshHandoverQrCodeMerchantToCourier(
                     cubit.shipmentDetails!.id);
+                MagicRouter.pop();
               } else {
                 showDialog(
                   context: navigator.currentContext!,
@@ -85,6 +87,7 @@ class ShipmentDetailsQrCode extends StatelessWidget {
                     builder: (context) => const LoadingDialog());
                 await refreshHandoverQrCodeCourierToCustomer(
                     cubit.shipmentDetails!.id);
+                MagicRouter.pop();
               } else {
                 log('${cubit.shipmentDetails!.handoverQrcodeCourierToCustomer}');
                 log('${cubit.shipmentDetails!.handoverCodeCourierToCustomer}');
@@ -186,8 +189,10 @@ class ShipmentDetailsQrCode extends StatelessWidget {
         data: {},
         token: token,
       );
+      log('Doneeee ${response.data}');
       return RefreshQrcode.fromJson(response.data);
-    } on DioException {
+    } on DioException catch (e) {
+      log('Error Code ${e.toString()}');
       return null;
     }
   }

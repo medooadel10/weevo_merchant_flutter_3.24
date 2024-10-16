@@ -43,28 +43,31 @@ class _ShipmentsBodyState extends State<ShipmentsBody> {
         onRefresh: () async {
           await context.read<ShipmentsCubit>().getShipments();
         },
-        child: CustomScrollView(
-          controller: scrollController,
-          slivers: [
-            SliverAppBar(
-              expandedHeight: 160.h,
-              excludeHeaderSemantics: true,
-              leading: null,
-              automaticallyImplyLeading: false,
-              flexibleSpace: FlexibleSpaceBar(
-                background:
-                    const ShipmentFilterListBlocBuilder().paddingSymmetric(
-                  horizontal: 10.w,
+        child: SizedBox(
+          height: double.infinity,
+          child: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              SliverAppBar(
+                expandedHeight: 160.h,
+                excludeHeaderSemantics: true,
+                leading: null,
+                automaticallyImplyLeading: false,
+                flexibleSpace: FlexibleSpaceBar(
+                  background:
+                      const ShipmentFilterListBlocBuilder().paddingSymmetric(
+                    horizontal: 10.w,
+                  ),
                 ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: const ShipmentsListBlocBuilder().paddingSymmetric(
-                horizontal: 10.w,
-                vertical: 10.h,
+              SliverToBoxAdapter(
+                child: const ShipmentsListBlocBuilder().paddingSymmetric(
+                  horizontal: 10.w,
+                  vertical: 10.h,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

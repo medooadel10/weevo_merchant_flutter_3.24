@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,6 +28,8 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    log('Statusssssss : ${widget.child.status}');
+
     return Stack(
       children: [
         CarouselSlider.builder(
@@ -49,7 +53,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
             },
           ),
         ),
-        if (widget.child.status == 'bulk-shipment-closed' ||
+        if (widget.child.status == 'delivered' ||
             widget.child.status == 'returned')
           Positioned(
             right: 0,
@@ -64,18 +68,23 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
                   topRight: Radius.circular(12),
                   bottomLeft: Radius.circular(12),
                 ),
-                color: widget.child.status == 'bulk-shipment-closed'
+                color: widget.child.status == 'delivered'
                     ? weevoPrimaryBlueColor
                     : widget.child.status == 'returned'
                         ? weevoPrimaryOrangeColor
                         : null,
               ),
               child: Text(
-                widget.child.status == 'bulk-shipment-closed'
+                widget.child.status == 'delivered'
                     ? 'مكتملة'
                     : widget.child.status == 'returned'
                         ? 'مرتجعة'
                         : '',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

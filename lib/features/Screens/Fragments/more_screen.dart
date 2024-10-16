@@ -11,14 +11,15 @@ import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
 
 import '../../../core/Dialogs/action_dialog.dart';
 import '../../../core/Dialogs/delete_account_dialog.dart';
-import '../../../core/Dialogs/loading.dart';
 import '../../../core/Dialogs/toggle_dialog.dart';
 import '../../../core/Models/drawer_model.dart';
 import '../../../core/Providers/auth_provider.dart';
 import '../../../core/Providers/display_shipment_provider.dart';
 import '../../../core/Utilits/colors.dart';
 import '../../../core/Utilits/constants.dart';
+import '../../../core_new/router/router.dart';
 import '../../../core_new/widgets/custom_image.dart';
+import '../before_registration.dart';
 import '../change_your_email.dart';
 import '../change_your_password.dart';
 import '../change_your_phone_number.dart';
@@ -535,10 +536,11 @@ class _MoreScreenState extends State<MoreScreen> {
   }
 
   void logoutUser(AuthProvider auth, bool allDevices) async {
-    showDialog(
-        context: navigator.currentContext!,
-        barrierDismissible: false,
-        builder: (_) => const LoadingDialog());
-    await auth.logout(allDevices);
+    auth.logout(allDevices);
+    Preferences.instance.clearUser();
+    MagicRouter.pop();
+    MagicRouter.navigateTo(
+      const BeforeRegistration(),
+    );
   }
 }

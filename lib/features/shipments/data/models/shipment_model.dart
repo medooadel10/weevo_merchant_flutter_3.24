@@ -30,6 +30,7 @@ class ShipmentModel {
   final String status;
   final int isOfferBased;
   final String? agreedShippingCostAfterDiscount;
+  final String? flags;
   ShipmentModel({
     required this.id,
     required this.receivingStateModel,
@@ -57,6 +58,7 @@ class ShipmentModel {
     required this.deliveringCity,
     required this.deliveringState,
     required this.agreedShippingCostAfterDiscount,
+    required this.flags,
   });
 
   factory ShipmentModel.fromJson(Map<String, dynamic> json) => ShipmentModel(
@@ -96,6 +98,7 @@ class ShipmentModel {
         deliveringState: json["delivering_state"],
         agreedShippingCostAfterDiscount:
             json["agreed_shipping_cost_after_discount"],
+        flags: json["flags"],
       );
 
   ShipmentModel copyWith({
@@ -151,5 +154,6 @@ class ShipmentModel {
         deliveringState: deliveringState ?? this.deliveringState,
         agreedShippingCostAfterDiscount:
             agreedShippingCostAfterDiscount ?? agreedShippingCostAfterDiscount,
+        flags: flags,
       );
 }

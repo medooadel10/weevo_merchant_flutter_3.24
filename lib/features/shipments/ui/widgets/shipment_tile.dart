@@ -37,7 +37,9 @@ class _ShipmentTileState extends State<ShipmentTile> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180.h,
+      height: widget.shipment.tip != null && widget.shipment.tip != 0
+          ? 210.h
+          : 190.h,
       child: widget.shipment.products == null ||
               widget.shipment.products!.isEmpty
           ? (widget.shipment.children != null &&
@@ -98,7 +100,9 @@ class _ShipmentTileState extends State<ShipmentTile> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 110.h,
+                height: widget.shipment.tip != null && widget.shipment.tip != 0
+                    ? 130.h
+                    : 110.h,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -387,12 +391,14 @@ class _ShipmentTileState extends State<ShipmentTile> {
                               child: Center(
                                 child: Row(
                                   children: [
-                                    Image.asset(
-                                      'assets/images/money_icon.png',
-                                      fit: BoxFit.contain,
-                                      color: const Color(0xff091147),
-                                      height: 20.h,
-                                      width: 20.w,
+                                    Text(
+                                      'قيمة الطلب :',
+                                      style: TextStyle(
+                                        fontSize: 12.0.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     horizontalSpace(5),
                                     Expanded(
@@ -414,17 +420,23 @@ class _ShipmentTileState extends State<ShipmentTile> {
                             Expanded(
                               child: Row(
                                 children: [
-                                  Image.asset(
-                                    'assets/images/van_icon.png',
-                                    fit: BoxFit.contain,
-                                    color: const Color(0xff091147),
-                                    height: 20.h,
-                                    width: 20.w,
+                                  Text(
+                                    'رسوم التوصيل : ',
+                                    style: TextStyle(
+                                      fontSize: 12.0.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                   horizontalSpace(5),
                                   Expanded(
                                     child: Text(
-                                      '${double.parse(shipment.children![i].agreedShippingCostAfterDiscount ?? shipment.children![i].agreedShippingCost ?? shipment.children![i].expectedShippingCost ?? '0').toInt()} ',
+                                      shipment.children![i].flags != null &&
+                                              shipment.children![i].flags! ==
+                                                  'fixAmount'
+                                          ? 'مدفوعة'
+                                          : '${double.parse(shipment.children![i].agreedShippingCostAfterDiscount ?? shipment.children![i].agreedShippingCost ?? shipment.children![i].expectedShippingCost ?? '0').toInt()} ',
                                       style: TextStyle(
                                         fontSize: 12.0.sp,
                                         fontWeight: FontWeight.w600,
