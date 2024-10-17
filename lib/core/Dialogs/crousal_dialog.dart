@@ -80,7 +80,6 @@ class _CarouselDialogState extends State<CarouselDialog> {
                       color: weevoPrimaryOrangeColor,
                       isStable: true,
                       weight: FontWeight.w100,
-                      radius: 20,
                     )),
                 SizedBox(
                   height: 10.h,

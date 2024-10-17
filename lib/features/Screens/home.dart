@@ -633,6 +633,8 @@ class _HomeState extends State<Home> {
                         : HomeNavigationData.navigationData[index].svgPicture,
                     label: HomeNavigationData.navigationData[index].label,
                     isSelected: index == _currentIndex,
+                    svgPictureSelected: HomeNavigationData
+                        .navigationData[index].svgPicutureSelected,
                     onTap: () {
                       setState(() {
                         _currentIndex = index;
