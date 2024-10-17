@@ -118,33 +118,6 @@ class WasullyForm extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 suffixIcon: Icons.info,
                 onSuffixIcon: () {
-                  // showBottomSheet(
-                  //   navigator.currentContext!,
-                  //   builder: (context) {
-                  //     return SizedBox(
-                  //       width: double.infinity,
-                  //       child: Column(
-                  //         mainAxisSize: MainAxisSize.min,
-                  //         children: [
-                  //           Text(
-                  //             'أضف قيمة طلبك للتأمين في حالة التلف أو الضياع',
-                  //           ),
-                  //           verticalSpace(10),
-                  //           SizedBox(
-                  //             width: double.infinity,
-                  //             child: WeevoButton(
-                  //               onTap: () => MagicRouter.pop(),
-                  //               color: weevoPrimaryOrangeColor,
-                  //               isStable: true,
-                  //               title: 'موافق',
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     );
-                  //   },
-                  // );
-
                   showDialog(
                     context: navigator.currentContext!,
                     barrierColor: Colors.transparent,
@@ -181,6 +154,7 @@ class WasullyForm extends StatelessWidget {
               const WasullyTipPrices(),
               verticalSpace(14),
               const WasullyWhoPaid(),
+              verticalSpace(14.0),
               const WasullySubmitBlocConsumer(),
             ],
           ),

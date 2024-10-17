@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/Utilits/colors.dart';
 import '../../../../../core_new/helpers/spacing.dart';
@@ -17,18 +18,32 @@ class WasullyWhoPaid extends StatelessWidget {
           current is WasullyChangeWhoPaidState,
       builder: (context, state) {
         WasullyCubit cubit = context.read();
-        return Row(
-          children: [
-            const Text(
-              'من سيدفع رسوم التوصيل؟',
-              style: TextStyle(
-                color: weevoDarkGrey,
-                fontWeight: FontWeight.w600,
-              ),
+        return Container(
+          padding: EdgeInsets.only(
+            left: 12.0.w,
+            right: 12.0.w,
+            top: 8.0.h,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            border: Border.all(
+              color: Colors.grey[400]!,
+              width: 1.0,
             ),
-            horizontalSpace(10),
-            Expanded(
-              child: Row(
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'من سيدفع رسوم التوصيل؟',
+                style: TextStyle(
+                  color: weevoDarkGrey,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              verticalSpace(5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -59,36 +74,35 @@ class WasullyWhoPaid extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => cubit.changeWhoPayDeliveryPrice(1),
-                      child: Row(
-                        children: [
-                          const Text(
-                            'المستلم',
-                            style: TextStyle(
-                              color: weevoDarkGrey,
-                              fontWeight: FontWeight.w600,
-                            ),
+                  GestureDetector(
+                    onTap: () => cubit.changeWhoPayDeliveryPrice(1),
+                    behavior: HitTestBehavior.opaque,
+                    child: Row(
+                      children: [
+                        const Text(
+                          'المستلم',
+                          style: TextStyle(
+                            color: weevoDarkGrey,
+                            fontWeight: FontWeight.w600,
                           ),
-                          Radio(
-                            value: 1,
-                            groupValue: cubit.whoPayDeliveryPrice,
-                            fillColor: WidgetStateProperty.all(
-                                weevoPrimaryOrangeColor),
-                            activeColor: weevoPrimaryOrangeColor,
-                            onChanged: (value) {
-                              cubit.changeWhoPayDeliveryPrice(value!);
-                            },
-                          ),
-                        ],
-                      ),
+                        ),
+                        Radio(
+                          value: 1,
+                          groupValue: cubit.whoPayDeliveryPrice,
+                          fillColor:
+                              WidgetStateProperty.all(weevoPrimaryOrangeColor),
+                          activeColor: weevoPrimaryOrangeColor,
+                          onChanged: (value) {
+                            cubit.changeWhoPayDeliveryPrice(value!);
+                          },
+                        ),
+                      ],
                     ),
                   )
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );
