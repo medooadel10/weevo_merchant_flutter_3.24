@@ -1843,6 +1843,7 @@ class AuthProvider with ChangeNotifier {
           MagicRouter.navigateAndPopAll(
               RatingDialog(model: ShipmentTrackingModel.fromJson(m.data)));
         } else if (m.data['type'] == 'wasully_rating') {
+          log('Wasully rating dialog');
           MagicRouter.navigateAndPopAll(WasullyRatingDialog(
               model: ShipmentTrackingModel.fromJson(m.data)));
         } else {
@@ -1974,21 +1975,6 @@ class AuthProvider with ChangeNotifier {
           MagicRouter.navigateAndPopAll(WasullyRatingDialog(
             model: ShipmentTrackingModel.fromJson(m.data),
           ));
-          // showBottomSheet(
-          //   context: navigator.currentContext!,
-          //   shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.only(
-          //     topLeft: Radius.circular(20.0),
-          //     topRight: Radius.circular(20.0),
-          //   )),
-          //   builder: (context) => WasullyRatingDialog(
-          //     model: ShipmentTrackingModel.fromJson(
-          //       json.decode(
-          //         m.data['data'],
-          //       ),
-          //     ),
-          //   ),
-          // );
         } else {
           configLocalNotification((response) {
             switch (m.data['screen_to']) {
