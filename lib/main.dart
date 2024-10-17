@@ -42,6 +42,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   Freshchat.init(
     '2540a172-9d87-4e8d-a28d-05b2fcef08fb',
