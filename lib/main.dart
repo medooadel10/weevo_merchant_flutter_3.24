@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,7 +13,6 @@ import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/logic/cubit/bulk_shipment_cubit.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
-import 'package:weevo_merchant_upgrade/firebase_options.dart';
 
 import 'core/Storage/shared_preference.dart';
 import 'core/Utilits/app_routes.dart';
@@ -40,10 +40,24 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message,
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+      options: Platform.isIOS
+          ? const FirebaseOptions(
+              apiKey: 'AIzaSyCFEJSLahBCQGpt-97cEYymIeraGH7kbrw',
+              appId: '1:183711190435:ios:9e4d3fa2adb54e9bf2de16',
+              messagingSenderId: '183711190435',
+              projectId: 'weevo-bfa67',
+              storageBucket: 'weevo-bfa67.appspot.com',
+              androidClientId:
+                  '183711190435-2kodenssv355a57vmgfnce2crh0pdvgb.apps.googleusercontent.com',
+              iosBundleId: 'com.weevo.merchantApp',
+            )
+          : const FirebaseOptions(
+              apiKey: 'AIzaSyA8xxp3dqxDmmlKcP9Isr6617DcYmvwW-M',
+              appId: '1:183711190435:android:1563b0c12dcddfbaf2de16',
+              messagingSenderId: '183711190435',
+              projectId: 'weevo-bfa67',
+              storageBucket: 'weevo-bfa67.appspot.com',
+            ));
   Freshchat.init(
     '2540a172-9d87-4e8d-a28d-05b2fcef08fb',
     '90f02877-838c-42d2-876a-ef1b94346565',
@@ -53,6 +67,7 @@ void main() async {
     gallerySelectionEnabled: true,
     responseExpectationEnabled: true,
   );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.instance.setAutoInitEnabled(true);
   Freshchat.setPushRegistrationToken(
       await FirebaseMessaging.instance.getToken() ?? '');
