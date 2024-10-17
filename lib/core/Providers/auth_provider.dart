@@ -1521,21 +1521,6 @@ class AuthProvider with ChangeNotifier {
           m?.data ?? {},
         ),
       ));
-      // showBottomSheet(
-      //   context: navigator.currentContext!,
-      //   shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.only(
-      //     topLeft: Radius.circular(20.0),
-      //     topRight: Radius.circular(20.0),
-      //   )),
-      //   builder: (context) => WasullyRatingDialog(
-      //     model: ShipmentTrackingModel.fromJson(
-      //       json.decode(
-      //         m.data['data'],
-      //       ),
-      //     ),
-      //   ),
-      // );
     } else {
       _fromOutsideNotification = true;
       switch (m?.data['screen_to']) {
