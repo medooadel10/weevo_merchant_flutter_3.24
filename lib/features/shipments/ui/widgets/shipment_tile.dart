@@ -379,31 +379,53 @@ class _ShipmentTileState extends State<ShipmentTile> {
                       ),
                       verticalSpace(4),
                       Container(
-                        height: 40.h,
+                        height: shipment.tip != null && shipment.tip != 0
+                            ? 50.h
+                            : 40.h,
                         padding: const EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           color: const Color(0xffD8F3FF),
                         ),
-                        child: Row(
+                        child: Column(
                           children: [
-                            Expanded(
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'قيمة الطلب :',
-                                      style: TextStyle(
-                                        fontSize: 12.0.sp,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'قيمة الطلب :',
+                                          style: TextStyle(
+                                            fontSize: 12.0.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        horizontalSpace(5),
+                                        Expanded(
+                                          child: Text(
+                                            '${double.parse(shipment.children![i].amount).toInt()} جنيه',
+                                            style: TextStyle(
+                                              fontSize: 12.0.sp,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    horizontalSpace(5),
-                                    Expanded(
-                                      child: Text(
-                                        '${double.parse(shipment.children![i].amount).toInt()} جنيه',
+                                  ),
+                                ),
+                                horizontalSpace(5),
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'رسوم التوصيل : ',
                                         style: TextStyle(
                                           fontSize: 12.0.sp,
                                           fontWeight: FontWeight.w600,
@@ -411,17 +433,29 @@ class _ShipmentTileState extends State<ShipmentTile> {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                    ),
-                                  ],
+                                      horizontalSpace(2),
+                                      Expanded(
+                                        child: Text(
+                                          '${double.parse(shipment.children![i].agreedShippingCostAfterDiscount ?? shipment.children![i].agreedShippingCost ?? shipment.children![i].expectedShippingCost ?? '0').toInt()} ',
+                                          style: TextStyle(
+                                            fontSize: 12.0.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                            horizontalSpace(5),
-                            Expanded(
-                              child: Row(
+                            if (shipment.tip != null && shipment.tip != 0) ...[
+                              verticalSpace(4),
+                              Row(
                                 children: [
                                   Text(
-                                    'رسوم التوصيل : ',
+                                    'الإكرامية : ',
                                     style: TextStyle(
                                       fontSize: 12.0.sp,
                                       fontWeight: FontWeight.w600,
@@ -429,14 +463,10 @@ class _ShipmentTileState extends State<ShipmentTile> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                  horizontalSpace(5),
+                                  horizontalSpace(2),
                                   Expanded(
                                     child: Text(
-                                      shipment.children![i].flags != null &&
-                                              shipment.children![i].flags! ==
-                                                  'fixAmount'
-                                          ? 'مدفوعة'
-                                          : '${double.parse(shipment.children![i].agreedShippingCostAfterDiscount ?? shipment.children![i].agreedShippingCost ?? shipment.children![i].expectedShippingCost ?? '0').toInt()} ',
+                                      '${shipment.tip.toString().toStringAsFixed0()} جنية',
                                       style: TextStyle(
                                         fontSize: 12.0.sp,
                                         fontWeight: FontWeight.w600,
@@ -446,34 +476,6 @@ class _ShipmentTileState extends State<ShipmentTile> {
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                            if (shipment.tip != null && shipment.tip != 0) ...[
-                              horizontalSpace(5),
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/tip_black.png',
-                                      fit: BoxFit.contain,
-                                      color: const Color(0xff091147),
-                                      height: 20.h,
-                                      width: 20.w,
-                                    ),
-                                    horizontalSpace(5),
-                                    Expanded(
-                                      child: Text(
-                                        '${shipment.tip.toString().toStringAsFixed0()} جنية',
-                                        style: TextStyle(
-                                          fontSize: 12.0.sp,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ),
                             ],
                           ],

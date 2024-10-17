@@ -1164,7 +1164,7 @@ PODS:
     - Flutter
   - FBAEMKit (17.3.0):
     - FBSDKCoreKit_Basics (= 17.3.0)
-  - FBAudienceNetwork (6.15.2)
+  - FBAudienceNetwork (6.16.0)
   - FBSDKCoreKit (17.3.0):
     - FBAEMKit (= 17.3.0)
     - FBSDKCoreKit_Basics (= 17.3.0)
@@ -1664,7 +1664,7 @@ SPEC CHECKSUMS:
   connectivity_plus: ddd7f30999e1faaef5967c23d5b6d503d10434db
   facebook_app_events: acb7c266406d3e3592bcf846d7184172ecfd6492
   FBAEMKit: 92f488a9c97208e2f6f01655750944d213fbc0b0
-  FBAudienceNetwork: 2457a89b45e2596241fd81b0c2fd8cb6f6053869
+  FBAudienceNetwork: d1670939884e3a2e0ad98dca98d7e0c841417228
   FBSDKCoreKit: 1be47a742ccdddf8dd85272c3953534214dc0f30
   FBSDKCoreKit_Basics: fcafe75f7deeed1146d04ea51b45a69731e63c16
   Firebase: 98e6bf5278170668a7983e12971a66b2cd57fc8c

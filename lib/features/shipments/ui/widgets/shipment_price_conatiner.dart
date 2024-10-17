@@ -73,9 +73,7 @@ class ShipmentPrice extends StatelessWidget {
                     horizontalSpace(5),
                     Expanded(
                       child: Text(
-                        shipment.flags != null && shipment.flags == 'fixAmount'
-                            ? 'مدفوعة'
-                            : '${shipment.slug != null ? shipment.price?.toStringAsFixed0() : shipment.agreedShippingCost != null ? shipment.agreedShippingCost?.toStringAsFixed0() : shipment.expectedShippingCost?.toStringAsFixed0()} جنية',
+                        '${shipment.slug != null ? shipment.price?.toStringAsFixed0() : shipment.agreedShippingCost != null ? shipment.agreedShippingCost?.toStringAsFixed0() : shipment.expectedShippingCost?.toStringAsFixed0()} جنية',
                         style: TextStyle(
                           fontSize: 12.0.sp,
                           fontWeight: FontWeight.w600,

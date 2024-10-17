@@ -101,13 +101,9 @@ class ShipmentDetailsInfo extends StatelessWidget {
                       children: [
                         ShipmentDetailsPriceInfo(
                           priceImage: 'van_icon',
-                          price: shipmentDetails!.flags == 'fixAmount'
-                              ? 'مدفوعة'
-                              : '${shipmentDetails!.agreedShippingCostAfterDiscount ?? shipmentDetails!.agreedShippingCost ?? shipmentDetails!.expectedShippingCost}',
+                          price:
+                              '${shipmentDetails!.agreedShippingCostAfterDiscount ?? shipmentDetails!.agreedShippingCost ?? shipmentDetails!.expectedShippingCost}',
                           title: 'رسوم التوصيل',
-                          subTitle: shipmentDetails!.flags == 'fixAmount'
-                              ? ''
-                              : 'جنيه',
                         ),
                       ],
                     ),
