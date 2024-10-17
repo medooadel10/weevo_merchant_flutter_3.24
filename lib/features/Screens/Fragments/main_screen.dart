@@ -26,17 +26,6 @@ class _MainScreenState extends State<MainScreen> {
           Visibility(
               visible: authProvider.groupBannersState == NetworkState.SUCCESS,
               child: const WeevoVideos()),
-          // Visibility(
-          //   visible:
-          //       productProvider.last5ProductState != NetworkState.WAITING &&
-          //           productProvider.catState != NetworkState.WAITING,
-          //   child: productProvider.last5ProductIsEmpty
-          //       ? FirstTimeProduct()
-          //       : UserProducts(size: size),
-          // ),
-          // Visibility(
-          //     visible: authProvider.articleState == NetworkState.SUCCESS,
-          //     child: WeevoStory()),
         ],
       ),
     );

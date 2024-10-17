@@ -15,6 +15,7 @@ import '../../core/Utilits/notification_const.dart';
 import '../../core_new/helpers/spacing.dart';
 import '../../core_new/router/router.dart';
 import '../../core_new/widgets/custom_image.dart';
+import '../../core_new/widgets/custom_shimmer.dart';
 import '../../main.dart';
 import '../Screens/merchant_warehouse.dart';
 import '../Screens/shipment_splash.dart';
@@ -52,9 +53,8 @@ class _GeneralPreviewState extends State<GeneralPreview> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Visibility(
-            visible: authProvider.groupBannersState != NetworkState.WAITING,
-            child: SizedBox(
+          if (authProvider.groupBannersState != NetworkState.WAITING)
+            SizedBox(
               height: 120.h,
               width: double.infinity,
               child: CarouselSlider(
@@ -83,8 +83,20 @@ class _GeneralPreviewState extends State<GeneralPreview> {
                     onPageChanged:
                         (int i, CarouselPageChangedReason reason) {}),
               ),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+              ),
+              child: CustomShimmer(
+                height: 120.h,
+                width: double.infinity,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+              ),
             ),
-          ),
           Padding(
             padding: const EdgeInsetsDirectional.only(
               start: 10,
@@ -312,12 +324,22 @@ class _GeneralPreviewState extends State<GeneralPreview> {
             ],
           ),
           SizedBox(height: 10.h),
-          Visibility(
-            visible:
-                authProvider.weevoSubscriptionState == NetworkState.SUCCESS &&
-                    authProvider.groupBannersState == NetworkState.SUCCESS,
-            child: const WeevoPlusBanner(),
-          ),
+          if (authProvider.weevoSubscriptionState == NetworkState.SUCCESS &&
+              authProvider.groupBannersState == NetworkState.SUCCESS)
+            const WeevoPlusBanner()
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+              ),
+              child: CustomShimmer(
+                height: 120.h,
+                width: double.infinity,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+              ),
+            ),
         ],
       ),
     );

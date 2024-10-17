@@ -36,7 +36,7 @@ class ShipmentTrackingProvider with ChangeNotifier {
     showDialog(
         context: navigator.currentContext!,
         barrierDismissible: false,
-        builder: (context) => LoadingDialog());
+        builder: (context) => const LoadingDialog());
     ByteData originByteData =
         await DefaultAssetBundle.of(context).load("assets/images/origin.png");
     ByteData destinationByteData =

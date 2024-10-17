@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:weevo_merchant_upgrade/core_new/networking/api_constants.dart';
 
 import '../../core_new/helpers/spacing.dart';
+import '../../core_new/networking/api_constants.dart';
 import '../../core_new/widgets/custom_image.dart';
 import '../../features/Screens/home.dart';
 import '../../features/Widgets/edit_text.dart';
@@ -16,6 +16,7 @@ import '../Utilits/colors.dart';
 import '../Utilits/constants.dart';
 import '../router/router.dart';
 import 'action_dialog.dart';
+import 'loading.dart';
 
 class RatingDialog extends StatefulWidget {
   final ShipmentTrackingModel model;
@@ -35,7 +36,7 @@ class _RatingDialogState extends State<RatingDialog> {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
   bool _isFocus = false;
   double? _ratePoint;
-  final bool _value = false;
+  final bool _value = true;
 
   @override
   void initState() {
@@ -60,6 +61,7 @@ class _RatingDialogState extends State<RatingDialog> {
   Widget build(BuildContext context) {
     final ShipmentTrackingProvider trackingProvider =
         Provider.of<ShipmentTrackingProvider>(context);
+
     if (true) {
       return Scaffold(
         backgroundColor: Colors.white,
@@ -68,7 +70,7 @@ class _RatingDialogState extends State<RatingDialog> {
           backgroundColor: Colors.white,
           centerTitle: true,
           title: const Text(
-            'تقييم الكابتن',
+            'تقييم التاجر',
             style: TextStyle(color: Colors.black),
           ),
           leading: IconButton(
@@ -102,8 +104,8 @@ class _RatingDialogState extends State<RatingDialog> {
                         imageUrl: widget.model.courierImage != null
                             ? widget.model.courierImage!
                                     .contains(ApiConstants.baseUrl)
-                                ? widget.model.courierImage
-                                : '${ApiConstants.baseUrl}${widget.model.courierImage}'
+                                ? widget.model.courierImage ?? ''
+                                : '${ApiConstants.baseUrl}${widget.model.merchantImage}'
                             : '',
                       ),
                     ),
@@ -113,7 +115,7 @@ class _RatingDialogState extends State<RatingDialog> {
                   height: 8.0,
                 ),
                 Text(
-                  'كيف كانت طلبك مع الكابتن ${widget.model.courierName}',
+                  'كيف كانت طلبك مع التاجر ${widget.model.courierName}',
                   textDirection: TextDirection.rtl,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
@@ -212,6 +214,9 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 WeevoButton(
                   onTap: () async {
+                    showDialog(
+                        context: navigator.currentContext!,
+                        builder: (context) => const LoadingDialog());
                     await trackingProvider.reviewCourier(
                         shipmentId: widget.model.shipmentId,
                         rating: _ratePoint?.toInt(),
@@ -229,6 +234,7 @@ class _RatingDialogState extends State<RatingDialog> {
                                         ? 'very good'
                                         : 'excellent');
                     if (trackingProvider.state == NetworkState.SUCCESS) {
+                      MagicRouter.pop();
                       showDialog(
                           context: navigator.currentContext!,
                           builder: (context) => Dialog(
@@ -274,8 +280,8 @@ class _RatingDialogState extends State<RatingDialog> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        Navigator.pushNamedAndRemoveUntil(
-                                            context, Home.id, (route) => false);
+                                        MagicRouter.navigateAndPopAll(
+                                            const Home());
                                       },
                                       child: const Text(
                                         'حسناً',
@@ -290,6 +296,7 @@ class _RatingDialogState extends State<RatingDialog> {
                                 ),
                               )));
                     } else if (trackingProvider.state == NetworkState.ERROR) {
+                      MagicRouter.pop();
                       showDialog(
                           context: navigator.currentContext!,
                           barrierDismissible: false,
