@@ -24,6 +24,6 @@ final slideList = [
   Slide(
     image: 'assets/images/on_boarding_01.png',
     desc: 'قدم طلب السحب واختر وسيلة\nالتحويل الأنسب',
-    title: "استلم تكلفة شحناتك",
+    title: "استلم تكلفة طلباتك",
   ),
 ];

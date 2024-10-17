@@ -14,8 +14,8 @@ class CreditRecordItem extends StatelessWidget {
     return ListTile(
       title: Text(
         index == 0
-            ? 'شحنة رقم ${data.details?.id}'
-            : 'شحنة رقم ${data.details?.id}',
+            ? 'طلب رقم ${data.details?.id}'
+            : 'طلب رقم ${data.details?.id}',
         style: TextStyle(
           fontSize: 16.0.sp,
           fontWeight: FontWeight.w600,

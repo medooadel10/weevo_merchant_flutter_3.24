@@ -65,7 +65,7 @@ class _ProductPriceEditState extends State<ProductPriceEdit> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'تعديل سعر المنتج\nفي هذه الشحنة',
+                'تعديل سعر المنتج\nفي هذه الطلب',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,

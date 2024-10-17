@@ -81,7 +81,7 @@
 //                                 height: 10.0.h,
 //                               ),
 //                               Text(
-//                                 'لا يوجد لديك شحنات تم توصيلها',
+//                                 'لا يوجد لديك طلبات تم توصيلها',
 //                                 style: TextStyle(
 //                                   fontSize: 18.0,
 //                                   fontWeight: FontWeight.w700,

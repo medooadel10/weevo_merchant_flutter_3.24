@@ -110,7 +110,7 @@ class _ShareSaveQrCodeDialogState extends State<ShareSaveQrCodeDialog> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 6.0, horizontal: 12.0),
                           child: Text(
-                            'شحنة رقم ${widget.shipmentId}',
+                            'طلب رقم ${widget.shipmentId}',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 16.0.sp,

@@ -85,7 +85,7 @@
 //                 Expanded(
 //                   child: Center(
 //                     child: Text(
-//                       'شحنة رقم ${data.shipmentById!.id}',
+//                       'طلب رقم ${data.shipmentById!.id}',
 //                     ),
 //                   ),
 //                 ),
@@ -1285,7 +1285,7 @@
 //                                             AddShipment.id,
 //                                           );
 //                                         },
-//                                         title: 'تعديل الشحنة',
+//                                         title: 'تعديل الطلب',
 //                                       ),
 //                                     )
 //                                   : Container(),
@@ -1459,7 +1459,7 @@
 //                                                   courierName: data.shipmentById!.courier!.name,
 //                                                   courierPhone: data.shipmentById!.courier!.phone));
 //                                         },
-//                                         title: 'تتبع الشحنة',
+//                                         title: 'تتبع الطلب',
 //                                       ),
 //                                     )
 //                                   : Container(),
@@ -1518,7 +1518,7 @@
 //                                             );
 //                                           }
 //                                         },
-//                                         title: 'الغاء الشحنة',
+//                                         title: 'الغاء الطلب',
 //                                       ),
 //                                     )
 //                                   : Container(),
@@ -1595,7 +1595,7 @@
 //                                                 ctx: navigator.currentContext!);
 //                                           }
 //                                         },
-//                                         title: 'أضافة الشحنة',
+//                                         title: 'أضافة الطلب',
 //                                       ),
 //                                     )
 //                                   : Container(),
@@ -1688,9 +1688,9 @@
 //                     'read': false,
 //                     'date_time': DateTime.now().toIso8601String(),
 //                     'type': 'cancel_shipment',
-//                     'title': 'تم إلغاء الشحنة',
+//                     'title': 'تم إلغاء الطلب',
 //                     'body':
-//                         'قام التاجر ${authProvider.name} بالغاء الشحنة يمكنك الذهاب للشحنات المتاحة والتقديم علي شحنات اخري',
+//                         'قام التاجر ${authProvider.name} بالغاء الطلب يمكنك الذهاب للطلبات المتاحة والتقديم علي طلبات اخري',
 //                     'user_icon': authProvider.photo!.isNotEmpty
 //                         ? authProvider.photo!.contains(ApiConstants.baseUrl)
 //                             ? authProvider.photo
@@ -1704,9 +1704,9 @@
 //                   await Provider.of<AuthProvider>(navigator.currentContext!,
 //                           listen: false)
 //                       .sendNotification(
-//                     title: 'تم إلغاء الشحنة',
+//                     title: 'تم إلغاء الطلب',
 //                     body:
-//                         'قام التاجر ${authProvider.name} بالغاء الشحنة يمكنك الذهاب للشحنات المتاحة والتقديم علي شحنات اخري',
+//                         'قام التاجر ${authProvider.name} بالغاء الطلب يمكنك الذهاب للطلبات المتاحة والتقديم علي طلبات اخري',
 //                     image: authProvider.photo!.isNotEmpty
 //                         ? authProvider.photo!.contains(ApiConstants.baseUrl)
 //                             ? authProvider.photo

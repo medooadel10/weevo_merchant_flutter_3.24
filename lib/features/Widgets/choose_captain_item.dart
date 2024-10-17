@@ -168,7 +168,7 @@ class ChooseCaptainItem extends StatelessWidget {
                                   height: 10.0,
                                 ),
                                 const Text(
-                                  'ننصحك بتنزيل الشحنة\nفي صفحة المناديب',
+                                  'ننصحك بتنزيل الطلب\nفي صفحة المناديب',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.black,

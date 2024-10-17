@@ -92,9 +92,9 @@ class WasullyCourierToMerchantQrCodeDialog extends StatelessWidget {
                                     String token = userToken['fcmToken'];
                                     log('FCM TOKEN CR: $token');
                                     authProvider.sendNotification(
-                                        title: 'تم ارتجاع شحنتك بنجاح',
+                                        title: 'تم ارتجاع طلبك بنجاح',
                                         body:
-                                            'تم ارتجاع شحنتك بنجاح برجاء تقييم شحنتك مع التاجر ${authProvider.name}',
+                                            'تم ارتجاع طلبك بنجاح برجاء تقييم طلبك مع التاجر ${authProvider.name}',
                                         toToken: token,
                                         image: authProvider.photo != null &&
                                                 authProvider.photo!.isNotEmpty
@@ -134,7 +134,7 @@ class WasullyCourierToMerchantQrCodeDialog extends StatelessWidget {
                                     await showDialog(
                                         context: navigator.currentContext!,
                                         builder: (c) => DoneDialog(
-                                              content: 'تم ارتجاع شحنتك بنجاح',
+                                              content: 'تم ارتجاع طلبك بنجاح',
                                               onDoneCallback: () {
                                                 MagicRouter.pop();
                                               },

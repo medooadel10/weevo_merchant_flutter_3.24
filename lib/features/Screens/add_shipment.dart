@@ -57,7 +57,7 @@ class _AddShipmentState extends State<AddShipment> {
                       ),
                     ),
                     title: 'الخروج',
-                    content: 'هل تود الغاء الشحنة',
+                    content: 'هل تود الغاء الطلب',
                     onApproveClick: () {
                       MagicRouter.pop();
                       shipmentProvider.reset(false);
@@ -92,7 +92,7 @@ class _AddShipmentState extends State<AddShipment> {
                       ),
                     ),
                     title: 'الخروج',
-                    content: 'هل تود الغاء تعديل الشحنة',
+                    content: 'هل تود الغاء تعديل الطلب',
                     onApproveClick: () {
                       MagicRouter.pop();
                       shipmentProvider.setIsUpdated(false);
@@ -130,7 +130,7 @@ class _AddShipmentState extends State<AddShipment> {
                         ),
                       ),
                       title: 'الخروج',
-                      content: 'هل تود الغاء تعديل الشحنة',
+                      content: 'هل تود الغاء تعديل الطلب',
                       onApproveClick: () {
                         MagicRouter.pop();
                         shipmentProvider.reset(false);
@@ -161,7 +161,7 @@ class _AddShipmentState extends State<AddShipment> {
                         ),
                       ),
                       title: 'الخروج',
-                      content: 'هل تود الغاء تعديل الشحنة',
+                      content: 'هل تود الغاء تعديل الطلب',
                       onApproveClick: () {
                         shipmentProvider.shipments.clear();
                         shipmentProvider.setIndex(0);
@@ -191,7 +191,7 @@ class _AddShipmentState extends State<AddShipment> {
                         ),
                       ),
                       title: 'الخروج',
-                      content: 'هل تود الغاء الشحنة',
+                      content: 'هل تود الغاء الطلب',
                       onApproveClick: () {
                         MagicRouter.pop();
                         MagicRouter.pop();
@@ -222,7 +222,7 @@ class _AddShipmentState extends State<AddShipment> {
                         ),
                       ),
                       title: 'الخروج',
-                      content: 'هل تود الغاء الشحنة',
+                      content: 'هل تود الغاء الطلب',
                       onApproveClick: () {
                         shipmentProvider.shipments.clear();
                         shipmentProvider.setIndex(0);
@@ -259,7 +259,7 @@ class _AddShipmentState extends State<AddShipment> {
                             ),
                           ),
                           title: 'الخروج',
-                          content: 'هل تود الغاء الشحنة',
+                          content: 'هل تود الغاء الطلب',
                           onApproveClick: () {
                             MagicRouter.pop();
                             shipmentProvider.reset(false);
@@ -296,7 +296,7 @@ class _AddShipmentState extends State<AddShipment> {
                             ),
                           ),
                           title: 'الخروج',
-                          content: 'هل تود الغاء تعديل الشحنة',
+                          content: 'هل تود الغاء تعديل الطلب',
                           onApproveClick: () {
                             MagicRouter.pop();
                             shipmentProvider.setIsUpdated(false);
@@ -333,7 +333,7 @@ class _AddShipmentState extends State<AddShipment> {
                             ),
                           ),
                           title: 'الخروج',
-                          content: 'هل تود الغاء الشحنة',
+                          content: 'هل تود الغاء الطلب',
                           onApproveClick: () {
                             MagicRouter.pop();
                             MagicRouter.pop();
@@ -362,7 +362,7 @@ class _AddShipmentState extends State<AddShipment> {
                             ),
                           ),
                           title: 'الخروج',
-                          content: 'هل تود الغاء الشحنة',
+                          content: 'هل تود الغاء الطلب',
                           onApproveClick: () {
                             shipmentProvider.shipments.clear();
                             shipmentProvider.setIndex(0);
@@ -386,10 +386,10 @@ class _AddShipmentState extends State<AddShipment> {
             ),
             title: Text(
               shipmentProvider.currentIndex != 3
-                  ? 'أضافة شحنة'
+                  ? 'أضافة طلب'
                   : shipmentProvider.shipmentFromWhere == moreThanOneShipment
-                      ? 'ملخص الشحنات'
-                      : 'مراجعة الشحنة',
+                      ? 'ملخص الطلبات'
+                      : 'مراجعة الطلب',
             ),
           ),
           body: Column(
@@ -486,7 +486,7 @@ class _AddShipmentState extends State<AddShipment> {
                                     ? size.height * 0.07
                                     : size.height * 0.05,
                                 selectedItem: shipmentProvider.currentIndex,
-                                title: 'الشحنة',
+                                title: 'الطلب',
                                 path: shipmentProvider.currentIndex == 2
                                     ? 'assets/images/shipment_box_white.png'
                                     : 'assets/images/shipment_box_gray.png',
@@ -503,7 +503,7 @@ class _AddShipmentState extends State<AddShipment> {
                           children: [
                             if (shipmentProvider.currentIndex == 0)
                               const Text(
-                                'مكان استلام الشحنة هيكون فين؟',
+                                'مكان استلام الطلب هيكون فين؟',
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   color: weevoGreyBlack,
@@ -513,7 +513,7 @@ class _AddShipmentState extends State<AddShipment> {
                               ),
                             if (shipmentProvider.currentIndex == 1)
                               const Text(
-                                'مكان تسليم الشحنة ومعلوماتها',
+                                'مكان تسليم الطلب ومعلوماتها',
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   color: weevoGreyBlack,

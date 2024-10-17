@@ -50,7 +50,7 @@ class CourierToMerchantQrCodeScanner extends StatelessWidget {
           Text(
             model.wasullyModel != null
                 ? 'عشان تستلم الطلب \nلازم تعمل مسح لرمز ال Qrcode \nاو تكتب الكود اللي عند الكابتن'
-                : 'عشان تستلم الشحنة \nلازم تعمل مسح لرمز ال Qrcode \nاو تكتب الكود اللي عند الكابتن',
+                : 'عشان تستلم الطلب \nلازم تعمل مسح لرمز ال Qrcode \nاو تكتب الكود اللي عند الكابتن',
             style: TextStyle(
               fontSize: 14.0,
               color: Colors.grey[600],
@@ -106,7 +106,7 @@ class CourierToMerchantQrCodeScanner extends StatelessWidget {
                         log('The data : ${model.toJson()}');
 
                         authProvider.sendNotification(
-                            title: 'تم ارتجاع شحنتك بنجاح',
+                            title: 'تم ارتجاع طلبك بنجاح',
                             body: model.wasullyModel != null
                                 ? 'تم ارتجاع طلبك بنجاح برجاء تقييم طلبك مع التاجر ${authProvider.name}'
                                 : 'تم ارتجاع طلبك بنجاح برجاء تقييم طلبك مع التاجر ${authProvider.name}',

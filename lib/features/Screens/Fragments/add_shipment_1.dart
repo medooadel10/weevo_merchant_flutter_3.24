@@ -152,7 +152,7 @@ class _AddShipment1State extends State<AddShipment1> {
                           20.0,
                         ),
                       ),
-                      content: 'يجب ان يكون مكان الأستلام واحد للشحنات',
+                      content: 'يجب ان يكون مكان الأستلام واحد للطلبات',
                       cancelAction: 'حسناً',
                       onCancelClick: () {
                         Navigator.pop(ctx);
@@ -197,7 +197,7 @@ class _AddShipment1State extends State<AddShipment1> {
                 }
                 isError = true;
                 if (value!.isEmpty) {
-                  return 'اختر تاريخ استلام الشحنة';
+                  return 'اختر تاريخ استلام الطلب';
                 }
                 isError = false;
                 return null;
@@ -279,7 +279,7 @@ class _AddShipment1State extends State<AddShipment1> {
                     //       navigator.currentContext!,
                     //       builder: (cx) => ActionDialog(
                     //             content:
-                    //                 'وقت استلام الشحنة يجب ان يكون من 10 صباحاً حتي 8 مساءاً',
+                    //                 'وقت استلام الطلب يجب ان يكون من 10 صباحاً حتي 8 مساءاً',
                     //             onApproveClick: () {
                     //               Navigator.pop(cx);
                     //             },
@@ -295,7 +295,7 @@ class _AddShipment1State extends State<AddShipment1> {
                     //                           'hh:mm a - E dd MMM y', 'ar-EG')
                     //                       .format(dateTime);
                     //             },
-                    //             cancelAction: 'استلام الشحنة اليوم التالي',
+                    //             cancelAction: 'استلام الطلب اليوم التالي',
                     //           ));
                     // }
                   }
@@ -308,7 +308,7 @@ class _AddShipment1State extends State<AddShipment1> {
                           20.0,
                         ),
                       ),
-                      content: 'يجب ان يكون تاريخ الأستلام واحد للشحنات',
+                      content: 'يجب ان يكون تاريخ الأستلام واحد للطلبات',
                       cancelAction: 'حسناً',
                       onCancelClick: () {
                         Navigator.pop(ctx);
@@ -319,7 +319,7 @@ class _AddShipment1State extends State<AddShipment1> {
                 FocusScope.of(navigator.currentContext!).unfocus();
               },
               onSave: (String? value) {},
-              labelText: 'تاريخ استلام الشحنة',
+              labelText: 'تاريخ استلام الطلب',
               isFocus: false,
               focusNode: null,
               isPassword: false,

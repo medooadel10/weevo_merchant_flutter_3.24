@@ -26,7 +26,7 @@ class FirstTimeProduct extends StatelessWidget {
             horizontal: 30.0,
           ),
           child: Text(
-            'عشان متحتاجش تكتب معلومات المنتج عند كل شحنة ضيف منتجاتك دلوقتي واشحن اسرع',
+            'عشان متحتاجش تكتب معلومات المنتج عند كل طلب ضيف منتجاتك دلوقتي واشحن اسرع',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.grey[500],

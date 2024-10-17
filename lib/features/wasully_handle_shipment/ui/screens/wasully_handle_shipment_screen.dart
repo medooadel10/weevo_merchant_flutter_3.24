@@ -337,7 +337,7 @@ class _WasullyHandleShipmentScreenState
                                                         child: Column(
                                                           children: [
                                                             const Text(
-                                                              'برجاء الضغط على الزر الأزرق لإدخال الكود\n وبعد التحقق سيتم إستلام الشحنة من الكابتن',
+                                                              'برجاء الضغط على الزر الأزرق لإدخال الكود\n وبعد التحقق سيتم إستلام الطلب من الكابتن',
                                                               style: TextStyle(
                                                                   fontWeight:
                                                                       FontWeight

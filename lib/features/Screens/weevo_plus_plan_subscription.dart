@@ -173,7 +173,7 @@ class WeevoPlusPlanSubscription extends StatelessWidget {
                                   )
                                 : i == 1
                                     ? const Text(
-                                        'وصل شحنتك لعدد أكبر من الكباتن',
+                                        'وصل طلبك لعدد أكبر من الكباتن',
                                         style: TextStyle(
                                           fontSize: 18.0,
                                           color: Colors.black,
@@ -181,7 +181,7 @@ class WeevoPlusPlanSubscription extends StatelessWidget {
                                         ),
                                       )
                                     : const Text(
-                                        'شحنتك دايما مميزة',
+                                        'طلبك دايما مميزة',
                                         style: TextStyle(
                                           fontSize: 18.0,
                                           color: Colors.black,

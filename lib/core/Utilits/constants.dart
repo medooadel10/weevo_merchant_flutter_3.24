@@ -55,18 +55,18 @@ final paymentList = <Payment>[
 final offerList = [
   Offers(
       image: 'assets/images/plus_preview_1.png',
-      subtitle: 'هتقدر تضيف عدد شحنات غير محدودة\nعلي تطبيق ويفو',
+      subtitle: 'هتقدر تضيف عدد طلبات غير محدودة\nعلي تطبيق ويفو',
       title: "عدد اوردرات غير محدود",
       assetImage: ('assets/images/plus_preview_box_icon.png')),
   Offers(
       image: 'assets/images/plus_preview_2.png',
-      subtitle: 'شحنتك هتوصل لعدد أكبر وبالتالي\nهيتم شحنها بطريقة أسرع',
-      title: 'وصل شحنتك لعدد اكبر\nمن الكباتن',
+      subtitle: 'طلبك هتوصل لعدد أكبر وبالتالي\nهيتم شحنها بطريقة أسرع',
+      title: 'وصل طلبك لعدد اكبر\nمن الكباتن',
       assetImage: ('assets/images/plus_preview_motor_bike_icon.png')),
   Offers(
       image: 'assets/images/plus_preview_3.png',
-      subtitle: 'شحنتك هتبقي في اول الشحنات\nاللي موجودة عند المناديب',
-      title: 'شحنتك هتبقا مميزة',
+      subtitle: 'طلبك هتبقي في اول الطلبات\nاللي موجودة عند المناديب',
+      title: 'طلبك هتبقا مميزة',
       assetImage: ('assets/images/plus_preview_star_icon.png')),
 ];
 
@@ -85,7 +85,7 @@ bool validateUserPhone(String phone) {
 final tabs = <ShipmentTab>[
   ShipmentTab(name: 'جديدة', image: 'assets/images/new_icon.png'),
   ShipmentTab(
-      name: 'شحنات غير مكتملة', image: 'assets/images/incompleted_icon.png'),
+      name: 'طلبات غير مكتملة', image: 'assets/images/incompleted_icon.png'),
   ShipmentTab(
       name: 'في انتظار التوصيل', image: 'assets/images/wait_to_deliver.png'),
   ShipmentTab(name: 'في الطريق', image: 'assets/images/in_my_way_icon.png'),

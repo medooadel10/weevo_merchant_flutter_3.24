@@ -78,8 +78,8 @@ class _ChooseCourierState extends State<ChooseCourier> {
           showDialog(
               context: navigator.currentContext!,
               builder: (cx) => ActionDialog(
-                    content: 'قام احد المناديب بقبول شحنتك و دفع مقدم الشحن',
-                    approveAction: 'الذهاب للشحنة',
+                    content: 'قام احد المناديب بقبول طلبك و دفع مقدم الشحن',
+                    approveAction: 'الذهاب للطلب',
                     onApproveClick: () {
                       Navigator.pop(cx);
                       _t?.cancel();
@@ -150,7 +150,7 @@ class _ChooseCourierState extends State<ChooseCourier> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          'شحنة ${widget.shipmentNotification.shipmentId}',
+                          'طلب ${widget.shipmentNotification.shipmentId}',
                           style: const TextStyle(
                             color: weevoPrimaryOrangeColor,
                           ),

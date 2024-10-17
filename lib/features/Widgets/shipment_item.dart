@@ -145,7 +145,7 @@ class ShipmentItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'شحنة رقم 110017',
+                    'طلب رقم 110017',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,

@@ -85,7 +85,7 @@ class _HandleShipmentState extends State<HandleShipment> {
                 Text(
                   widget.model.wasullyModel != null
                       ? 'طلب رقم ${widget.model.shipmentId}'
-                      : 'شحنة رقم ${widget.model.shipmentId}',
+                      : 'طلب رقم ${widget.model.shipmentId}',
                   style: const TextStyle(
                     color: weevoPrimaryOrangeColor,
                   ),
@@ -134,7 +134,7 @@ class _HandleShipmentState extends State<HandleShipment> {
                                           Text(
                                             widget.model.wasullyModel != null
                                                 ? 'برجاء الضغط علي الزر الأزرق لارسال رمز\nال qrcode للمستلم لتأكيد استلام الطلب من الكابتن'
-                                                : 'برجاء الضغط علي الزر الأزرق لارسال رمز\nال qrcode للمستلم لتأكيد استلام الشحنة من الكابتن',
+                                                : 'برجاء الضغط علي الزر الأزرق لارسال رمز\nال qrcode للمستلم لتأكيد استلام الطلب من الكابتن',
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14.0),

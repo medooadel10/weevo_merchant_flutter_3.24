@@ -76,7 +76,7 @@
 //                                 height: 10.0.h,
 //                               ),
 //                               const Text(
-//                                 'لا يوجد لديك شحنات في انتظار التوصيل',
+//                                 'لا يوجد لديك طلبات في انتظار التوصيل',
 //                                 style: TextStyle(
 //                                   fontSize: 18.0,
 //                                   fontWeight: FontWeight.w700,

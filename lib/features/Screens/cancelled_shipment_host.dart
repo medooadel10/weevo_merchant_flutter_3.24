@@ -75,7 +75,7 @@
 //                                 height: 10.0.h,
 //                               ),
 //                               const Text(
-//                                 'لا يوجد لديك شحنات ملغية',
+//                                 'لا يوجد لديك طلبات ملغية',
 //                                 style: TextStyle(
 //                                   fontSize: 18.0,
 //                                   fontWeight: FontWeight.w700,

@@ -46,7 +46,7 @@ class ShipmentToPublicDialog extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              'تم أضافة شحنتك في ويفو',
+              'تم أضافة طلبك في ويفو',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,

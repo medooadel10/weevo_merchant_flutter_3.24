@@ -38,7 +38,7 @@ class ShipmentsListBlocBuilder extends StatelessWidget {
                 ),
                 verticalSpace(10),
                 Text(
-                  'لا يوجد لديك شحنات ${BaseShipmentStatus.shipmentStatusList[cubit.currentFilterIndex].statusAr}',
+                  'لا يوجد لديك طلبات ${BaseShipmentStatus.shipmentStatusList[cubit.currentFilterIndex].statusAr}',
                   style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w700,

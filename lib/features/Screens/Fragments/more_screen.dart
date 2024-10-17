@@ -253,7 +253,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        'الشحنات',
+                        'الطلبات',
                         style: TextStyle(
                           fontSize: 24.0,
                           color: Colors.black,

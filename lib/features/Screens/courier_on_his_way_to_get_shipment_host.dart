@@ -79,7 +79,7 @@
 //                               mainAxisAlignment: MainAxisAlignment.center,
 //                               children: [
 //                                 const Text(
-//                                   'لا يوجد لديك شحنات في الطريق',
+//                                   'لا يوجد لديك طلبات في الطريق',
 //                                   strutStyle: StrutStyle(
 //                                     forceStrutHeight: true,
 //                                   ),

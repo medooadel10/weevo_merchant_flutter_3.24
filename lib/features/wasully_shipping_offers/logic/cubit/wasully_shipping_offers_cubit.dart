@@ -39,7 +39,7 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
           showDialog(
               context: navigator.currentContext!,
               builder: (cx) => ActionDialog(
-                    content: 'قام احد المناديب بقبول شحنتك و دفع مقدم الشحن',
+                    content: 'قام احد المناديب بقبول طلبك و دفع مقدم الشحن',
                     approveAction: 'الذهاب للطلب',
                     onApproveClick: () {
                       Navigator.pop(cx);

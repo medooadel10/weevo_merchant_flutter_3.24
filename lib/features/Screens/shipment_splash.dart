@@ -126,7 +126,7 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                       height: 20.h,
                     ),
                     Text(
-                      'تاجر و عندك شحنات !',
+                      'تاجر و عندك طلبات !',
                       style: TextStyle(
                         fontSize: 16.0.sp,
                         fontWeight: FontWeight.w700,
@@ -164,7 +164,7 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'شحنة واحدة',
+                                    'طلب واحدة',
                                     style: TextStyle(
                                       fontSize: 25.0.sp,
                                       fontWeight: FontWeight.w700,
@@ -175,7 +175,7 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                                     height: 5.0.h,
                                   ),
                                   Text(
-                                    'شحنة واحدة يتم توصيلها بواسطة كابتن واحد',
+                                    'طلب واحدة يتم توصيلها بواسطة كابتن واحد',
                                     style: TextStyle(
                                       fontSize: 14.0.sp,
                                       fontWeight: FontWeight.w500,
@@ -225,7 +225,7 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'أكثر من شحنة',
+                                    'أكثر من طلب',
                                     style: TextStyle(
                                       fontSize: 25.0.sp,
                                       fontWeight: FontWeight.w700,
@@ -236,7 +236,7 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                                     height: 5.0.h,
                                   ),
                                   Text(
-                                    'مجموعة شحنات يتم توصيلها بواسطة كابتن واحد في نفس المحافظة او المنطقة',
+                                    'مجموعة طلبات يتم توصيلها بواسطة كابتن واحد في نفس المحافظة او المنطقة',
                                     style: TextStyle(
                                       fontSize: 14.0.sp,
                                       fontWeight: FontWeight.w500,
@@ -381,7 +381,7 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                     //                 ),
                     //                 Expanded(
                     //                   child: Text(
-                    //                     'مجموعة شحنات يتم أضافتها من ملف اكسل',
+                    //                     'مجموعة طلبات يتم أضافتها من ملف اكسل',
                     //                     textAlign:
                     //                     TextAlign.start,
                     //                     style: TextStyle(

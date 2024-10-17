@@ -1676,7 +1676,7 @@ class AuthProvider with ChangeNotifier {
     FlutterRingtonePlayer().play(
         android: AndroidSounds.notification, ios: IosSounds.receivedMessage);
     await flutterLocalNotificationsPlugin.show(
-        DateTime.now().millisecond,
+        DateTime.now().millisecondsSinceEpoch,
         remoteMessage.notification?.title,
         remoteMessage.notification?.body,
         platformChannelSpecifics,

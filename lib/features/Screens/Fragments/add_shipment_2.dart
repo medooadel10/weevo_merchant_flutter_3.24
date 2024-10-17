@@ -292,7 +292,7 @@ class _AddShipment2State extends State<AddShipment2> {
                           20.0,
                         ),
                       ),
-                      content: 'يجب أن تكون الشحنات في محافظة واحدة',
+                      content: 'يجب أن تكون الطلبات في محافظة واحدة',
                       cancelAction: 'حسناً',
                       onCancelClick: () {
                         Navigator.pop(ctx);
@@ -616,7 +616,7 @@ class _AddShipment2State extends State<AddShipment2> {
                   //       navigator.currentContext!,
                   //       builder: (cx) => ActionDialog(
                   //             content:
-                  //                 'وقت تسليم الشحنة يجب ان يكون من 11 صباحاً حتي 10 مساءاً',
+                  //                 'وقت تسليم الطلب يجب ان يكون من 11 صباحاً حتي 10 مساءاً',
                   //             onApproveClick: () {
                   //               Navigator.pop(cx);
                   //             },
@@ -632,7 +632,7 @@ class _AddShipment2State extends State<AddShipment2> {
                   //                           'hh:mm a - E dd MMM y', 'ar-EG')
                   //                       .format(dateTime);
                   //             },
-                  //             cancelAction: 'تسليم الشحنة اليوم التالي',
+                  //             cancelAction: 'تسليم الطلب اليوم التالي',
                   //           ));
                   // }
                 }
@@ -655,7 +655,7 @@ class _AddShipment2State extends State<AddShipment2> {
                 return null;
               },
               onSave: (_) {},
-              labelText: 'تاريخ تسليم الشحنة',
+              labelText: 'تاريخ تسليم الطلب',
               prefix: const Icon(
                 Icons.update,
                 color: Colors.black54,

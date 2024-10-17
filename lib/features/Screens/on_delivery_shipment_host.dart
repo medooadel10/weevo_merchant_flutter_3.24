@@ -72,7 +72,7 @@
 //                                 height: 10.0.h,
 //                               ),
 //                               const Text(
-//                                 'لا يوجد لديك شحنات قيد التوصيل',
+//                                 'لا يوجد لديك طلبات قيد التوصيل',
 //                                 style: TextStyle(
 //                                   fontSize: 18.0,
 //                                   fontWeight: FontWeight.w700,

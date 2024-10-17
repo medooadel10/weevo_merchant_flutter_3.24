@@ -70,8 +70,8 @@ class AddShipment4 extends StatelessWidget {
               children: [
                 Text(
                   shipmentProvider.shipmentFromWhere == moreThanOneShipment
-                      ? 'ننصحك بان يكون اجمالي مقدم الشحنات ليس كبيراً\nحتي يمكنك الحصول علي كابتن بشكل سريع'
-                      : 'يمكنك تعديل ومراجعة الشحنة بالضغط عليها',
+                      ? 'ننصحك بان يكون اجمالي مقدم الطلبات ليس كبيراً\nحتي يمكنك الحصول علي كابتن بشكل سريع'
+                      : 'يمكنك تعديل ومراجعة الطلب بالضغط عليها',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 17.0,
@@ -125,7 +125,7 @@ class AddShipment4 extends StatelessWidget {
                             ),
                             Expanded(
                               child: Text(
-                                'أضافة شحنة جديدة',
+                                'أضافة طلب جديدة',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -250,7 +250,7 @@ class AddShipment4 extends StatelessWidget {
                                 ),
                               ),
                               content:
-                                  'لا يمكنك أرسال شحنة واحدة في مجموعة شحنات هل تود أرسال الشحنة كشحنة واحدة ؟',
+                                  'لا يمكنك أرسال طلب واحدة في مجموعة طلبات هل تود أرسال الطلب كطلب واحدة ؟',
                               onApproveClick: () async {
                                 MagicRouter.pop();
                                 await shipmentProvider.addOneShipment(

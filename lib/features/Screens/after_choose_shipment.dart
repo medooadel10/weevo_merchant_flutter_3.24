@@ -48,7 +48,7 @@ class _AfterChooseShipmentState extends State<AfterChooseShipment> {
                 ),
               ),
               title: 'الخروج',
-              content: 'لن يتم نشر شحنتك للمناديب\nهل تود ذلك ؟',
+              content: 'لن يتم نشر طلبك للمناديب\nهل تود ذلك ؟',
               onApproveClick: () {
                 MagicRouter.pop();
                 showDialog(
@@ -60,8 +60,7 @@ class _AfterChooseShipmentState extends State<AfterChooseShipment> {
                         20.0,
                       ),
                     ),
-                    content:
-                        'يمكنك شحن شحنتك للمناديب مرة اخري من تفاصيل الشحنة',
+                    content: 'يمكنك شحن طلبك للمناديب مرة اخري من تفاصيل الطلب',
                     onCancelClick: () {
                       MagicRouter.pop();
                       Navigator.pushNamedAndRemoveUntil(
@@ -102,7 +101,7 @@ class _AfterChooseShipmentState extends State<AfterChooseShipment> {
                         ),
                       ),
                       title: 'الخروج',
-                      content: 'لن يتم نشر شحنتك للمناديب\nهل تود ذلك ؟',
+                      content: 'لن يتم نشر طلبك للمناديب\nهل تود ذلك ؟',
                       onApproveClick: () {
                         MagicRouter.pop();
                         showDialog(
@@ -115,7 +114,7 @@ class _AfterChooseShipmentState extends State<AfterChooseShipment> {
                               ),
                             ),
                             content:
-                                'يمكنك شحن شحنتك للمناديب مرة اخري من تفاصيل الشحنة',
+                                'يمكنك شحن طلبك للمناديب مرة اخري من تفاصيل الطلب',
                             onCancelClick: () {
                               MagicRouter.pop();
                               Navigator.pushNamedAndRemoveUntil(

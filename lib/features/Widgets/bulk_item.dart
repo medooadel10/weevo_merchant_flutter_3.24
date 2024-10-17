@@ -120,7 +120,7 @@ class _BulkItemState extends State<BulkItem> {
                                                     fit: BoxFit.fill),
                                               ),
                                               child: Text(
-                                                '${widget.bulkShipment.children!.length} شحنة',
+                                                '${widget.bulkShipment.children!.length} طلب',
                                                 textDirection:
                                                     TextDirection.rtl,
                                                 style: TextStyle(

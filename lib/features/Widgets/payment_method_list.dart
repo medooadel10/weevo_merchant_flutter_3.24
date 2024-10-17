@@ -26,7 +26,7 @@ class PaymentMethodList extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            'قول لنا عاوز تستلم فلوس شحنتك ازاي ؟',
+            'قول لنا عاوز تستلم فلوس طلبك ازاي ؟',
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.w700,

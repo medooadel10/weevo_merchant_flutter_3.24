@@ -258,7 +258,7 @@ class _AddShipment3State extends State<AddShipment3>
                         children: [
                           const Expanded(
                             child: Text(
-                              'مبلغ مقدم الشحنة',
+                              'مبلغ مقدم الطلب',
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 18.0,

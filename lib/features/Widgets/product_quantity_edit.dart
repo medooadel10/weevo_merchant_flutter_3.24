@@ -65,7 +65,7 @@ class _ProductQuantityEditState extends State<ProductQuantityEdit> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'تعديل كمية المنتج\nفي هذه الشحنة',
+                'تعديل كمية المنتج\nفي هذه الطلب',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,

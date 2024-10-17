@@ -23,7 +23,7 @@ class _ShipmentsScreenState extends State<ShipmentsScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'حالة الشحنات',
+            'حالة الطلبات',
           ),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios),

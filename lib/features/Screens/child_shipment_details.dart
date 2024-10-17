@@ -115,7 +115,7 @@
 //                   const Expanded(
 //                     child: Center(
 //                       child: Text(
-//                         'ملخص الشحنات',
+//                         'ملخص الطلبات',
 //                       ),
 //                     ),
 //                   ),
@@ -308,7 +308,7 @@
 //                                                 courierName: data.bulkShipmentById!.courier!.name,
 //                                                 courierPhone: data.bulkShipmentById!.courier!.phone));
 //                                       },
-//                                       title: 'تتبع الشحنة',
+//                                       title: 'تتبع الطلب',
 //                                     ),
 //                                   )
 //                                 : Container(),
@@ -452,7 +452,7 @@
 //                                           );
 //                                         }
 //                                       },
-//                                       title: 'إلغاءالشحنة',
+//                                       title: 'إلغاءالطلب',
 //                                     ),
 //                                   )
 //                                 : Container(),
@@ -481,7 +481,7 @@
 //                                               ctx: navigator.currentContext!);
 //                                         }
 //                                       },
-//                                       title: 'أضافة الشحنة',
+//                                       title: 'أضافة الطلب',
 //                                     ),
 //                                   )
 //                                 : Container(),
@@ -544,9 +544,9 @@
 //                     'read': false,
 //                     'date_time': DateTime.now().toIso8601String(),
 //                     'type': 'cancel_shipment',
-//                     'title': 'تم إلغاء الشحنة',
+//                     'title': 'تم إلغاء الطلب',
 //                     'body':
-//                         'قام التاجر ${authProvider.name} بالغاء الشحنة يمكنك الذهاب للشحنات المتاحة والتقديم علي شحنات اخري',
+//                         'قام التاجر ${authProvider.name} بالغاء الطلب يمكنك الذهاب للطلبات المتاحة والتقديم علي طلبات اخري',
 //                     'user_icon': authProvider.photo != null &&
 //                             authProvider.photo!.isNotEmpty
 //                         ? authProvider.photo!.contains(ApiConstants.baseUrl)
@@ -562,9 +562,9 @@
 //                   await Provider.of<AuthProvider>(navigator.currentContext!,
 //                           listen: false)
 //                       .sendNotification(
-//                     title: 'تم إلغاء الشحنة',
+//                     title: 'تم إلغاء الطلب',
 //                     body:
-//                         'قام التاجر ${authProvider.name} بالغاء الشحنة يمكنك الذهاب للشحنات المتاحة والتقديم علي شحنات اخري',
+//                         'قام التاجر ${authProvider.name} بالغاء الطلب يمكنك الذهاب للطلبات المتاحة والتقديم علي طلبات اخري',
 //                     image: authProvider.photo != null &&
 //                             authProvider.photo!.isNotEmpty
 //                         ? authProvider.photo!.contains(ApiConstants.baseUrl)

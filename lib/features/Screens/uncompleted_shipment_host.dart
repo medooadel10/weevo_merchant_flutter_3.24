@@ -81,7 +81,7 @@
 //                                 height: 10.0.h,
 //                               ),
 //                               Text(
-//                                 'لا يوجد لديك شحنات غير مكتملة',
+//                                 'لا يوجد لديك طلبات غير مكتملة',
 //                                 style: TextStyle(
 //                                   fontSize: 18.0,
 //                                   fontWeight: FontWeight.w700,
