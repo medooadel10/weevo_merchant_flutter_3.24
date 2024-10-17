@@ -27,6 +27,7 @@ class WasullySubmitBlocConsumer extends StatelessWidget {
         if (state is WasullyCreateWasullyLoadingState) {
           showLoadingIndicator(context);
         } else if (state is WasullyCreateWasullyErrorState) {
+          MagicRouter.pop();
           showToast(state.error, isError: true);
         }
       },
