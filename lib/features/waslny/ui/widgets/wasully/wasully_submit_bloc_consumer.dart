@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weevo_merchant_upgrade/core/Dialogs/loading.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 
 import '../../../../../core/Storage/shared_preference.dart';
 import '../../../../../core/Utilits/colors.dart';
 import '../../../../../core_new/helpers/toasts.dart';
 import '../../../../../core_new/router/router.dart';
-import '../../../../../core_new/widgets/custom_loading_indicator.dart';
 import '../../../../Widgets/weevo_button.dart';
 import '../../../../wasully_details/ui/screens/wasully_details_screen.dart';
 import '../../../logic/wasully_cubit/wasully_cubit.dart';
@@ -58,34 +58,35 @@ class WasullySubmitBlocConsumer extends StatelessWidget {
             child: PopScope(
               onPopInvokedWithResult: (value, result) async => false,
               child: BlocListener<WasullyCubit, WasullyStates>(
-                listenWhen: (previous, current) =>
-                    current is WasullyCreateWasullyLoadingState ||
-                    current is WasullyCreateWasullySuccessState ||
-                    current is WasullyCreateWasullyErrorState,
-                listener: (context, state) {
-                  if (state is WasullyCreateWasullySuccessState) {
-                    if (cubit.wasullyModel == null) {
-                      showToast('تم إنشاء الطلب بنجاح', isError: false);
-                      String idNumber = state.message.extractNumber() ?? '';
+                  listenWhen: (previous, current) =>
+                      current is WasullyCreateWasullyLoadingState ||
+                      current is WasullyCreateWasullySuccessState ||
+                      current is WasullyCreateWasullyErrorState,
+                  listener: (context, state) {
+                    if (state is WasullyCreateWasullySuccessState) {
+                      if (cubit.wasullyModel == null) {
+                        showToast('تم إنشاء الطلب بنجاح', isError: false);
+                        String idNumber = state.message.extractNumber() ?? '';
+                        MagicRouter.pop();
+                        MagicRouter.navigateAndPop(
+                          WasullyDetailsScreen(
+                            id: int.parse(idNumber),
+                            navigateToOffers: true,
+                          ),
+                        );
+                      } else {
+                        showToast('تم تعديل الطلب بنجاح', isError: false);
+                        MagicRouter.pop();
+                        MagicRouter.pop(data: cubit.wasullyModel);
+                      }
+                    } else if (state is WasullyCreateWasullyErrorState) {
+                      showToast(state.error, isError: true);
                       MagicRouter.pop();
-                      MagicRouter.navigateAndPop(
-                        WasullyDetailsScreen(
-                          id: int.parse(idNumber),
-                          navigateToOffers: true,
-                        ),
-                      );
-                    } else {
-                      showToast('تم تعديل الطلب بنجاح', isError: false);
-                      MagicRouter.pop();
-                      MagicRouter.pop(data: cubit.wasullyModel);
                     }
-                  } else if (state is WasullyCreateWasullyErrorState) {
-                    showToast(state.error, isError: true);
-                    MagicRouter.pop();
-                  }
-                },
-                child: const CustomLoadingIndicator(),
-              ),
+                  },
+                  child: const LoadingDialog(
+                    loadingContent: 'برجاء الأنتظار ',
+                  )),
             ),
           );
         });
