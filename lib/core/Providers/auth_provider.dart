@@ -15,13 +15,16 @@ import 'package:freshchat_sdk/freshchat_sdk.dart' as freshChat;
 import 'package:geolocator/geolocator.dart' as geo;
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:http/http.dart';
-import 'package:local_auth/error_codes.dart';
+import 'package:local_auth/error_codes.dart' as auth_error;
 import 'package:local_auth/local_auth.dart';
+import 'package:local_auth_android/local_auth_android.dart';
+import 'package:local_auth_darwin/local_auth_darwin.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/core_new/networking/api_constants.dart';
 import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 
+import '../../core_new/helpers/toasts.dart';
 import '../../core_new/networking/dio_factory.dart';
 import '../../features/Screens/Fragments/sign_up_personal_info_screen.dart';
 import '../../features/Screens/Fragments/sign_up_phone_verification.dart';
@@ -301,37 +304,65 @@ class AuthProvider with ChangeNotifier {
   MerchantCriticalUpdate? get merchantCriticalUpdate => _merchantCriticalUpdate;
 
   Future<bool> authenticateWithBiometrics() async {
-    final LocalAuthentication localAuthentication = LocalAuthentication();
-    bool isBiometricSupported = await localAuthentication.isDeviceSupported();
-    bool canCheckBiometrics = await localAuthentication.canCheckBiometrics;
+    final LocalAuthentication auth = LocalAuthentication();
+    bool isBiometricSupported = await auth.isDeviceSupported();
+    bool canCheckBiometrics = await auth.canCheckBiometrics;
     bool isAuthenticated = false;
-
-    if (isBiometricSupported && canCheckBiometrics) {
+    final bool canAuthenticate = canCheckBiometrics || isBiometricSupported;
+    if (canAuthenticate) {
       try {
-        isAuthenticated = await localAuthentication.authenticate(
-          localizedReason: 'Please complete the biometrics to proceed.',
+        isAuthenticated = await auth.authenticate(
+          localizedReason: 'من فضلك قم بتسجيل الدخول للمحفظة',
+          options: const AuthenticationOptions(
+            useErrorDialogs: true,
+            stickyAuth: true,
+            biometricOnly: false,
+            sensitiveTransaction: true,
+          ),
+          authMessages: const [
+            AndroidAuthMessages(
+              signInTitle: 'قم بتسجيل الدخول للمحفظة',
+              cancelButton: 'الغاء',
+              biometricHint: 'البصمة',
+              biometricNotRecognized: 'لم يتم التحقق من البصمة',
+              biometricSuccess: 'تم التحقق بنجاح',
+              biometricRequiredTitle: 'من فضلك قم بتسجيل الدخول للمحفظة',
+              deviceCredentialsRequiredTitle:
+                  'من فضلك قم بتسجيل الدخول للمحفظة',
+              deviceCredentialsSetupDescription: 'قم بتسجيل الدخول للمحفظة',
+              goToSettingsButton: 'تسجيل الدخول',
+              goToSettingsDescription: 'قم بتسجيل الدخول للمحفظة',
+            ),
+            IOSAuthMessages(
+              cancelButton: 'الغاء',
+              goToSettingsButton: 'تسجيل الدخول',
+              goToSettingsDescription: 'قم بتسجيل الدخول للمحفظة',
+              localizedFallbackTitle: 'قم بتسجيل الدخول للمحفظة',
+              lockOut: 'من فضلك قم بتسجيل الدخول للمحفظة',
+            ),
+          ],
         );
+        if (isAuthenticated) {
+          return true;
+        } else {
+          showToast('قم بتسجيل الدخول للمحفظة');
+          return false;
+        }
       } on PlatformException catch (e) {
-        log(e.code);
-        if (e.code == notAvailable ||
-            e.code == passcodeNotSet ||
-            e.code == notEnrolled) {
-          isAuthenticated = await localAuthentication.authenticate(
-              localizedReason: 'Please complete the biometrics to proceed.');
+        if (e.code == auth_error.notAvailable) {
+          showToast('غير متاح');
+          return false;
+        } else if (e.code == auth_error.notEnrolled) {
+          showToast('لم يتم التسجيل');
+          return false;
+        } else {
+          log('Error ${e.message ?? e.details?.toString() ?? e.code}');
+          showToast('خطأ غير معروف');
+          return false;
         }
       }
     } else {
-      try {
-        isAuthenticated = await localAuthentication.authenticate(
-          localizedReason: 'Please complete the biometrics to proceed.',
-        );
-      } on PlatformException catch (e) {
-        if (e.code == notAvailable ||
-            e.code == passcodeNotSet ||
-            e.code == notEnrolled) {
-          isAuthenticated = true;
-        }
-      }
+      showToast('غير متاح');
     }
     return isAuthenticated;
   }
