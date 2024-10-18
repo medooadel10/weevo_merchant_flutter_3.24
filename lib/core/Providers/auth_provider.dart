@@ -1625,7 +1625,7 @@ class AuthProvider with ChangeNotifier {
     );
     try {
       log('TOKKKEN : $toToken');
-      await DioFactory.postData(
+      final r = await DioFactory.postData(
         url:
             'https://fcm.googleapis.com/v1/projects/$firebaseProjectName/messages:send',
         data: {
@@ -1651,8 +1651,9 @@ class AuthProvider with ChangeNotifier {
           'Authorization': 'Bearer ${Preferences.instance.getFCMAccessToken}',
         },
       );
+      log('Notification response -> ${r.data}');
     } on dio.DioException catch (e) {
-      log('Notification error -> ${e.response?.data() ?? e.toString()}');
+      log('Notification error -> ${e.response?.data ?? e.toString() ?? e.response?.statusMessage ?? ''}');
     }
   }
 

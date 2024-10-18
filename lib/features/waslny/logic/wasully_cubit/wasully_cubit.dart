@@ -222,12 +222,13 @@ class WasullyCubit extends Cubit<WasullyStates> {
   }
 
   void createWasully() async {
+    emit(WasullyCreateWasullyLoadingState());
+
     if (orderDetailsController.text.isEmpty) {
       emit(WasullyCreateWasullyErrorState('الرجاء أدخال تفاصيل الطلب'));
       return;
     }
     if (formKey.currentState!.validate() && validateAddress()) {
-      emit(WasullyCreateWasullyLoadingState());
       final String? imagePath = await uploadAndGetImage();
       if (imagePath == null) {
         emit(WasullyCreateWasullyErrorState('الرجاء أختيار الصورة'));
@@ -252,6 +253,7 @@ class WasullyCubit extends Cubit<WasullyStates> {
   }
 
   void updateWasully() async {
+    emit(WasullyCreateWasullyLoadingState());
     if (orderDetailsController.text.isEmpty) {
       emit(WasullyCreateWasullyErrorState('الرجاء أدخال تفاصيل الطلب'));
       return;
@@ -261,7 +263,6 @@ class WasullyCubit extends Cubit<WasullyStates> {
       return null;
     }
     if (formKey.currentState!.validate() && validateAddress()) {
-      emit(WasullyCreateWasullyLoadingState());
       String? imageUrl = wasullyModel?.image;
       final String? imagePath = await uploadAndGetImage();
       if (imagePath != null) imageUrl = imagePath;

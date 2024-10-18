@@ -21,7 +21,7 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
   List<ShippingOfferResponseBody>? shippingOffers;
   bool isFirstTime = true;
   bool courierAppliedToShipment = false;
-  Timer? _t;
+  StreamSubscription? subscription;
 
   bool _dialogOpened = false;
   final ScrollController scrollController = ScrollController();
@@ -31,7 +31,9 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
     required BuildContext context,
   }) async {
     await _getShippingOffers(id);
-    _t = Timer.periodic(const Duration(seconds: 5), (timer) async {
+    subscription = null;
+    subscription =
+        Stream.periodic(const Duration(seconds: 5)).listen((timer) async {
       await getShipmentStatus(id);
       if (courierAppliedToShipment) {
         if (!_dialogOpened) {
@@ -43,7 +45,6 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
                     approveAction: 'الذهاب للطلب',
                     onApproveClick: () {
                       Navigator.pop(cx);
-                      _t?.cancel();
                       _dialogOpened = false;
                       MagicRouter.navigateAndPop(
                         WasullyDetailsScreen(id: id),
@@ -138,10 +139,13 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
     }
   }
 
+  void closeTimer() {
+    subscription?.cancel();
+  }
+
   @override
   Future<void> close() {
-    _t?.cancel();
-
+    closeTimer();
     return super.close();
   }
 }

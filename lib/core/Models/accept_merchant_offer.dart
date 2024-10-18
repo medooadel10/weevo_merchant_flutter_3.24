@@ -9,11 +9,11 @@ class AcceptMerchantOffer {
 
   factory AcceptMerchantOffer.fromMap(Map<String, dynamic> map) =>
       AcceptMerchantOffer(
-          shipmentId: map['shipment_id'],
-          childrenShipment: map['children_shipment']);
+          shipmentId: int.tryParse(map['shipment_id'] ?? '0') ?? 0,
+          childrenShipment: int.tryParse(map['children_shipment'] ?? '0') ?? 0);
 
   Map<String, dynamic> toMap() => {
-        'shipment_id': shipmentId,
-        'children_shipment': childrenShipment,
+        'shipment_id': shipmentId.toString(),
+        'children_shipment': childrenShipment.toString(),
       };
 }
