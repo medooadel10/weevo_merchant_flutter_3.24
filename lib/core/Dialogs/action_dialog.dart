@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../Utilits/colors.dart';
@@ -24,6 +26,7 @@ class ActionDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('Body Content: $content');
     return WillPopScope(
       onWillPop: () async => false,
       child: Directionality(

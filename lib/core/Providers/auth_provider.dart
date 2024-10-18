@@ -974,6 +974,7 @@ class AuthProvider with ChangeNotifier {
       Response r = await HttpHelper.instance.httpPost(
         'register',
         false,
+        isRefresh: false,
         body: user.toJson(),
       );
       log('createNewUser -> ${r.body}');

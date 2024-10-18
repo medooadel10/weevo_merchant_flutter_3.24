@@ -21,7 +21,9 @@ class HttpHelper {
   HttpHelper._instance();
 
   Future<Response> httpPost(String path, bool withAuth,
-      {Map<String, dynamic>? body, bool withoutPath = false}) async {
+      {Map<String, dynamic>? body,
+      bool withoutPath = false,
+      bool isRefresh = true}) async {
     final Response r = await post(
         Uri.parse(withoutPath ? path : '$baseUrl$path'),
         body: json.encode(body),
@@ -35,13 +37,14 @@ class HttpHelper {
     if (r.statusCode >= 200 && r.statusCode < 300) {
       log('decoded response -> ${json.decode(r.body)}');
     } else if (r.statusCode == 401) {
-      if (Preferences.instance.getPhoneNumber.isNotEmpty &&
-          Preferences.instance.getPassword.isNotEmpty) {
-        await AuthProvider.listenFalse(navigator.currentContext!).authLogin();
-        await getData();
+      if (isRefresh) {
+        if (Preferences.instance.getPhoneNumber.isNotEmpty &&
+            Preferences.instance.getPassword.isNotEmpty) {
+          await AuthProvider.listenFalse(navigator.currentContext!).authLogin();
+          await getData();
+        }
       }
     }
-    log('response -> ${r.body}');
     return r;
   }
 

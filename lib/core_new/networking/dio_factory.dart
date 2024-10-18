@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
   static late Dio dio;
@@ -11,6 +12,8 @@ class DioFactory {
       sendTimeout: const Duration(seconds: 120),
     );
     dio = Dio(options);
+
+    _addInterceptors();
   }
 
   static Future<Response> getData({
@@ -96,5 +99,14 @@ class DioFactory {
         },
       ),
     );
+  }
+
+  static void _addInterceptors() {
+    dio.interceptors.add(PrettyDioLogger(
+      requestBody: true,
+      responseBody: true,
+      error: true,
+      compact: true,
+    ));
   }
 }

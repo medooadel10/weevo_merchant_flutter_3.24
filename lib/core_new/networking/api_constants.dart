@@ -2,6 +2,7 @@ class ApiConstants {
   static const String baseUrl = 'https://eg.api.weevoapp.com'; // Production
   //static const String baseUrl = 'https://api-dev-mobile.weevoapp.com'; // Debug
   static const String addressUrl = '$baseUrl/api/v1/merchant/address-book';
+  static const String registerUrl = '$baseUrl/api/v1/merchant/register';
   static const String deliveryPriceUrl =
       '$baseUrl/api/v1/merchant/shipments/calculate-distance-price';
   static const String createWasully =
