@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 
-import '../../core_new/helpers/spacing.dart';
 import '../../core_new/helpers/toasts.dart';
 import '../../features/Widgets/qr_code_scan_widget.dart';
 import '../../features/Widgets/weevo_button.dart';
@@ -53,7 +52,7 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
               const SizedBox(height: 8),
               _buildStateSwitcher(),
               const SizedBox(height: 16),
-              if (_state == 1) _buildActionButtons(),
+              _buildActionButtons(),
             ],
           ),
         ),
@@ -117,9 +116,8 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
             fontSize: 18.sp,
             color: Colors.black,
           ),
-          autoFocus: true,
-          cursorColor: Colors.black,
           showCursor: true,
+          autoFocus: true,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           enablePinAutofill: true,
           keyboardType: TextInputType.number,
@@ -134,14 +132,17 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
             fieldWidth: 50.w,
             activeFillColor: context.colorScheme.onPrimary,
             selectedFillColor: context.colorScheme.primary,
-            disabledColor: context.colorScheme.primary,
-            inactiveColor: context.colorScheme.primary,
+            disabledColor: Colors.grey.shade700,
+            inactiveColor: Colors.grey.shade700,
             inactiveFillColor: context.colorScheme.onPrimary,
           ),
           animationDuration: const Duration(milliseconds: 300),
           enableActiveFill: false,
           controller: _pinController,
-          onCompleted: (v) => context.unfocus(),
+          onCompleted: (v) {
+            context.unfocus();
+            _onConfirmPressed();
+          },
           onChanged: (value) {},
           beforeTextPaste: (text) => true,
         ).paddingSymmetric(horizontal: 16.0),
@@ -204,15 +205,6 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
       children: [
         Expanded(
           child: WeevoButton(
-            onTap: _onConfirmPressed,
-            color: weevoPrimaryOrangeColor,
-            title: 'تأكيد',
-            isStable: true,
-          ),
-        ),
-        horizontalSpace(10),
-        Expanded(
-          child: WeevoButton(
             onTap: () => MagicRouter.pop(),
             color: weevoPrimaryBlueColor,
             title: 'إلغاء',
@@ -225,7 +217,7 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
 
   // Handle confirmation action
   void _onConfirmPressed() {
-    if (_pinController.text.isNotEmpty) {
+    if (_pinController.text.length == 4) {
       widget.onDataCallback(_pinController.text);
       _pinController.clear();
     } else {
