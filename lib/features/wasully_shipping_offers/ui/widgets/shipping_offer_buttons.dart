@@ -103,6 +103,79 @@ class ShippingOfferButtons extends StatelessWidget {
                   );
                   int offerId = data.id;
                   await cubit.acceptOffer(offerId);
+                  DocumentSnapshot userToken = await FirebaseFirestore.instance
+                      .collection('courier_users')
+                      .doc(data.driverId.toString())
+                      .get();
+                  String token = userToken['fcmToken'];
+                  showDialog(
+                      context: navigator.currentContext!,
+                      builder: (context) => const LoadingDialog(),
+                      barrierDismissible: false);
+                  FirebaseFirestore.instance
+                      .collection('courier_notifications')
+                      .doc(data.driverId.toString())
+                      .collection(data.driverId.toString())
+                      .add({
+                    'read': false,
+                    'date_time': DateTime.now().toIso8601String(),
+                    'title': 'تم قبول العرض الخاص بك',
+                    'body':
+                        'التاجر ${authProvider.name}تم قبول العرض الخاص بك من قِبل ',
+                    'user_icon': authProvider.photo != null &&
+                            authProvider.photo!.isNotEmpty
+                        ? authProvider.photo!.contains(ApiConstants.baseUrl)
+                            ? authProvider.photo
+                            : '${ApiConstants.baseUrl}${authProvider.photo}'
+                        : '',
+                    'screen_to': 'wasully_details_screen',
+                    'type': '',
+                    'data': ShipmentNotification(
+                      merchantName: shipmentNotification.merchantName,
+                      merchantImage: shipmentNotification.merchantImage,
+                      merchantFcmToken: shipmentNotification.merchantFcmToken,
+                      receivingState: shipmentNotification.receivingState,
+                      deliveryState: shipmentNotification.deliveryState,
+                      deliveryCity: shipmentNotification.deliveryCity,
+                      receivingCity: shipmentNotification.receivingCity,
+                      totalShipmentCost: shipmentNotification.totalShipmentCost,
+                      shippingCost: shipmentNotification.shippingCost,
+                      childrenShipment: shipmentNotification.childrenShipment,
+                      offerId: data.id,
+                      shipmentId: shipmentNotification.shipmentId,
+                      isWasully: 1,
+                    ).toMap(),
+                  });
+                  authProvider.sendNotification(
+                      title: 'تم قبول العرض الخاص بك',
+                      body:
+                          'التاجر ${authProvider.name}تم قبول العرض الخاص بك من قِبل ',
+                      toToken: token,
+                      image: authProvider.photo != null &&
+                              authProvider.photo!.isNotEmpty
+                          ? authProvider.photo!.contains(ApiConstants.baseUrl)
+                              ? authProvider.photo
+                              : '${ApiConstants.baseUrl}${authProvider.photo}'
+                          : '',
+                      screenTo: 'wasully_details_screen',
+                      type: '',
+                      data: ShipmentNotification(
+                        merchantName: shipmentNotification.merchantName,
+                        merchantImage: shipmentNotification.merchantImage,
+                        merchantId: authProvider.id,
+                        merchantFcmToken: shipmentNotification.merchantFcmToken,
+                        receivingState: shipmentNotification.receivingState,
+                        deliveryState: shipmentNotification.deliveryState,
+                        deliveryCity: shipmentNotification.deliveryCity,
+                        receivingCity: shipmentNotification.receivingCity,
+                        totalShipmentCost:
+                            shipmentNotification.totalShipmentCost,
+                        shippingCost: shipmentNotification.shippingCost,
+                        childrenShipment: shipmentNotification.childrenShipment,
+                        offerId: data.id,
+                        shipmentId: shipmentNotification.shipmentId,
+                        isWasully: 1,
+                      ).toMap());
                 },
                 color: weevoPrimaryOrangeColor,
                 isStable: true,
@@ -139,7 +212,7 @@ class ShippingOfferButtons extends StatelessWidget {
                             : '${ApiConstants.baseUrl}${authProvider.photo}'
                         : '',
                     'screen_to': '',
-                    'type': 'wasully',
+                    'type': '',
                     'data': ShipmentNotification(
                       merchantName: shipmentNotification.merchantName,
                       merchantImage: shipmentNotification.merchantImage,
@@ -167,7 +240,7 @@ class ShippingOfferButtons extends StatelessWidget {
                               ? authProvider.photo
                               : '${ApiConstants.baseUrl}${authProvider.photo}'
                           : '',
-                      screenTo: '',
+                      screenTo: 'wasully_details_screen',
                       type: '',
                       betterOffer: 1,
                       hasOffer: 1,

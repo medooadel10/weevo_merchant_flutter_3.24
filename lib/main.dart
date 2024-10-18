@@ -58,6 +58,7 @@ void main() async {
               projectId: 'weevo-bfa67',
               storageBucket: 'weevo-bfa67.appspot.com',
             ));
+
   Freshchat.init(
     '2540a172-9d87-4e8d-a28d-05b2fcef08fb',
     '90f02877-838c-42d2-876a-ef1b94346565',
@@ -69,8 +70,10 @@ void main() async {
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.instance.setAutoInitEnabled(true);
-  Freshchat.setPushRegistrationToken(
-      await FirebaseMessaging.instance.getToken() ?? '');
+  final token = Platform.isAndroid
+      ? await FirebaseMessaging.instance.getToken()
+      : await FirebaseMessaging.instance.getAPNSToken();
+  Freshchat.setPushRegistrationToken(token ?? '');
 
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
