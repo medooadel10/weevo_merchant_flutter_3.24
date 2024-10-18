@@ -41,7 +41,7 @@ class NotificationService {
     FlutterRingtonePlayer().play(
         android: AndroidSounds.notification, ios: IosSounds.receivedMessage);
     await _flutterLocalNotificationsPlugin.show(
-      DateTime.now().millisecondsSinceEpoch, // Notification ID
+      DateTime.now().millisecondsSinceEpoch,
       message.notification?.title ?? '',
       message.notification?.body ?? '',
       platformChannelSpecifics,
@@ -49,28 +49,15 @@ class NotificationService {
   }
 
   static void onSelectNotification(NotificationResponse onSelected) async {
-    // Handle when a user taps on the notification.
-
-    // if (onSelected.payload != null) {
-    //   print('Notification payload: ${onSelected.payload}');
-    // }
-
     _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.cancel(onSelected.id!);
-
     await _flutterLocalNotificationsPlugin.cancel(onSelected.id!);
   }
 
   static Future onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) async {
-    // Handle local notification in iOS when the app is in the foreground.
-    // Display a snackbar with the notification details.
-    // if (payload != null) {
-    //   print('Notification payload: $payload');
-    // }
-
     await _flutterLocalNotificationsPlugin.show(
       id,
       title,

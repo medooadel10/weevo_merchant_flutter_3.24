@@ -47,28 +47,30 @@ class _HomeState extends State<Home> {
   late AddShipmentProvider _shipmentProvider;
   late ProductProvider _productProvider;
   final bool _isPlus = Preferences.instance.getWeevoPlusPlanId.isNotEmpty;
-  late StreamSubscription<QuerySnapshot> _chatSubscription;
+  StreamSubscription<QuerySnapshot>? _chatSubscription;
   late StreamSubscription<QuerySnapshot> _notificationSubscription;
   int _totalMessages = 0;
   int _totalNotifications = 0;
   late Timer locationTimer;
   var notificationStream = Freshchat.onNotificationIntercept;
   var unreadCountStream = Freshchat.onMessageCountUpdate;
-
+  bool isFirstTime = true;
   @override
   void initState() {
     super.initState();
-    _authProvider = Provider.of<AuthProvider>(context, listen: false);
-    freshChatInit = FreshChatProvider.listenFalse(context);
-    AuthProvider.listenFalse(context).getServerKey();
-    _mapProvider = Provider.of<MapProvider>(context, listen: false);
-    _productProvider = Provider.of<ProductProvider>(context, listen: false);
-    _shipmentProvider =
-        Provider.of<AddShipmentProvider>(context, listen: false);
-    _authProvider.initialFCM(context);
-    _authProvider.initialOpenedAppFCM(context);
-
-    checkNetwork();
+    if (isFirstTime) {
+      isFirstTime = false;
+      _authProvider = Provider.of<AuthProvider>(context, listen: false);
+      freshChatInit = FreshChatProvider.listenFalse(context);
+      AuthProvider.listenFalse(context).getServerKey();
+      _mapProvider = Provider.of<MapProvider>(context, listen: false);
+      _productProvider = Provider.of<ProductProvider>(context, listen: false);
+      _shipmentProvider =
+          Provider.of<AddShipmentProvider>(context, listen: false);
+      _authProvider.initialFCM(context);
+      _authProvider.initialOpenedAppFCM(context);
+      checkNetwork();
+    }
   }
 
   void checkFirstTime() {
@@ -186,7 +188,7 @@ class _HomeState extends State<Home> {
 
   @override
   void dispose() {
-    _chatSubscription.cancel();
+    _chatSubscription?.cancel();
     freshChatInit.disposeTimer();
     freshChatInit.freshChatOnMessageCountUpdateDispose();
     _notificationSubscription.cancel();
@@ -245,22 +247,6 @@ class _HomeState extends State<Home> {
         child: Scaffold(
           appBar: _currentIndex != 0
               ? AppBar(
-                  // actions: _currentIndex == 1
-                  //     ? [
-                  //         TextButton(
-                  //           onPressed: () {
-                  //
-                  //           },
-                  //           child: Text(
-                  //             'قراءة الكل',
-                  //             style: TextStyle(
-                  //                 color: weevoPrimaryOrangeColor,
-                  //                 fontSize: 12.sp,
-                  //                 fontWeight: FontWeight.bold),
-                  //           ),
-                  //         ),
-                  //       ]
-                  //     : null,
                   title: Row(
                     children: [
                       if (_currentIndex == 1 || _currentIndex == 2)
@@ -324,7 +310,6 @@ class _HomeState extends State<Home> {
                 Weevo.facebookAppEvents.setAutoLogAppEventsEnabled(true);
                 Weevo.facebookAppEvents
                     .setUserID(Preferences.instance.getUserId);
-
                 Weevo.facebookAppEvents.setUserData(
                   email: Preferences.instance.getUserEmail,
                   firstName: Preferences.instance.getUserName.split('')[0],
@@ -411,185 +396,6 @@ class _HomeState extends State<Home> {
                                 ],
                               ),
                             ),
-                            // Expanded(
-                            //   child: Column(
-                            //     mainAxisAlignment:
-                            //         MainAxisAlignment.spaceEvenly,
-                            //     crossAxisAlignment: CrossAxisAlignment.center,
-                            //     children: [
-                            //       Text(
-                            //         'مكان الاستلام',
-                            //         style: TextStyle(
-                            //           fontSize: 15.0.sp,
-                            //           color: Colors.grey,
-                            //           fontWeight: FontWeight.w400,
-                            //         ),
-                            //         textAlign: TextAlign.center,
-                            //       ),
-                            //       mapProvider.state == NetworkState.WAITING
-                            //           ? Shimmer.fromColors(
-                            //               baseColor: Colors.grey[300],
-                            //               highlightColor: Colors.grey[100],
-                            //               child: Row(
-                            //                 mainAxisAlignment:
-                            //                     MainAxisAlignment.center,
-                            //                 children: [
-                            //                   Container(
-                            //                     height: 17.0.h,
-                            //                     width: 24.0.w,
-                            //                     color: Colors.grey[300],
-                            //                   ),
-                            //                   SizedBox(
-                            //                     width: 7.0.w,
-                            //                   ),
-                            //                   Container(
-                            //                     height: 17.0.h,
-                            //                     width: 80.0.w,
-                            //                     color: Colors.grey[300],
-                            //                   ),
-                            //                 ],
-                            //               ),
-                            //             )
-                            //           : mapProvider.addressIsEmpty
-                            //               ? FittedBox(
-                            //                   child: GestureDetector(
-                            //                     onTap: () {
-                            //                       if (mapProvider
-                            //                           .addressIsEmpty) {
-                            //                         mapProvider
-                            //                             .setFrom(from_home_map);
-                            //                         Navigator.pushNamed(
-                            //                             context, MapScreen.id,
-                            //                             arguments: false);
-                            //                       } else {
-                            //                         showModalBottomSheet(
-                            //                           navigator.currentContext!,
-                            //                           shape:
-                            //                               RoundedRectangleBorder(
-                            //                             borderRadius:
-                            //                                 BorderRadius.only(
-                            //                               topRight:
-                            //                                   Radius.circular(
-                            //                                       20.0.r),
-                            //                               topLeft:
-                            //                                   Radius.circular(
-                            //                                       20.0.r),
-                            //                             ),
-                            //                           ),
-                            //                           builder: (context) =>
-                            //                               LocationPicker(
-                            //                                   fromWhere:
-                            //                                       from_home_map,
-                            //                                   onLocationClick:
-                            //                                       (Address
-                            //                                           a) {}),
-                            //                         );
-                            //                       }
-                            //                     },
-                            //                     child: Row(
-                            //                       children: [
-                            //                         Text(
-                            //                           'أضف عنوان جديد',
-                            //                           style: TextStyle(
-                            //                             fontSize: 17.0.sp,
-                            //                             color:
-                            //                                 weevoPrimaryOrangeColor,
-                            //                             fontWeight:
-                            //                                 FontWeight.w700,
-                            //                           ),
-                            //                           textAlign:
-                            //                               TextAlign.center,
-                            //                         ),
-                            //                         SizedBox(
-                            //                           width: 7.0.w,
-                            //                         ),
-                            //                         Icon(
-                            //                           Icons.add,
-                            //                           color:
-                            //                               weevoPrimaryOrangeColor,
-                            //                           size: 20.0,
-                            //                         ),
-                            //                       ],
-                            //                     ),
-                            //                   ),
-                            //                 )
-                            //               : FittedBox(
-                            //                   child: GestureDetector(
-                            //                     onTap: () {
-                            //                       if (mapProvider
-                            //                           .addressIsEmpty) {
-                            //                         mapProvider
-                            //                             .setFrom(from_home_map);
-                            //                         Navigator.pushNamed(
-                            //                             context, MapScreen.id,
-                            //                             arguments: false);
-                            //                       } else {
-                            //                         showModalBottomSheet(
-                            //                           navigator.currentContext!,
-                            //                           shape:
-                            //                               RoundedRectangleBorder(
-                            //                             borderRadius:
-                            //                                 BorderRadius.only(
-                            //                               topRight:
-                            //                                   Radius.circular(
-                            //                                       20.0),
-                            //                               topLeft:
-                            //                                   Radius.circular(
-                            //                                       20.0),
-                            //                             ),
-                            //                           ),
-                            //                           builder: (context) =>
-                            //                               LocationPicker(
-                            //                             fromWhere:
-                            //                                 from_home_map,
-                            //                           ),
-                            //                         );
-                            //                       }
-                            //                     },
-                            //                     child: Row(
-                            //                       children: [
-                            //                         Icon(
-                            //                           Icons
-                            //                               .keyboard_arrow_down_outlined,
-                            //                           color:
-                            //                               weevoPrimaryOrangeColor,
-                            //                         ),
-                            //                         Text(
-                            //                           mapProvider.fullAddress
-                            //                                   ?.name ??
-                            //                               '',
-                            //                           style: TextStyle(
-                            //                             fontSize: 18.0.sp,
-                            //                             color:
-                            //                                 weevoPrimaryOrangeColor,
-                            //                             fontWeight:
-                            //                                 FontWeight.w700,
-                            //                           ),
-                            //                           textAlign:
-                            //                               TextAlign.center,
-                            //                         ),
-                            //                         SizedBox(
-                            //                           width: 7.0.w,
-                            //                         ),
-                            //                         Text(
-                            //                           mapProvider.fullAddress
-                            //                                   ?.state ??
-                            //                               '',
-                            //                           style: TextStyle(
-                            //                             fontSize: 16.0.sp,
-                            //                             color:
-                            //                                 weevoPrimaryOrangeColor,
-                            //                           ),
-                            //                           textAlign:
-                            //                               TextAlign.center,
-                            //                         ),
-                            //                       ],
-                            //                     ),
-                            //                   ),
-                            //                 ),
-                            //     ],
-                            //   ),
-                            // ),
                             Image.asset(
                               'assets/images/weevo_blue_logo.png',
                               height: 35.0.h,
@@ -644,114 +450,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-          ), // bottomNavigationBar: BottomAppBar(
-          //   color: Colors.white,
-          //   child: Container(
-          //     padding: EdgeInsets.symmetric(
-          //       horizontal: 5.0,
-          //     ),
-          //     height: 54.0,
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         IconButton(
-          //           icon: Icon(Icons.home_outlined,
-          //               color: _currentIndex == 0
-          //                   ? weevoPrimaryOrangeColor
-          //                   : Colors.black),
-          //           onPressed: () {
-          //             setState(() {
-          //               _currentIndex = 0;
-          //             });
-          //           },
-          //         ),
-          //         Stack(
-          //           children: [
-          //             authProvider.totalNotifications > 0
-          //                 ? Container(
-          //                     height: 20.0,
-          //                     width: 20.0,
-          //                     decoration: BoxDecoration(
-          //                       color: weevoPrimaryOrangeColor,
-          //                       shape: BoxShape.circle,
-          //                     ),
-          //                     child: Center(
-          //                       child: Text(
-          //                         '${authProvider.totalNotifications}',
-          //                         style: TextStyle(
-          //                             color: Colors.white, fontSize: 10.0),
-          //                       ),
-          //                     ),
-          //                   )
-          //                 : Container(),
-          //             IconButton(
-          //               icon: Icon(Icons.notifications_none_outlined,
-          //                   color: _currentIndex == 1
-          //                       ? weevoPrimaryOrangeColor
-          //                       : Colors.black),
-          //               onPressed: () {
-          //                 setState(() {
-          //                   _currentIndex = 1;
-          //                 });
-          //               },
-          //             ),
-          //           ],
-          //         ),
-          //         Container(),
-          //         Stack(
-          //           children: [
-          //             authProvider.totalMessages > 0
-          //                 ? Container(
-          //                     height: 20.0,
-          //                     width: 20.0,
-          //                     decoration: BoxDecoration(
-          //                       color: weevoPrimaryOrangeColor,
-          //                       shape: BoxShape.circle,
-          //                     ),
-          //                     child: Center(
-          //                       child: Text(
-          //                         '${authProvider.totalMessages}',
-          //                         style: TextStyle(
-          //                             color: Colors.white, fontSize: 10.0),
-          //                       ),
-          //                     ),
-          //                   )
-          //                 : Container(),
-          //             IconButton(
-          //               icon: Padding(
-          //                 padding: EdgeInsets.all(4.0),
-          //                 child: Image.asset(
-          //                   'assets/images/weevo_chat_icon.png',
-          //                   color: _currentIndex == 2
-          //                       ? weevoPrimaryOrangeColor
-          //                       : Colors.black,
-          //                   height: 25.0,
-          //                   width: 25.0,
-          //                 ),
-          //               ),
-          //               onPressed: () {
-          //                 setState(() {
-          //                   _currentIndex = 2;
-          //                 });
-          //               },
-          //             ),
-          //           ],
-          //         ),
-          //         IconButton(
-          //           icon: Icon(Icons.menu,
-          //               color: _currentIndex == 3
-          //                   ? weevoPrimaryOrangeColor
-          //                   : Colors.black),
-          //           onPressed: () {
-          //             setState(() {
-          //               _currentIndex = 3;
-          //             });
-          //           },
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
+          ),
         ),
       ),
     );

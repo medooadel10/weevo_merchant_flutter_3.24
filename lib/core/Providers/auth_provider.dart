@@ -1439,15 +1439,6 @@ class AuthProvider with ChangeNotifier {
 
   bool get isValid => tokenIsValid != null;
 
-// bool _kShouldTestAsyncErrorOnInit = true;
-
-// Toggle this for testing Crashlytics in your app locally.
-//   bool _kTestingCrashlytics = true;
-
-// initializeFirebaseCrashlytics() {
-//   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-// }
-
   Future<void> getToken() async {
     String? token = await fcm.getToken();
     await _preferences!.setFcmToken(token ?? '');
@@ -1478,11 +1469,6 @@ class AuthProvider with ChangeNotifier {
     );
   }
 
-  Future<void> getInitMessage() async {
-    RemoteMessage? m = await fcm.getInitialMessage();
-    goTo(navigator.currentContext!, m);
-  }
-
   void reset() {
     _userId = null;
     _firstName = null;
@@ -1500,131 +1486,6 @@ class AuthProvider with ChangeNotifier {
     _nationalIdPhotoFront = null;
     _screenIndex = 0;
     _page = const SignUpPersonalInfo();
-  }
-
-  void goTo(BuildContext ctx, RemoteMessage? m) {
-    if (m?.data['type'] == 'rating') {
-      MagicRouter.navigateAndPop(const Home());
-      MagicRouter.navigateAndPopAll(
-        RatingDialog(
-          model: ShipmentTrackingModel.fromJson(
-            json.decode(
-              m?.data['data'],
-            ),
-          ),
-        ),
-      );
-    } else if (m?.data['type'] == 'wasully_rating') {
-      log('Wasully rating dialog');
-      MagicRouter.navigateAndPopAll(WasullyRatingDialog(
-        model: ShipmentTrackingModel.fromJson(
-          m?.data ?? {},
-        ),
-      ));
-    } else {
-      _fromOutsideNotification = true;
-      switch (m?.data['screen_to']) {
-        case productScreen:
-          Navigator.pushReplacementNamed(ctx, MerchantWarehouse.id);
-          break;
-        case wallet:
-          Navigator.pushReplacementNamed(ctx, Wallet.id);
-          break;
-        case homeScreen:
-          Navigator.pushReplacementNamed(ctx, Home.id);
-          break;
-        case shipmentOffers:
-          Navigator.pushNamed(
-            ctx,
-            ChooseCourier.id,
-            arguments:
-                ShipmentNotification.fromMap(json.decode(m?.data['data'])),
-          );
-          break;
-        case shipmentDecline:
-          Navigator.pushNamed(
-            ctx,
-            ChooseCourier.id,
-            arguments:
-                ShipmentNotification.fromMap(json.decode(m?.data['data'])),
-          );
-          break;
-        case shipmentScreen:
-          if (ShipmentTrackingModel.fromJson(json.decode(m?.data['data']))
-                  .hasChildren ==
-              0) {
-            MagicRouter.navigateAndPop(ShipmentDetailsScreen(
-              id: ShipmentTrackingModel.fromJson(json.decode(m?.data['data']))
-                  .shipmentId!,
-            ));
-          } else {
-            MagicRouter.navigateAndPop(
-              BulkShipmentDetailsScreen(
-                  shipmentId: ShipmentTrackingModel.fromJson(
-                          json.decode(m?.data['data']))
-                      .shipmentId!),
-            );
-          }
-          break;
-        case handleShipmentScreen:
-          Navigator.pushReplacementNamed(ctx, HandleShipment.id,
-              arguments:
-                  ShipmentTrackingModel.fromJson(json.decode(m?.data['data'])));
-          break;
-        case walletScreen:
-          Navigator.pushReplacementNamed(ctx, Wallet.id);
-          break;
-        case chatScreen:
-          ChatData chatData = ChatData.fromJson(json.decode(m?.data['data']));
-          ChatData finalChatData;
-          if (chatData.currentUserNationalId == getNationalId) {
-            finalChatData = ChatData(
-              chatData.peerPhoneNumber,
-              chatData.currentPhoneNumber,
-              currentUserId: chatData.currentUserId,
-              currentUserNationalId: chatData.currentUserNationalId,
-              peerId: chatData.peerId,
-              peerImageUrl: chatData.peerImageUrl,
-              peerUserName: chatData.peerUserName,
-              peerNationalId: chatData.peerNationalId,
-              shipmentId: chatData.shipmentId,
-              currentUserName: chatData.currentUserName,
-              currentUserImageUrl: chatData.currentUserImageUrl,
-              conversionId: chatData.conversionId,
-              type: chatData.type,
-            );
-          } else {
-            finalChatData = ChatData(
-              chatData.peerPhoneNumber,
-              chatData.currentPhoneNumber,
-              currentUserNationalId: chatData.peerNationalId,
-              peerNationalId: chatData.currentUserNationalId,
-              currentUserId: chatData.peerId,
-              peerId: chatData.currentUserId,
-              peerImageUrl: chatData.currentUserImageUrl,
-              peerUserName: chatData.currentUserName,
-              currentUserName: chatData.peerUserName,
-              shipmentId: chatData.shipmentId,
-              currentUserImageUrl: chatData.peerImageUrl,
-              conversionId: chatData.conversionId,
-              type: chatData.type,
-            );
-          }
-          Navigator.pushReplacementNamed(ctx, ChatScreen.id,
-              arguments: finalChatData);
-          break;
-        default:
-          isValid
-              ? Navigator.pushReplacementNamed(
-                  ctx,
-                  Home.id,
-                )
-              : Navigator.pushReplacementNamed(
-                  ctx,
-                  OnBoarding.id,
-                );
-      }
-    }
   }
 
   void setFrontIdImageLoading(bool value) {
@@ -1692,7 +1553,7 @@ class AuthProvider with ChangeNotifier {
     FlutterRingtonePlayer().play(
         android: AndroidSounds.notification, ios: IosSounds.receivedMessage);
     await flutterLocalNotificationsPlugin.show(
-        DateTime.now().millisecondsSinceEpoch,
+        DateTime.now().millisecond,
         remoteMessage.notification?.title,
         remoteMessage.notification?.body,
         platformChannelSpecifics,
@@ -1845,10 +1706,6 @@ class AuthProvider with ChangeNotifier {
   void initialFCM(BuildContext context) {
     FirebaseMessaging.onMessage.listen((RemoteMessage m) async {
       log('m.data -> ${m.data}');
-      log('m -> $m');
-      log('m -> ${m.notification?.title}');
-      log('m -> ${m.notification?.body}');
-
       if (await freshChat.Freshchat.isFreshchatNotification(m.data)) {
         log("is Freshchat notification");
         freshChat.Freshchat.handlePushNotification(m.data);
@@ -1964,6 +1821,7 @@ class AuthProvider with ChangeNotifier {
           });
         }
         if (_currentWidget != 'ChatScreen' && _currentWidget != 'Messages') {
+          log('show notification');
           showNotification(m);
         }
       }
