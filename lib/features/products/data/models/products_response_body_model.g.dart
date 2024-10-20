@@ -29,7 +29,7 @@ Map<String, dynamic> _$ProductsResponseBodyModelToJson(
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       (json['id'] as num).toInt(),
       json['name'] as String,
-      json['description'] as String,
+      json['description'] as String?,
       json['price'],
       (json['category_id'] as num).toInt(),
       json['image'] as String?,

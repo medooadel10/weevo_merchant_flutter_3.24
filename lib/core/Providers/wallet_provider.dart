@@ -404,6 +404,7 @@ class WalletProvider with ChangeNotifier {
         branches = (json.decode(r.body) as List)
             .map((e) => BankBranchModel.fromJson(e))
             .toList();
+        notifyListeners();
       }
     } catch (e) {
       log('error -> ${e.toString()}');

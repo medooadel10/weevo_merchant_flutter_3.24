@@ -12,4 +12,11 @@ class ProductsState with _$ProductsState {
   const factory ProductsState.success(List<ProductModel> products) = Success;
 
   const factory ProductsState.failure(String message) = Failure;
+
+  const factory ProductsState.deleteProductLoading() = DeleteProductLoading;
+
+  const factory ProductsState.deleteProductSuccess() = DeleteProductSuccess;
+
+  const factory ProductsState.deleteProductFailure(String message) =
+      DeleteProductFailure;
 }

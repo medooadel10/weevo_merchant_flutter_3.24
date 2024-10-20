@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/Dialogs/action_dialog.dart';
 import '../../../../core/Models/shipment_notification.dart';
 import '../../../../core/Storage/shared_preference.dart';
-import '../../../../core_new/helpers/toasts.dart';
 import '../../../../core_new/router/router.dart';
 import '../../../wasully_details/ui/screens/wasully_details_screen.dart';
 import '../../data/models/courier_response_body.dart';
@@ -37,10 +36,10 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
         Stream.periodic(const Duration(seconds: 5)).listen((timer) async {
       await getShipmentStatus(id);
       if (courierAppliedToShipment) {
-        showToast('Applied');
+        // showToast('Applied');
         if (!_dialogOpened) {
           _dialogOpened = true;
-          showToast('Dialog opened');
+          // showToast('Dialog opened');
           try {
             showDialog(
                 context: navigator.currentContext!,
@@ -57,8 +56,8 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
                       },
                     ));
             closeTimer();
-          } on Exception catch (e) {
-            showToast('Dialog Error: ${e.toString()}');
+          } on Exception catch (_) {
+            // showToast('Dialog Error: ${e.toString()}');
           }
         }
       } else {
@@ -143,7 +142,7 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
     if (result.success) {
       courierAppliedToShipment = result.data == 'courier-applied-to-shipment';
       if (!courierAppliedToShipment) {
-        showToast('courierAppliedToShipment: $courierAppliedToShipment');
+        // showToast('courierAppliedToShipment: $courierAppliedToShipment');
       }
       emit(WasullyShippingOffersSuccessState(shippingOffers!));
     } else {

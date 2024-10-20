@@ -30,7 +30,7 @@ class ProductDetails extends StatelessWidget {
               ),
               verticalSpace(8),
               Text(
-                product.description,
+                product.description ?? '',
                 style: TextStyle(
                   fontSize: 10.sp,
                   fontWeight: FontWeight.bold,

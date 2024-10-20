@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:weevo_merchant_upgrade/core_new/helpers/toasts.dart';
 import 'package:weevo_merchant_upgrade/features/products/data/models/products_response_body_model.dart';
 import 'package:weevo_merchant_upgrade/features/products/data/repos/products_repo.dart';
 
@@ -33,10 +34,41 @@ class ProductsCubit extends Cubit<ProductsState> {
       data = result.data;
       products?.addAll(result.data!.data);
       if ((isPaging && hasMoreData) || currentPage == 1) currentPage++;
-      emit(Success(result.data?.data ?? []));
+      emit(Success(products ?? []));
     } else {
       hasMoreData = false;
       emit(Failure(result.error ?? ''));
+    }
+  }
+
+  void searchProductByTitle(String title) {
+    if (title.isEmpty) {
+      emit(Success(products ?? []));
+      return;
+    }
+    showToast('asd');
+    List<ProductModel>? finalProducts = products
+        ?.where(
+          (element) =>
+              element.name.toLowerCase().contains(title.toLowerCase()) ||
+              (element.description
+                      ?.toLowerCase()
+                      .contains(title.toLowerCase()) ??
+                  false),
+        )
+        .toList();
+    emit(Success(finalProducts ?? []));
+  }
+
+  void deleteProduct(int id) async {
+    emit(const DeleteProductLoading());
+    final result = await _productsRepo.deleteProduct(id);
+    if (result.success) {
+      products?.removeWhere((element) => element.id == id);
+      emit(Success(products ?? []));
+      emit(const DeleteProductSuccess());
+    } else {
+      emit(DeleteProductFailure(result.error ?? ''));
     }
   }
 }

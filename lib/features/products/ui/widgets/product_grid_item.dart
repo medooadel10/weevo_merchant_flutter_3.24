@@ -35,7 +35,9 @@ class ProductGridItem extends StatelessWidget {
                 PositionedDirectional(
                   top: 5.h,
                   end: 5.w,
-                  child: const ProductMoreIcon(),
+                  child: ProductMoreIcon(
+                    product: product,
+                  ),
                 ),
                 PositionedDirectional(
                   bottom: 5.h,

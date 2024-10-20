@@ -28,4 +28,22 @@ class ProductsRepo {
       );
     }
   }
+
+  Future<DataResult<void>> deleteProduct(int id) async {
+    try {
+      await DioFactory.deleteData(
+        url: '${ApiConstants.products}/$id',
+        data: {},
+        token: Preferences.instance.getAccessToken,
+      );
+      return DataResult.success(null);
+    } on DioException catch (e) {
+      return DataResult.error(
+        e.response?.data['message'] ??
+            e.message ??
+            e.error?.toString() ??
+            'حدث خطأ ما, الرجاء المحاولة مرة اخرى',
+      );
+    }
+  }
 }

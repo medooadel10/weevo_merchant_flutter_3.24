@@ -25,7 +25,7 @@ class ProductsResponseBodyModel {
 class ProductModel {
   final int id;
   final String name;
-  final String description;
+  final String? description;
   final dynamic price;
   final int categoryId;
   final String? image;
