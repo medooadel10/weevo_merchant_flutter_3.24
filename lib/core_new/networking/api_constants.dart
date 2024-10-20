@@ -31,6 +31,8 @@ class ApiConstants {
 
   static const String acceptShippingOffers =
       '$baseUrl/api/v1/merchant/wasuliy/shipping-offers/accept';
+
+  static const String products = '$baseUrl/api/v1/merchant/products';
 }
 
 class ApiErrors {

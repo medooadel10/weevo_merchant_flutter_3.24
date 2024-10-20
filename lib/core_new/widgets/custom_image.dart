@@ -7,51 +7,69 @@ import 'custom_shimmer.dart';
 
 class CustomImage extends StatelessWidget {
   final String? imageUrl;
-  final double height;
   final double width;
+  final double height;
   final double radius;
+  final bool isCircle;
+  final bool displayError;
   final BoxFit fit;
   const CustomImage({
     super.key,
     required this.imageUrl,
-    this.height = 100,
+    this.radius = 12,
     this.width = 100,
-    this.radius = 8.0,
+    this.height = 100,
+    this.isCircle = false,
     this.fit = BoxFit.cover,
+    this.displayError = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width.w,
-      height: height.h,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius),
-      ),
-      child: CachedNetworkImage(
-        imageUrl: imageUrl == null
-            ? ''
-            : imageUrl!.contains('eg.api.weevoapp')
-                ? imageUrl!
-                : '${ApiConstants.baseUrl}$imageUrl',
-        width: width.w,
-        fit: fit,
-        placeholder: (context, url) => const CustomShimmer(),
-        errorWidget: (context, url, error) => Container(
-          width: width.w,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(radius),
-          ),
-          child: Icon(
-            Icons.image,
-            size: height / 1.2,
-            color: Colors.grey,
-          ),
-        ),
-      ),
-    );
+    return isCircle
+        ? CircleAvatar(
+            radius: radius,
+            backgroundImage: CachedNetworkImageProvider(
+              imageUrl == null
+                  ? ''
+                  : imageUrl!.contains('eg.api.weevoapp')
+                      ? imageUrl!
+                      : '${ApiConstants.baseUrl}$imageUrl',
+            ),
+            child: ClipOval(
+              child: _buildImageWidget(),
+            ),
+          )
+        : _buildImageWidget();
   }
+
+  Widget _buildImageWidget() => Container(
+        width: width.w,
+        height: height.h,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(radius),
+        ),
+        child: CachedNetworkImage(
+          imageUrl: imageUrl == null
+              ? ''
+              : imageUrl!.contains('eg.api.weevoapp')
+                  ? imageUrl!
+                  : '${ApiConstants.baseUrl}$imageUrl',
+          fit: fit,
+          placeholder: (context, url) => const CustomShimmer(),
+          errorWidget: (context, url, error) => displayError
+              ? Container(
+                  width: width.w,
+                  height: height.h,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                  ),
+                  child: const Icon(Icons.error),
+                )
+              : const CustomShimmer(),
+        ),
+      );
 }

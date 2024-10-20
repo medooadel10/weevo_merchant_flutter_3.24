@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
   final Function()? onTap;
   final bool readOnly;
   final Color? suffixIconColor;
-  final int maxLines;
+  final int? maxLines;
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
   final int? minValue;
@@ -105,16 +105,36 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           borderSide: BorderSide(color: Colors.grey[400]!),
         ),
+        prefixIconColor:
+            WidgetStateColor.resolveWith((Set<WidgetState> states) {
+          if (states.contains(WidgetState.focused)) {
+            return context.colorScheme.primary;
+          }
+          if (states.contains(WidgetState.error)) {
+            return context.colorScheme.error;
+          }
+          return context.colorScheme.outlineVariant;
+        }),
+        suffixIconColor:
+            WidgetStateColor.resolveWith((Set<WidgetState> states) {
+          if (states.contains(WidgetState.focused)) {
+            return context.colorScheme.primary;
+          }
+          if (states.contains(WidgetState.error)) {
+            return context.colorScheme.error;
+          }
+          return Colors.grey[600]!;
+        }),
         suffixIcon: GestureDetector(
           onTap: onSuffixIcon ?? () {},
           child: suffixWidget ??
               Icon(
                 suffixIcon,
-                color: suffixIconColor ?? context.colorScheme.primary,
+                color: suffixIconColor,
               ),
         ),
         contentPadding: EdgeInsets.symmetric(
-          vertical: 15.0.h,
+          vertical: 10.0.h,
           horizontal: 10.0.w,
         ),
       ),

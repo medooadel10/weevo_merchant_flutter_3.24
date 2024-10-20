@@ -70,9 +70,7 @@ void main() async {
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.instance.setAutoInitEnabled(true);
-  final token = Platform.isAndroid
-      ? await FirebaseMessaging.instance.getToken()
-      : await FirebaseMessaging.instance.getAPNSToken();
+  final token = await FirebaseMessaging.instance.getToken();
   Freshchat.setPushRegistrationToken(token ?? '');
 
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(

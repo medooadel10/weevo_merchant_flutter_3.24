@@ -31,14 +31,9 @@ class WasullyForm extends StatelessWidget {
           key: cubit.formKey,
           child: Column(
             children: [
-              CustomTextField(
-                hintText: 'قولنا عاوز توصل ايه ؟ ارفع صورة للطلب ',
-                controller: cubit.orderDetailsController,
-                errorMsg: 'من فضلك ادخل تفاصيل الطلب',
-                keyboardType: TextInputType.multiline,
-                textInputAction: TextInputAction.newline,
-                suffixIcon: Icons.camera_alt,
-                onSuffixIcon: () {
+              InkWell(
+                borderRadius: BorderRadius.circular(10.0),
+                onTap: () {
                   showModalBottomSheet(
                     context: navigator.currentContext!,
                     shape: RoundedRectangleBorder(
@@ -52,9 +47,48 @@ class WasullyForm extends StatelessWidget {
                     },
                   );
                 },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.0.w,
+                    vertical: 10.0.h,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(
+                      color: Colors.grey[400]!,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'صورة الطلب',
+                          style: TextStyle(
+                            fontSize: 16.0.sp,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      ),
+                      horizontalSpace(10),
+                      Icon(
+                        Icons.camera_alt,
+                        color: Colors.grey[600],
+                      ),
+                    ],
+                  ),
+                ),
               ),
               verticalSpace(14.0),
               const WasullyPhotoBlocBuilder(),
+              CustomTextField(
+                hintText: 'قولنا عاوز توصل ايه ؟ ارفع صورة للطلب ',
+                controller: cubit.orderDetailsController,
+                errorMsg: 'من فضلك ادخل تفاصيل الطلب',
+                keyboardType: TextInputType.multiline,
+                textInputAction: TextInputAction.newline,
+                maxLines: null,
+              ),
+              verticalSpace(14.0),
               CustomTextField(
                 controller: cubit.senderPhoneController,
                 hintText: 'رقم المرسل',

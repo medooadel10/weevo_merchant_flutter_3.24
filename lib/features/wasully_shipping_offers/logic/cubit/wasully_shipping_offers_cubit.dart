@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/Dialogs/action_dialog.dart';
 import '../../../../core/Models/shipment_notification.dart';
 import '../../../../core/Storage/shared_preference.dart';
+import '../../../../core_new/helpers/toasts.dart';
 import '../../../../core_new/router/router.dart';
 import '../../../wasully_details/ui/screens/wasully_details_screen.dart';
 import '../../data/models/courier_response_body.dart';
@@ -36,21 +37,29 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
         Stream.periodic(const Duration(seconds: 5)).listen((timer) async {
       await getShipmentStatus(id);
       if (courierAppliedToShipment) {
+        showToast('Applied');
         if (!_dialogOpened) {
           _dialogOpened = true;
-          showDialog(
-              context: navigator.currentContext!,
-              builder: (cx) => ActionDialog(
-                    content: 'قام احد المناديب بقبول طلبك و دفع مقدم الشحن',
-                    approveAction: 'الذهاب للطلب',
-                    onApproveClick: () {
-                      Navigator.pop(cx);
-                      _dialogOpened = false;
-                      MagicRouter.navigateAndPop(
-                        WasullyDetailsScreen(id: id),
-                      );
-                    },
-                  ));
+          showToast('Dialog opened');
+          try {
+            showDialog(
+                context: navigator.currentContext!,
+                barrierDismissible: false,
+                builder: (cx) => ActionDialog(
+                      content: 'قام احد المناديب بقبول طلبك و دفع مقدم الشحن',
+                      approveAction: 'الذهاب للطلب',
+                      onApproveClick: () {
+                        MagicRouter.pop();
+                        _dialogOpened = false;
+                        MagicRouter.navigateAndPop(
+                          WasullyDetailsScreen(id: id),
+                        );
+                      },
+                    ));
+            closeTimer();
+          } on Exception catch (e) {
+            showToast('Dialog Error: ${e.toString()}');
+          }
         }
       } else {
         _getShippingOffers(
@@ -133,6 +142,9 @@ class WasullyShippingOffersCubit extends Cubit<WasullyShippingOffersState> {
     final result = await _couriersRepo.getShipmentStatus(id);
     if (result.success) {
       courierAppliedToShipment = result.data == 'courier-applied-to-shipment';
+      if (!courierAppliedToShipment) {
+        showToast('courierAppliedToShipment: $courierAppliedToShipment');
+      }
       emit(WasullyShippingOffersSuccessState(shippingOffers!));
     } else {
       emit(WasullyShippingOffersErrorState());

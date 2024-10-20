@@ -1441,9 +1441,13 @@ class AuthProvider with ChangeNotifier {
   bool get isValid => tokenIsValid != null;
 
   Future<void> getToken() async {
-    String? token = await fcm.getToken();
-    await _preferences!.setFcmToken(token ?? '');
-    log('token received $token');
+    try {
+      String? token = await fcm.getToken();
+      await _preferences!.setFcmToken(token ?? '');
+      log('token received $token');
+    } on Exception catch (e) {
+      log('Error Token ${e.toString()}');
+    }
   }
 
   Future<void> getFirebaseToken() async {
@@ -1455,19 +1459,22 @@ class AuthProvider with ChangeNotifier {
       largeIcon: "large_icon",
       smallIcon: "small_icon",
     );
-    String? token = await fcm.getToken();
-    log('fcm token -> $token');
-    freshChat.Freshchat.setPushRegistrationToken(token ?? '');
+    final token = await fcm.getToken();
+    freshChat.Freshchat.setPushRegistrationToken(
+      Platform.isAndroid ? token! : await fcm.getAPNSToken() ?? '',
+    );
     if (_preferences!.getNotificationOn == 1) {
       fcm.subscribeToTopic('all');
       fcm.subscribeToTopic('merchant');
     }
     await _preferences!.setFcmToken(token ?? '');
-    fcm.onTokenRefresh.listen(
-      (event) {
-        freshChat.Freshchat.setPushRegistrationToken(event);
-      },
-    );
+    if (Platform.isAndroid) {
+      fcm.onTokenRefresh.listen(
+        (event) {
+          freshChat.Freshchat.setPushRegistrationToken(event);
+        },
+      );
+    }
   }
 
   void reset() {

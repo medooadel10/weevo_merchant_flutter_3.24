@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -5,7 +8,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/Providers/auth_provider.dart';
 import '../../core_new/networking/api_constants.dart';
-import '../../core_new/widgets/custom_image.dart';
 
 class VideoItem extends StatelessWidget {
   final int i;
@@ -16,6 +18,7 @@ class VideoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final size = MediaQuery.of(context).size;
+    log('Image : ${authProvider.groupBanner![2].banners![i].image}');
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
       child: Column(
@@ -53,7 +56,7 @@ class VideoItem extends StatelessWidget {
                           children: [
                             AspectRatio(
                               aspectRatio: 16 / 9,
-                              child: CustomImage(
+                              child: CachedNetworkImage(
                                 imageUrl: authProvider
                                             .groupBanner![2].banners![i].image!
                                             .contains('http') ||
@@ -61,8 +64,9 @@ class VideoItem extends StatelessWidget {
                                             .groupBanner![2].banners![i].image!
                                             .contains('https')
                                     ? authProvider
-                                        .groupBanner![2].banners![i].image
+                                        .groupBanner![2].banners![i].image!
                                     : '${ApiConstants.baseUrl}${authProvider.groupBanner![2].banners![i].image}',
+                                fit: BoxFit.cover,
                                 height: 200.h,
                                 width: size.width,
                               ),

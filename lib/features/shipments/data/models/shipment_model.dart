@@ -1,6 +1,6 @@
 import '../../../../core_new/data/models/city_model.dart';
 import '../../../../core_new/data/models/state_model.dart';
-import '../../../products/data/models/shipment_product_model.dart';
+import 'shipment_product_model.dart';
 
 class ShipmentModel {
   final int id;

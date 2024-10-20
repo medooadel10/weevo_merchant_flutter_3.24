@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../core/Storage/shared_preference.dart';
 import '../../features/bulk_shipment_details/data/repos/bulk_shipment_details_repo.dart';
+import '../../features/products/data/repos/products_repo.dart';
 import '../../features/shipment_details/data/repos/shipment_details_repo.dart';
 import '../../features/shipments/data/repos/shipments_repo.dart';
 import '../../features/waslny/data/repos/waslny_map_repo.dart';
@@ -42,4 +43,7 @@ Future<void> setupGetIt() async {
 
   // Wasully Delivery Service
   getIt.registerLazySingleton(() => WasullyDeliveryService());
+
+  // Products
+  getIt.registerLazySingleton(() => ProductsRepo());
 }

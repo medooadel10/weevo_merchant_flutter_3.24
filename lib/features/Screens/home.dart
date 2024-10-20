@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:freshchat_sdk/freshchat_sdk.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/core_new/helpers/toasts.dart';
 
 import '../../core/Dialogs/action_dialog.dart';
 import '../../core/Dialogs/crousal_dialog.dart';
@@ -171,18 +172,23 @@ class _HomeState extends State<Home> {
   }
 
   void getData() async {
-    _authProvider.getGroupsWithBanners();
-    _shipmentProvider.getCountries();
-    _productProvider.getAllCategories();
-    check(ctx: context, auth: _authProvider, state: _productProvider.catState);
-    // _productProvider.getLast5Products();
-    _mapProvider.getAllAddress(false);
-    _productProvider.getProducts(false);
-    _authProvider.weevoSubscriptionValidation();
-    _authProvider.setCurrentMerchantLocation();
-    locationTimer = Timer.periodic(const Duration(minutes: 5), (timer) {
+    try {
+      _authProvider.getGroupsWithBanners();
+      _shipmentProvider.getCountries();
+      _productProvider.getAllCategories();
+      check(
+          ctx: context, auth: _authProvider, state: _productProvider.catState);
+      // _productProvider.getLast5Products();
+      _mapProvider.getAllAddress(false);
+      _productProvider.getProducts(false);
+      _authProvider.weevoSubscriptionValidation();
       _authProvider.setCurrentMerchantLocation();
-    });
+      locationTimer = Timer.periodic(const Duration(minutes: 5), (timer) {
+        _authProvider.setCurrentMerchantLocation();
+      });
+    } on Exception catch (e) {
+      showToast('Get data error ${e.toString()}');
+    }
     // _authProvider.getArticle();
   }
 

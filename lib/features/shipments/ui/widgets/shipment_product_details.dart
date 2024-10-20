@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core_new/helpers/spacing.dart';
-import '../../../products/data/models/shipment_product_model.dart';
 import '../../data/models/shipment_model.dart';
+import '../../data/models/shipment_product_model.dart';
 
 class ShipmentProductDetails extends StatelessWidget {
   final ShipmentModel shipment;

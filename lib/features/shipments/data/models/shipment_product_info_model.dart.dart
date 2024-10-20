@@ -1,10 +1,12 @@
+import '../../../../core_new/data/models/product_category.dart';
+
 class ShipmentProductInfoModel {
   final int id;
   final String name;
   final int defaultPrice;
   final String description;
   final int categoryId;
-  final String image;
+  final String? image;
   final String length;
   final String width;
   final String height;
@@ -52,30 +54,5 @@ class ShipmentProductInfoModel {
         'height': height,
         'weight': weight,
         'product_category': productCategory.toJson(),
-      };
-}
-
-class ProductCategory {
-  final int id;
-  final String name;
-  final String image;
-
-  ProductCategory({
-    required this.id,
-    required this.name,
-    required this.image,
-  });
-
-  factory ProductCategory.fromJson(Map<String, dynamic> json) =>
-      ProductCategory(
-        id: json['id'],
-        name: json['name'],
-        image: json['image'],
-      );
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'image': image,
       };
 }

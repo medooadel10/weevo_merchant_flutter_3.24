@@ -17,9 +17,9 @@ import '../../core_new/router/router.dart';
 import '../../core_new/widgets/custom_image.dart';
 import '../../core_new/widgets/custom_shimmer.dart';
 import '../../main.dart';
-import '../Screens/merchant_warehouse.dart';
 import '../Screens/shipment_splash.dart';
 import '../Screens/wallet.dart';
+import '../products/ui/products_screen.dart';
 import '../shipments/ui/screens/shipments_screen.dart';
 import 'weevo_plus_banner.dart';
 
@@ -243,7 +243,8 @@ class _GeneralPreviewState extends State<GeneralPreview> {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, MerchantWarehouse.id);
+                    // Navigator.pushNamed(context, MerchantWarehouse.id);
+                    MagicRouter.navigateTo(const ProductsScreen());
                   },
                   child: Container(
                     padding: const EdgeInsets.all(12.0),

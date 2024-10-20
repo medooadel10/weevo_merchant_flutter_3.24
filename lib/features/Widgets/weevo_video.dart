@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -5,7 +6,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../core/Providers/auth_provider.dart';
 import '../../core_new/networking/api_constants.dart';
-import '../../core_new/widgets/custom_image.dart';
 import '../Screens/video_preview_list.dart';
 
 class WeevoVideos extends StatelessWidget {
@@ -78,16 +78,18 @@ class WeevoVideos extends StatelessWidget {
                                 children: [
                                   AspectRatio(
                                     aspectRatio: 16 / 9,
-                                    child: CustomImage(
+                                    child: CachedNetworkImage(
                                       imageUrl: authProvider.groupBanner![2]
                                                   .banners![0].image!
                                                   .contains('http') ||
                                               authProvider.groupBanner![2]
                                                   .banners![0].image!
                                                   .contains('https')
-                                          ? authProvider
-                                              .groupBanner![2].banners![0].image
+                                          ? authProvider.groupBanner![2]
+                                                  .banners![0].image ??
+                                              ''
                                           : '${ApiConstants.baseUrl}${authProvider.groupBanner![2].banners![0].image}',
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   AspectRatio(
