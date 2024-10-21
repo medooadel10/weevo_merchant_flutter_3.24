@@ -325,22 +325,7 @@ class _GeneralPreviewState extends State<GeneralPreview> {
             ],
           ),
           SizedBox(height: 10.h),
-          if (authProvider.weevoSubscriptionState == NetworkState.SUCCESS &&
-              authProvider.groupBannersState == NetworkState.SUCCESS)
-            const WeevoPlusBanner()
-          else
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ),
-              child: CustomShimmer(
-                height: 120.h,
-                width: double.infinity,
-                shapeBorder: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-              ),
-            ),
+          const WeevoPlusBanner()
         ],
       ),
     );

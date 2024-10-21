@@ -35,4 +35,7 @@ abstract class ShipmentDetailsState with _$ShipmentDetailsState {
 
   const factory ShipmentDetailsState.restoreCancelError(String error) =
       RestoreCancelError;
+
+  const factory ShipmentDetailsState.selectCancelaationReason(int? value) =
+      SelectCancelaationReason;
 }

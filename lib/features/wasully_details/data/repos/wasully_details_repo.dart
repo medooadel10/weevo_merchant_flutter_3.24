@@ -46,13 +46,15 @@ class WasullyDetailsRepo {
     }
   }
 
-  Future<DataResult<void>> cancelWasully(int id) async {
+  Future<DataResult<void>> cancelWasully(int id, String reason) async {
     final String token = Preferences.instance.getAccessToken;
     try {
       await DioFactory.postData(
         url: '${ApiConstants.cancelWasullyUrl}/$id/cancel',
         token: token,
-        data: {},
+        data: {
+          'cancellation_reason': reason,
+        },
       );
       return DataResult(
         success: true,

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weevo_merchant_upgrade/core/Dialogs/cancel_shipment_dialog.dart';
+import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
-import '../../../../../core/Storage/shared_preference.dart';
 import '../../../../../core/Utilits/colors.dart';
+import '../../../../../core_new/router/router.dart';
 import '../../../../Widgets/weevo_button.dart';
-import '../shipment_cancel_dialog.dart';
+import '../shipment_cancel_bottom_sheet.dart';
 
 class ShipmentCancelBtn extends StatelessWidget {
   final Color? color;
@@ -19,11 +21,35 @@ class ShipmentCancelBtn extends StatelessWidget {
       child: WeevoButton(
         onTap: () {
           showDialog(
-            context: navigator.currentContext!,
+            context: context,
             builder: (_) {
               return BlocProvider.value(
                 value: cubit,
-                child: const ShipmentCancelDialog(),
+                child: CancelShipmentDialog(
+                  onOkPressed: () async {
+                    context.pop();
+                    showModalBottomSheet(
+                      context: context,
+                      enableDrag: true,
+                      showDragHandle: true,
+                      isScrollControlled: true,
+                      isDismissible: true,
+                      sheetAnimationStyle: AnimationStyle(
+                        curve: Curves.easeInOut,
+                        duration: const Duration(milliseconds: 500),
+                      ),
+                      builder: (_) {
+                        return BlocProvider.value(
+                          value: cubit,
+                          child: const ShipmentCancelReasonBottomSheet(),
+                        );
+                      },
+                    );
+                  },
+                  onCancelPressed: () {
+                    MagicRouter.pop();
+                  },
+                ),
               );
             },
           );

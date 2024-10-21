@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 
+import '../../../../../core_new/helpers/spacing.dart';
 import 'wasully_form.dart';
+import 'wasully_submit_bloc_consumer.dart';
 
 class WasullyBody extends StatelessWidget {
   const WasullyBody({super.key});
@@ -13,8 +15,16 @@ class WasullyBody extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => SystemChannels.textInput.invokeMethod('TextInput.hide'),
-      child: const SingleChildScrollView(
-        child: WasullyForm(),
+      child: Column(
+        children: [
+          const Expanded(
+            child: SingleChildScrollView(
+              child: WasullyForm(),
+            ),
+          ),
+          verticalSpace(14.0),
+          const WasullySubmitBlocConsumer(),
+        ],
       ).paddingOnly(
         left: 20.0.w,
         right: 20.0.w,

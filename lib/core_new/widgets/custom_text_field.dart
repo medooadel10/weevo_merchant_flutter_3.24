@@ -27,6 +27,7 @@ class CustomTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Widget? suffixWidget;
   final int? maxLength;
+  final bool hasHeight;
   const CustomTextField({
     super.key,
     required this.controller,
@@ -51,6 +52,7 @@ class CustomTextField extends StatelessWidget {
     this.inputFormatters,
     this.suffixWidget,
     this.maxLength,
+    this.hasHeight = false,
   });
 
   @override
@@ -133,9 +135,11 @@ class CustomTextField extends StatelessWidget {
                 color: suffixIconColor,
               ),
         ),
-        contentPadding: EdgeInsets.symmetric(
-          vertical: 10.0.h,
-          horizontal: 10.0.w,
+        contentPadding: EdgeInsets.only(
+          top: 10.h,
+          bottom: hasHeight ? 40.h : 10.h,
+          left: 10.0.w,
+          right: 10.0.w,
         ),
       ),
       style: TextStyle(
@@ -144,6 +148,7 @@ class CustomTextField extends StatelessWidget {
       ),
       maxLines: maxLines,
       textAlign: TextAlign.start,
+      textAlignVertical: hasHeight ? TextAlignVertical.top : null,
       obscureText: obscureText ?? false,
       validator: validator ??
           (errorMsg == ''

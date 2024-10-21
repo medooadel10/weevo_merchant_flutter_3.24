@@ -50,13 +50,15 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
 
   void cancelShipment() async {
     emit(const ShipmentDetailsState.cancelShipmentLoading());
-    final result =
-        await _shipmentDetailsRepo.cancelShipment(shipmentDetails!.id);
+    final result = await _shipmentDetailsRepo.cancelShipment(
+        shipmentDetails!.id,
+        cancellationReasons[selectedCancellationReasonIndex!]);
     if (result.success) {
       emit(const ShipmentDetailsState.cancelShipmentSuccess());
     } else {
       emit(ShipmentDetailsState.cancelShipmentError(result.error!));
     }
+    selectedCancellationReasonIndex = null;
   }
 
   final shippingCostContoller = TextEditingController();
@@ -73,6 +75,22 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
         emit(ShipmentDetailsState.updatePriceError(result.error!));
       }
     }
+  }
+
+  final List<String> cancellationReasons = [
+    'شحنة كبيرة',
+    'خارج المنطقة',
+    'خارج ساعات العمل',
+    'مشكلة توفر المندوب السريع',
+    'رفع طلب من أجل الإختبار',
+    'تم رفع الطلب بالخطأ',
+    'أخرى',
+  ];
+  int? selectedCancellationReasonIndex;
+
+  void selectCancellationReason(int? index) {
+    selectedCancellationReasonIndex = index;
+    emit(ShipmentDetailsState.selectCancelaationReason(index));
   }
 
   void restoreCancelledShipment() async {

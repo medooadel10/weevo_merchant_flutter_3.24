@@ -32,6 +32,7 @@ mixin _$ShipmentDetailsState {
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +51,7 @@ mixin _$ShipmentDetailsState {
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +70,7 @@ mixin _$ShipmentDetailsState {
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,6 +92,8 @@ mixin _$ShipmentDetailsState {
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,6 +112,7 @@ mixin _$ShipmentDetailsState {
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -125,6 +131,7 @@ mixin _$ShipmentDetailsState {
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -213,6 +220,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return initial();
   }
@@ -234,6 +242,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return initial?.call();
   }
@@ -255,6 +264,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -282,6 +292,8 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return initial(this);
   }
@@ -303,6 +315,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return initial?.call(this);
   }
@@ -324,6 +337,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -398,6 +412,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return loading();
   }
@@ -419,6 +434,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return loading?.call();
   }
@@ -440,6 +456,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -467,6 +484,8 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return loading(this);
   }
@@ -488,6 +507,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return loading?.call(this);
   }
@@ -509,6 +529,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -612,6 +633,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return success(data);
   }
@@ -633,6 +655,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return success?.call(data);
   }
@@ -654,6 +677,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -681,6 +705,8 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return success(this);
   }
@@ -702,6 +728,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return success?.call(this);
   }
@@ -723,6 +750,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -834,6 +862,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements Error {
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return error(this.error);
   }
@@ -855,6 +884,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements Error {
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return error?.call(this.error);
   }
@@ -876,6 +906,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements Error {
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -903,6 +934,8 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements Error {
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return error(this);
   }
@@ -924,6 +957,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements Error {
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return error?.call(this);
   }
@@ -945,6 +979,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements Error {
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1060,6 +1095,7 @@ class _$ChangeProductIndexImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return changeProductIndex(value);
   }
@@ -1081,6 +1117,7 @@ class _$ChangeProductIndexImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return changeProductIndex?.call(value);
   }
@@ -1102,6 +1139,7 @@ class _$ChangeProductIndexImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (changeProductIndex != null) {
@@ -1129,6 +1167,8 @@ class _$ChangeProductIndexImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return changeProductIndex(this);
   }
@@ -1150,6 +1190,7 @@ class _$ChangeProductIndexImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return changeProductIndex?.call(this);
   }
@@ -1171,6 +1212,7 @@ class _$ChangeProductIndexImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (changeProductIndex != null) {
@@ -1259,6 +1301,7 @@ class _$CancelShipmentLoadingImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return cancelShipmentLoading();
   }
@@ -1280,6 +1323,7 @@ class _$CancelShipmentLoadingImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return cancelShipmentLoading?.call();
   }
@@ -1301,6 +1345,7 @@ class _$CancelShipmentLoadingImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (cancelShipmentLoading != null) {
@@ -1328,6 +1373,8 @@ class _$CancelShipmentLoadingImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return cancelShipmentLoading(this);
   }
@@ -1349,6 +1396,7 @@ class _$CancelShipmentLoadingImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return cancelShipmentLoading?.call(this);
   }
@@ -1370,6 +1418,7 @@ class _$CancelShipmentLoadingImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (cancelShipmentLoading != null) {
@@ -1450,6 +1499,7 @@ class _$CancelShipmentSuccessImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return cancelShipmentSuccess();
   }
@@ -1471,6 +1521,7 @@ class _$CancelShipmentSuccessImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return cancelShipmentSuccess?.call();
   }
@@ -1492,6 +1543,7 @@ class _$CancelShipmentSuccessImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (cancelShipmentSuccess != null) {
@@ -1519,6 +1571,8 @@ class _$CancelShipmentSuccessImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return cancelShipmentSuccess(this);
   }
@@ -1540,6 +1594,7 @@ class _$CancelShipmentSuccessImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return cancelShipmentSuccess?.call(this);
   }
@@ -1561,6 +1616,7 @@ class _$CancelShipmentSuccessImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (cancelShipmentSuccess != null) {
@@ -1668,6 +1724,7 @@ class _$CancelShipmentErrorImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return cancelShipmentError(this.error);
   }
@@ -1689,6 +1746,7 @@ class _$CancelShipmentErrorImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return cancelShipmentError?.call(this.error);
   }
@@ -1710,6 +1768,7 @@ class _$CancelShipmentErrorImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (cancelShipmentError != null) {
@@ -1737,6 +1796,8 @@ class _$CancelShipmentErrorImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return cancelShipmentError(this);
   }
@@ -1758,6 +1819,7 @@ class _$CancelShipmentErrorImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return cancelShipmentError?.call(this);
   }
@@ -1779,6 +1841,7 @@ class _$CancelShipmentErrorImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (cancelShipmentError != null) {
@@ -1865,6 +1928,7 @@ class _$UpdatePriceLoadingImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return updatePriceLoading();
   }
@@ -1886,6 +1950,7 @@ class _$UpdatePriceLoadingImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return updatePriceLoading?.call();
   }
@@ -1907,6 +1972,7 @@ class _$UpdatePriceLoadingImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (updatePriceLoading != null) {
@@ -1934,6 +2000,8 @@ class _$UpdatePriceLoadingImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return updatePriceLoading(this);
   }
@@ -1955,6 +2023,7 @@ class _$UpdatePriceLoadingImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return updatePriceLoading?.call(this);
   }
@@ -1976,6 +2045,7 @@ class _$UpdatePriceLoadingImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (updatePriceLoading != null) {
@@ -2053,6 +2123,7 @@ class _$UpdatePriceSuccessImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return updatePriceSuccess();
   }
@@ -2074,6 +2145,7 @@ class _$UpdatePriceSuccessImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return updatePriceSuccess?.call();
   }
@@ -2095,6 +2167,7 @@ class _$UpdatePriceSuccessImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (updatePriceSuccess != null) {
@@ -2122,6 +2195,8 @@ class _$UpdatePriceSuccessImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return updatePriceSuccess(this);
   }
@@ -2143,6 +2218,7 @@ class _$UpdatePriceSuccessImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return updatePriceSuccess?.call(this);
   }
@@ -2164,6 +2240,7 @@ class _$UpdatePriceSuccessImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (updatePriceSuccess != null) {
@@ -2271,6 +2348,7 @@ class _$UpdatePriceErrorImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return updatePriceError(this.error);
   }
@@ -2292,6 +2370,7 @@ class _$UpdatePriceErrorImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return updatePriceError?.call(this.error);
   }
@@ -2313,6 +2392,7 @@ class _$UpdatePriceErrorImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (updatePriceError != null) {
@@ -2340,6 +2420,8 @@ class _$UpdatePriceErrorImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return updatePriceError(this);
   }
@@ -2361,6 +2443,7 @@ class _$UpdatePriceErrorImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return updatePriceError?.call(this);
   }
@@ -2382,6 +2465,7 @@ class _$UpdatePriceErrorImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (updatePriceError != null) {
@@ -2468,6 +2552,7 @@ class _$RestoreCancelLoadingImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return restoreCancelLoading();
   }
@@ -2489,6 +2574,7 @@ class _$RestoreCancelLoadingImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return restoreCancelLoading?.call();
   }
@@ -2510,6 +2596,7 @@ class _$RestoreCancelLoadingImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (restoreCancelLoading != null) {
@@ -2537,6 +2624,8 @@ class _$RestoreCancelLoadingImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return restoreCancelLoading(this);
   }
@@ -2558,6 +2647,7 @@ class _$RestoreCancelLoadingImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return restoreCancelLoading?.call(this);
   }
@@ -2579,6 +2669,7 @@ class _$RestoreCancelLoadingImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (restoreCancelLoading != null) {
@@ -2657,6 +2748,7 @@ class _$RestoreCancelSuccessImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return restoreCancelSuccess();
   }
@@ -2678,6 +2770,7 @@ class _$RestoreCancelSuccessImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return restoreCancelSuccess?.call();
   }
@@ -2699,6 +2792,7 @@ class _$RestoreCancelSuccessImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (restoreCancelSuccess != null) {
@@ -2726,6 +2820,8 @@ class _$RestoreCancelSuccessImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return restoreCancelSuccess(this);
   }
@@ -2747,6 +2843,7 @@ class _$RestoreCancelSuccessImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return restoreCancelSuccess?.call(this);
   }
@@ -2768,6 +2865,7 @@ class _$RestoreCancelSuccessImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (restoreCancelSuccess != null) {
@@ -2875,6 +2973,7 @@ class _$RestoreCancelErrorImpl
     required TResult Function() restoreCancelLoading,
     required TResult Function() restoreCancelSuccess,
     required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
   }) {
     return restoreCancelError(this.error);
   }
@@ -2896,6 +2995,7 @@ class _$RestoreCancelErrorImpl
     TResult? Function()? restoreCancelLoading,
     TResult? Function()? restoreCancelSuccess,
     TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
   }) {
     return restoreCancelError?.call(this.error);
   }
@@ -2917,6 +3017,7 @@ class _$RestoreCancelErrorImpl
     TResult Function()? restoreCancelLoading,
     TResult Function()? restoreCancelSuccess,
     TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (restoreCancelError != null) {
@@ -2944,6 +3045,8 @@ class _$RestoreCancelErrorImpl
     required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
     required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
     required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
   }) {
     return restoreCancelError(this);
   }
@@ -2965,6 +3068,7 @@ class _$RestoreCancelErrorImpl
     TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
   }) {
     return restoreCancelError?.call(this);
   }
@@ -2986,6 +3090,7 @@ class _$RestoreCancelErrorImpl
     TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
     TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
     TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
     required TResult orElse(),
   }) {
     if (restoreCancelError != null) {
@@ -3006,4 +3111,241 @@ abstract class RestoreCancelError implements ShipmentDetailsState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RestoreCancelErrorImplCopyWith<_$RestoreCancelErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectCancelaationReasonImplCopyWith<$Res> {
+  factory _$$SelectCancelaationReasonImplCopyWith(
+          _$SelectCancelaationReasonImpl value,
+          $Res Function(_$SelectCancelaationReasonImpl) then) =
+      __$$SelectCancelaationReasonImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? value});
+}
+
+/// @nodoc
+class __$$SelectCancelaationReasonImplCopyWithImpl<$Res>
+    extends _$ShipmentDetailsStateCopyWithImpl<$Res,
+        _$SelectCancelaationReasonImpl>
+    implements _$$SelectCancelaationReasonImplCopyWith<$Res> {
+  __$$SelectCancelaationReasonImplCopyWithImpl(
+      _$SelectCancelaationReasonImpl _value,
+      $Res Function(_$SelectCancelaationReasonImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ShipmentDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_$SelectCancelaationReasonImpl(
+      freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectCancelaationReasonImpl
+    with DiagnosticableTreeMixin
+    implements SelectCancelaationReason {
+  const _$SelectCancelaationReasonImpl(this.value);
+
+  @override
+  final int? value;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ShipmentDetailsState.selectCancelaationReason(value: $value)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'ShipmentDetailsState.selectCancelaationReason'))
+      ..add(DiagnosticsProperty('value', value));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectCancelaationReasonImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  /// Create a copy of ShipmentDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectCancelaationReasonImplCopyWith<_$SelectCancelaationReasonImpl>
+      get copyWith => __$$SelectCancelaationReasonImplCopyWithImpl<
+          _$SelectCancelaationReasonImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ShipmentDetailsModel data) success,
+    required TResult Function(String error) error,
+    required TResult Function(int value) changeProductIndex,
+    required TResult Function() cancelShipmentLoading,
+    required TResult Function() cancelShipmentSuccess,
+    required TResult Function(String error) cancelShipmentError,
+    required TResult Function() updatePriceLoading,
+    required TResult Function() updatePriceSuccess,
+    required TResult Function(String error) updatePriceError,
+    required TResult Function() restoreCancelLoading,
+    required TResult Function() restoreCancelSuccess,
+    required TResult Function(String error) restoreCancelError,
+    required TResult Function(int? value) selectCancelaationReason,
+  }) {
+    return selectCancelaationReason(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ShipmentDetailsModel data)? success,
+    TResult? Function(String error)? error,
+    TResult? Function(int value)? changeProductIndex,
+    TResult? Function()? cancelShipmentLoading,
+    TResult? Function()? cancelShipmentSuccess,
+    TResult? Function(String error)? cancelShipmentError,
+    TResult? Function()? updatePriceLoading,
+    TResult? Function()? updatePriceSuccess,
+    TResult? Function(String error)? updatePriceError,
+    TResult? Function()? restoreCancelLoading,
+    TResult? Function()? restoreCancelSuccess,
+    TResult? Function(String error)? restoreCancelError,
+    TResult? Function(int? value)? selectCancelaationReason,
+  }) {
+    return selectCancelaationReason?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ShipmentDetailsModel data)? success,
+    TResult Function(String error)? error,
+    TResult Function(int value)? changeProductIndex,
+    TResult Function()? cancelShipmentLoading,
+    TResult Function()? cancelShipmentSuccess,
+    TResult Function(String error)? cancelShipmentError,
+    TResult Function()? updatePriceLoading,
+    TResult Function()? updatePriceSuccess,
+    TResult Function(String error)? updatePriceError,
+    TResult Function()? restoreCancelLoading,
+    TResult Function()? restoreCancelSuccess,
+    TResult Function(String error)? restoreCancelError,
+    TResult Function(int? value)? selectCancelaationReason,
+    required TResult orElse(),
+  }) {
+    if (selectCancelaationReason != null) {
+      return selectCancelaationReason(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
+    required TResult Function(ChangeProductIndex value) changeProductIndex,
+    required TResult Function(CancelShipmentLoading value)
+        cancelShipmentLoading,
+    required TResult Function(CancelShipmentSuccess value)
+        cancelShipmentSuccess,
+    required TResult Function(CancelShipmentError value) cancelShipmentError,
+    required TResult Function(UpdatePriceLoading value) updatePriceLoading,
+    required TResult Function(UpdatePriceSuccess value) updatePriceSuccess,
+    required TResult Function(UpdatePriceError value) updatePriceError,
+    required TResult Function(RestoreCancelLoading value) restoreCancelLoading,
+    required TResult Function(RestoreCancelSuccess value) restoreCancelSuccess,
+    required TResult Function(RestoreCancelError value) restoreCancelError,
+    required TResult Function(SelectCancelaationReason value)
+        selectCancelaationReason,
+  }) {
+    return selectCancelaationReason(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
+    TResult? Function(ChangeProductIndex value)? changeProductIndex,
+    TResult? Function(CancelShipmentLoading value)? cancelShipmentLoading,
+    TResult? Function(CancelShipmentSuccess value)? cancelShipmentSuccess,
+    TResult? Function(CancelShipmentError value)? cancelShipmentError,
+    TResult? Function(UpdatePriceLoading value)? updatePriceLoading,
+    TResult? Function(UpdatePriceSuccess value)? updatePriceSuccess,
+    TResult? Function(UpdatePriceError value)? updatePriceError,
+    TResult? Function(RestoreCancelLoading value)? restoreCancelLoading,
+    TResult? Function(RestoreCancelSuccess value)? restoreCancelSuccess,
+    TResult? Function(RestoreCancelError value)? restoreCancelError,
+    TResult? Function(SelectCancelaationReason value)? selectCancelaationReason,
+  }) {
+    return selectCancelaationReason?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
+    TResult Function(ChangeProductIndex value)? changeProductIndex,
+    TResult Function(CancelShipmentLoading value)? cancelShipmentLoading,
+    TResult Function(CancelShipmentSuccess value)? cancelShipmentSuccess,
+    TResult Function(CancelShipmentError value)? cancelShipmentError,
+    TResult Function(UpdatePriceLoading value)? updatePriceLoading,
+    TResult Function(UpdatePriceSuccess value)? updatePriceSuccess,
+    TResult Function(UpdatePriceError value)? updatePriceError,
+    TResult Function(RestoreCancelLoading value)? restoreCancelLoading,
+    TResult Function(RestoreCancelSuccess value)? restoreCancelSuccess,
+    TResult Function(RestoreCancelError value)? restoreCancelError,
+    TResult Function(SelectCancelaationReason value)? selectCancelaationReason,
+    required TResult orElse(),
+  }) {
+    if (selectCancelaationReason != null) {
+      return selectCancelaationReason(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectCancelaationReason implements ShipmentDetailsState {
+  const factory SelectCancelaationReason(final int? value) =
+      _$SelectCancelaationReasonImpl;
+
+  int? get value;
+
+  /// Create a copy of ShipmentDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectCancelaationReasonImplCopyWith<_$SelectCancelaationReasonImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

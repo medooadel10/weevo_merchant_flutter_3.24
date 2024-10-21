@@ -194,9 +194,6 @@ class _WasullyShippingOffersScreenState
 
   @override
   void dispose() {
-    Preferences.instance.setShipmentOfferCount(
-        widget.shipmentNotification.shipmentId.toString(),
-        context.read<WasullyShippingOffersCubit>().shippingOffers!.length);
     super.dispose();
   }
 }

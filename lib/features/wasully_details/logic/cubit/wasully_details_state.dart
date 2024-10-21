@@ -1,6 +1,6 @@
 import '../../data/models/wasully_model.dart';
 
-class WasullyDetailsState {}
+abstract class WasullyDetailsState {}
 
 class WasullyDetailsInitialState extends WasullyDetailsState {}
 
@@ -63,4 +63,10 @@ class WasullyDetailsListenToShipmentStatusState extends WasullyDetailsState {
   final String locationId;
 
   WasullyDetailsListenToShipmentStatusState(this.locationId);
+}
+
+class WasullyDetailsChangeCancellationReasonState extends WasullyDetailsState {
+  final int? value;
+
+  WasullyDetailsChangeCancellationReasonState(this.value);
 }

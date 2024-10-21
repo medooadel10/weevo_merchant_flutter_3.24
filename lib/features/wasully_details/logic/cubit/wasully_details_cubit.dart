@@ -33,6 +33,7 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
   }
 
   Future<void> getWassullyDetails(int id) async {
+    wasullyModel = null;
     emit(WasullyDetailsLoadingState());
     final result = await _wasullyDetailsRepo.getWasullyDetails(id);
     if (result.success) {
@@ -186,7 +187,8 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
 
   void cancelWasully() async {
     emit(WasullyCancelLoadingState());
-    final result = await _wasullyDetailsRepo.cancelWasully(wasullyModel!.id);
+    final result = await _wasullyDetailsRepo.cancelWasully(wasullyModel!.id,
+        cancellationReasons[selectedCancellationReasonIndex!]);
     if (result.success) {
       if (wasullyModel?.courier != null) {
         String merchantPhoneNumber = Preferences.instance.getPhoneNumber;
@@ -211,6 +213,23 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
     } else {
       emit(WasullyCancelErrorState(result.error!));
     }
+    selectedCancellationReasonIndex = null;
+  }
+
+  final List<String> cancellationReasons = [
+    'شحنة كبيرة',
+    'خارج المنطقة',
+    'خارج ساعات العمل',
+    'مشكلة توفر المندوب السريع',
+    'رفع طلب من أجل الإختبار',
+    'تم رفع الطلب بالخطأ',
+    'أخرى',
+  ];
+  int? selectedCancellationReasonIndex;
+
+  void selectCancellationReason(int? index) {
+    selectedCancellationReasonIndex = index;
+    emit(WasullyDetailsChangeCancellationReasonState(index));
   }
 
   void restoreWasully() async {

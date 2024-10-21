@@ -14,8 +14,6 @@ import '../../../logic/wasully_cubit/wasully_states.dart';
 import 'wasully_delivery_price.dart';
 import 'wasully_map_bloc_builder.dart';
 import 'wasully_photo_bloc_builder.dart';
-import 'wasully_photo_picker_bottom_sheet.dart';
-import 'wasully_submit_bloc_consumer.dart';
 import 'wasully_tip_prices.dart';
 import 'wasully_who_paid.dart';
 
@@ -31,64 +29,17 @@ class WasullyForm extends StatelessWidget {
           key: cubit.formKey,
           child: Column(
             children: [
-              InkWell(
-                borderRadius: BorderRadius.circular(10.0),
-                onTap: () {
-                  showModalBottomSheet(
-                    context: navigator.currentContext!,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    builder: (_) {
-                      return BlocProvider.value(
-                        value: cubit,
-                        child: const WasullyPhotoPickerBlocConsumer(),
-                      );
-                    },
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10.0.w,
-                    vertical: 10.0.h,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(
-                      color: Colors.grey[400]!,
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'صورة الطلب',
-                          style: TextStyle(
-                            fontSize: 16.0.sp,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                      ),
-                      horizontalSpace(10),
-                      Icon(
-                        Icons.camera_alt,
-                        color: Colors.grey[600],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              verticalSpace(14.0),
-              const WasullyPhotoBlocBuilder(),
               CustomTextField(
-                hintText: 'قولنا عاوز توصل ايه ؟ ارفع صورة للطلب ',
+                hintText: 'قولنا عاوز توصل ايه ؟ ',
                 controller: cubit.orderDetailsController,
                 errorMsg: 'من فضلك ادخل تفاصيل الطلب',
                 keyboardType: TextInputType.multiline,
                 textInputAction: TextInputAction.newline,
                 maxLines: null,
+                hasHeight: true,
               ),
               verticalSpace(14.0),
+              const WasullyPhotoBlocBuilder(),
               CustomTextField(
                 controller: cubit.senderPhoneController,
                 hintText: 'رقم المرسل',
@@ -188,8 +139,6 @@ class WasullyForm extends StatelessWidget {
               const WasullyTipPrices(),
               verticalSpace(14),
               const WasullyWhoPaid(),
-              verticalSpace(14.0),
-              const WasullySubmitBlocConsumer(),
             ],
           ),
         );

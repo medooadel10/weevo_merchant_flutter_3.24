@@ -29,12 +29,14 @@ class ShipmentDetailsRepo {
     }
   }
 
-  Future<DataResult<void>> cancelShipment(int shipmentId) async {
+  Future<DataResult<void>> cancelShipment(int shipmentId, String reason) async {
     try {
       await DioFactory.postData(
         url: '${ApiConstants.shipmentsUrl}/$shipmentId/cancel',
         token: Preferences.instance.getAccessToken,
-        data: {},
+        data: {
+          'cancellation_reason': reason,
+        },
       );
       return DataResult.success(null);
     } on DioException catch (e) {
