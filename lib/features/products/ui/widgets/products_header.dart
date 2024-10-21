@@ -5,8 +5,6 @@ import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import 'package:weevo_merchant_upgrade/core_new/widgets/custom_shimmer.dart';
 import 'package:weevo_merchant_upgrade/features/products/logic/cubit/products_cubit.dart';
 
-import 'product_action.dart';
-
 class ProductsHeader extends StatelessWidget {
   const ProductsHeader({super.key});
 
@@ -20,22 +18,13 @@ class ProductsHeader extends StatelessWidget {
         return state.maybeWhen(
           loading: () => _buildLoading(),
           failure: (message) => _buildLoading(),
-          success: (products) => Row(
-            children: [
-              ProductAction(
-                onTap: () {},
-                icon: 'assets/images/sort.svg',
-              ),
-              const Spacer(),
-              Text(
-                '${cubit.data?.total} منتجات',
-                style: TextStyle(
-                  fontSize: 14.0.sp,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
+          success: (products) => Text(
+            '${cubit.total} منتجات',
+            style: TextStyle(
+              fontSize: 14.0.sp,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           orElse: () => Container(),
         );

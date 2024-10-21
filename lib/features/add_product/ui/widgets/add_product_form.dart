@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/spacing.dart';
 import 'package:weevo_merchant_upgrade/core_new/widgets/custom_text_field.dart';
+import 'package:weevo_merchant_upgrade/features/add_product/ui/widgets/add_product_photo_bloc_builder.dart';
 
 class AddProductForm extends StatelessWidget {
   const AddProductForm({super.key});
@@ -11,41 +12,7 @@ class AddProductForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
-          borderRadius: BorderRadius.circular(10.0),
-          onTap: () {},
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.0.w,
-              vertical: 10.0.h,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                color: Colors.grey[400]!,
-              ),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'صورة المنتج',
-                    style: TextStyle(
-                      fontSize: 16.0.sp,
-                      color: Colors.grey[600],
-                    ),
-                  ),
-                ),
-                horizontalSpace(10),
-                Icon(
-                  Icons.camera_alt,
-                  color: Colors.grey[600],
-                ),
-              ],
-            ),
-          ),
-        ),
-        verticalSpace(14),
+        const AddProductPhotoBlocBuilder(),
         CustomTextField(
           controller: TextEditingController(),
           hintText: 'إسم المنتج',

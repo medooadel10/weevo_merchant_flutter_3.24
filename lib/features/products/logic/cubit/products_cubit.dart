@@ -14,7 +14,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   bool hasMoreData = true;
   List<ProductModel>? products;
   ProductsResponseBodyModel? data;
-
+  int total = 0;
   Future<void> getProducts({bool isPaging = false}) async {
     if (state is Loading || state is PagingLoading) {
       return;
@@ -32,6 +32,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     if (result.success) {
       hasMoreData = result.data?.data.length == result.data?.perPage;
       data = result.data;
+      total = result.data?.total ?? 0;
       products?.addAll(result.data!.data);
       if ((isPaging && hasMoreData) || currentPage == 1) currentPage++;
       emit(Success(products ?? []));
@@ -65,6 +66,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     final result = await _productsRepo.deleteProduct(id);
     if (result.success) {
       products?.removeWhere((element) => element.id == id);
+      total--;
       emit(Success(products ?? []));
       emit(const DeleteProductSuccess());
     } else {

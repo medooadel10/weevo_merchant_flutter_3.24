@@ -3,50 +3,42 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core/Utilits/colors.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
-import 'package:weevo_merchant_upgrade/core_new/widgets/custom_bottom_sheet.dart';
+import 'package:weevo_merchant_upgrade/features/add_product/logic/cubit/add_product_cubit.dart';
 
-import '../../../../../core/Storage/shared_preference.dart';
 import '../../../../../core_new/helpers/spacing.dart';
-import '../../../../../core_new/widgets/custom_image.dart';
-import '../../../logic/wasully_cubit/wasully_cubit.dart';
-import '../../../logic/wasully_cubit/wasully_states.dart';
+import '../../../../core_new/widgets/custom_bottom_sheet.dart';
 
-class WasullyPhotoBlocBuilder extends StatelessWidget {
-  const WasullyPhotoBlocBuilder({super.key});
+class AddProductPhotoBlocBuilder extends StatelessWidget {
+  const AddProductPhotoBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AddProductCubit cubit = context.read();
     return Column(
       children: [
-        BlocBuilder<WasullyCubit, WasullyStates>(
-          buildWhen: (previous, current) =>
-              current is WasullyChangeImageState ||
-              current is WasullyInitialState,
+        BlocBuilder<AddProductCubit, AddProductState>(
           builder: (context, state) {
-            WasullyCubit cubit = context.read();
             return Column(
               children: [
                 InkWell(
                   borderRadius: BorderRadius.circular(10.0),
                   onTap: () {
                     showModalBottomSheet(
-                      context: navigator.currentContext!,
+                      context: context,
                       enableDrag: true,
                       showDragHandle: true,
                       sheetAnimationStyle: AnimationStyle(
                         curve: Curves.easeInOut,
                         duration: const Duration(milliseconds: 500),
                       ),
-                      builder: (_) {
-                        return BlocProvider.value(
-                          value: cubit,
-                          child: CustomBottomSheet(items: [
+                      builder: (context) {
+                        return CustomBottomSheet(
+                          items: [
                             BottomSheetItem(
-                              icon: Icons.camera_alt_outlined,
+                              icon: Icons.camera_alt,
                               title: 'الكاميرا',
                               onTap: () {
                                 cubit.pickImage(true);
-                                Navigator.pop(context);
                               },
                             ),
                             BottomSheetItem(
@@ -54,10 +46,9 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                               title: 'المعرض',
                               onTap: () {
                                 cubit.pickImage(false);
-                                Navigator.pop(context);
                               },
                             ),
-                          ]),
+                          ],
                         );
                       },
                     );
@@ -71,8 +62,7 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       border: Border.all(
-                        color: cubit.wasullyModel?.image != null ||
-                                cubit.image != null
+                        color: cubit.image != null
                             ? weevoDarkGreen
                             : Colors.grey[400]!,
                       ),
@@ -83,21 +73,20 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                'إرفع صورة الطلب',
+                                'صورة المنتج',
                                 style: TextStyle(
                                   fontSize: 16.0.sp,
-                                  color: cubit.wasullyModel?.image != null ||
-                                          cubit.image != null
+                                  color: cubit.image != null
                                       ? weevoDarkGreen
                                       : Colors.grey[600],
                                 ),
                               ),
-                              if (cubit.wasullyModel?.image != null ||
-                                  cubit.image != null) ...[
+                              if (cubit.image != null) ...[
                                 horizontalSpace(10),
-                                const Icon(
+                                Icon(
                                   Icons.check,
                                   color: weevoDarkGreen,
+                                  size: 16.0.sp,
                                 ),
                               ],
                             ],
@@ -106,8 +95,7 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                         horizontalSpace(10),
                         Icon(
                           Icons.camera_alt,
-                          color: cubit.wasullyModel?.image != null ||
-                                  cubit.image != null
+                          color: cubit.image != null
                               ? weevoDarkGreen
                               : Colors.grey[600],
                         ),
@@ -115,25 +103,17 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (state is WasullyChangeImageState && state.image != null)
+                if (cubit.image != null)
                   Container(
                     height: 100.0.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.0),
                       image: DecorationImage(
-                        image: FileImage(state.image!),
+                        image: FileImage(cubit.image!),
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ).paddingSymmetric(
-                    vertical: 14.h,
-                  )
-                else if (cubit.wasullyModel != null &&
-                    cubit.wasullyModel!.image != null)
-                  CustomImage(
-                    imageUrl: cubit.wasullyModel?.image,
-                    width: double.infinity,
                   ).paddingSymmetric(
                     vertical: 14.h,
                   )
