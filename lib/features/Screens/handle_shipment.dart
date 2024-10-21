@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/Dialogs/courier_to_merchant_qr_code_dialog.dart';
-import '../../core/Dialogs/loading.dart';
+import '../../core/Dialogs/loading_dialog.dart';
 import '../../core/Dialogs/qr_dialog_code.dart';
 import '../../core/Dialogs/share_save_qr_code_dialog.dart';
 import '../../core/Dialogs/tracking_dialog.dart';

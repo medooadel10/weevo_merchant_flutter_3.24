@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
+import 'package:weevo_merchant_upgrade/features/shipments/ui/widgets/shipments_header.dart';
 
 import '../../logic/cubit/shipments_cubit.dart';
 import 'shipment_filter_list_bloc_builder.dart';
@@ -43,29 +44,35 @@ class _ShipmentsBodyState extends State<ShipmentsBody> {
         onRefresh: () async {
           context.read<ShipmentsCubit>().getShipments();
         },
-        child: CustomScrollView(
-          controller: scrollController,
-          physics: const AlwaysScrollableScrollPhysics(),
-          slivers: [
-            SliverAppBar(
-              expandedHeight: 160.h,
-              excludeHeaderSemantics: true,
-              leading: null,
-              automaticallyImplyLeading: false,
-              flexibleSpace: FlexibleSpaceBar(
-                background:
-                    const ShipmentFilterListBlocBuilder().paddingSymmetric(
-                  horizontal: 10.w,
+        child: Container(
+          color: Colors.grey[200],
+          child: CustomScrollView(
+            controller: scrollController,
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
+              SliverAppBar(
+                expandedHeight: 160.h,
+                excludeHeaderSemantics: true,
+                leading: null,
+                automaticallyImplyLeading: false,
+                flexibleSpace: FlexibleSpaceBar(
+                  background:
+                      const ShipmentFilterListBlocBuilder().paddingSymmetric(
+                    horizontal: 10.w,
+                  ),
                 ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: const ShipmentsListBlocBuilder().paddingSymmetric(
-                horizontal: 10.w,
-                vertical: 10.h,
+              SliverAppBar(
+                pinned: true,
+                automaticallyImplyLeading: false,
+                flexibleSpace: const ShipmentsHeader(),
+                toolbarHeight: 48.h,
               ),
-            ),
-          ],
+              const SliverToBoxAdapter(
+                child: ShipmentsListBlocBuilder(),
+              ),
+            ],
+          ),
         ),
       ),
     );

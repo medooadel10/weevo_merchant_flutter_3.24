@@ -24,10 +24,20 @@ class ShipmentsListBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<ShipmentsCubit>();
         if (state is ShipmentsLoadingState || state is ShipmentsErrorState) {
-          return const ShipmentsLoading();
+          return Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 10.0.w,
+              vertical: 10.0.h,
+            ),
+            child: const ShipmentsLoading(),
+          );
         }
         if (cubit.shipments?.isEmpty ?? true) {
-          return Center(
+          return Container(
+            color: Colors.white,
+            padding: EdgeInsets.symmetric(
+              vertical: 50.0.h,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -49,30 +59,36 @@ class ShipmentsListBlocBuilder extends StatelessWidget {
             ),
           );
         }
-        return SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
-          child: Column(
-            children: [
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  ShipmentModel shipment = cubit.shipments![index];
-                  return ShipmentTile(
-                    shipment: shipment,
-                  );
-                },
-                separatorBuilder: (context, index) => verticalSpace(14),
-                itemCount: cubit.shipments!.length,
-              ),
-              if (state is ShipmentsPagingLoadingState) ...[
-                verticalSpace(14),
-                const ShipmentsLoading(
-                  itemCount: 3,
+        return Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 10.0.w,
+            vertical: 10.0.h,
+          ),
+          child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    ShipmentModel shipment = cubit.shipments![index];
+                    return ShipmentTile(
+                      shipment: shipment,
+                    );
+                  },
+                  separatorBuilder: (context, index) => verticalSpace(14),
+                  itemCount: cubit.shipments!.length,
                 ),
+                if (state is ShipmentsPagingLoadingState) ...[
+                  verticalSpace(14),
+                  const ShipmentsLoading(
+                    itemCount: 3,
+                  ),
+                ],
+                verticalSpace(14),
               ],
-              verticalSpace(14),
-            ],
+            ),
           ),
         );
       },

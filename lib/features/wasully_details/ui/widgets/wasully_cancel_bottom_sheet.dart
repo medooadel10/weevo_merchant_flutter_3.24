@@ -6,9 +6,10 @@ import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/spacing.dart';
 import 'package:weevo_merchant_upgrade/features/Widgets/weevo_button.dart';
 
+import '../../../../core/Dialogs/loading_dialog.dart';
+import '../../../../core/router/router.dart';
+import '../../../../core_new/helpers/constants.dart';
 import '../../../../core_new/helpers/toasts.dart';
-import '../../../../core_new/router/router.dart';
-import '../../../../core_new/widgets/custom_loading_indicator.dart';
 import '../../../shipments/ui/screens/shipments_screen.dart';
 import '../../logic/cubit/wasully_details_cubit.dart';
 import '../../logic/cubit/wasully_details_state.dart';
@@ -20,25 +21,8 @@ class WasullyCancelReasonBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final WasullyDetailsCubit cubit = context.read();
     cubit.priceController.text = cubit.wasullyModel!.price.toString();
-    return BlocConsumer<WasullyDetailsCubit, WasullyDetailsState>(
-      listener: (context, state) {
-        if (state is WasullyCancelSuccessState) {
-          showToast('تم الغاء الطلب بنجاح');
-          context.pop();
-          MagicRouter.navigateAndPopUntilFirstPage(const ShipmentsScreen(
-            filterIndex: 6,
-          ));
-        }
-        if (state is WasullyCancelErrorState) {
-          context.pop();
-          cubit.getWassullyDetails(cubit.wasullyModel!.id);
-          showToast('لا يمكنك إلغاء هذا الطلب', isError: true);
-        }
-      },
+    return BlocBuilder<WasullyDetailsCubit, WasullyDetailsState>(
       builder: (context, state) {
-        if (state is WasullyCancelLoadingState) {
-          return const CustomLoadingIndicator();
-        }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -55,7 +39,7 @@ class WasullyCancelReasonBottomSheet extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(
-                  cubit.cancellationReasons.length,
+                  AppConstants.cancellationReasons.length,
                   (index) {
                     return GestureDetector(
                       onTap: () {
@@ -74,7 +58,7 @@ class WasullyCancelReasonBottomSheet extends StatelessWidget {
                           horizontal: 12.0.w,
                         ),
                         child: Text(
-                          cubit.cancellationReasons[index],
+                          AppConstants.cancellationReasons[index],
                           style: TextStyle(
                             fontSize: 16.0.sp,
                             color:
@@ -96,6 +80,28 @@ class WasullyCancelReasonBottomSheet extends StatelessWidget {
                   showToast('يرجى تحديد سبب الغاء الطلب');
                   return;
                 }
+                showDialog(
+                  context: context,
+                  builder: (context) =>
+                      BlocListener<WasullyDetailsCubit, WasullyDetailsState>(
+                    listener: (context, state) {
+                      if (state is WasullyCancelSuccessState) {
+                        showToast('تم الغاء الطلب بنجاح');
+                        MagicRouter.navigateAndPopUntilFirstPage(
+                            const ShipmentsScreen(
+                          filterIndex: 6,
+                        ));
+                      }
+                      if (state is WasullyCancelErrorState) {
+                        context.pop();
+                        cubit.getWassullyDetails(cubit.wasullyModel!.id);
+                        showToast('لا يمكنك إلغاء هذا الطلب', isError: true);
+                      }
+                    },
+                    child: const LoadingDialog(),
+                  ),
+                );
+
                 cubit.cancelWasully();
               },
               title: 'الغاء الطلب',

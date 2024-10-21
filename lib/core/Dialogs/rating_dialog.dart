@@ -16,7 +16,7 @@ import '../Utilits/colors.dart';
 import '../Utilits/constants.dart';
 import '../router/router.dart';
 import 'action_dialog.dart';
-import 'loading.dart';
+import 'loading_dialog.dart';
 
 class RatingDialog extends StatefulWidget {
   final ShipmentTrackingModel model;

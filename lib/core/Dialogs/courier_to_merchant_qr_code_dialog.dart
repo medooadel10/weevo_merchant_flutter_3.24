@@ -13,7 +13,7 @@ import '../Storage/shared_preference.dart';
 import '../Utilits/colors.dart';
 import '../Utilits/constants.dart';
 import 'done_dialog.dart';
-import 'loading.dart';
+import 'loading_dialog.dart';
 import 'qr_code_scanner.dart';
 import 'rating_dialog.dart';
 import 'wallet_dialog.dart';

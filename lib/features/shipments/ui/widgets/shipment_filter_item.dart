@@ -63,7 +63,7 @@ class ShipmentFilterItem extends StatelessWidget {
                   ? const CustomShimmer()
                   : Center(
                       child: Text(
-                        '${cubit.shipments?.length}',
+                        '${cubit.responseBody?.total}',
                         style: TextStyle(
                           fontSize: 10.0.sp,
                           color: Colors.black,

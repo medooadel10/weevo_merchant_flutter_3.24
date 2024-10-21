@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weevo_merchant_upgrade/core/Dialogs/loading.dart';
+import 'package:weevo_merchant_upgrade/core/Dialogs/loading_dialog.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 
 import '../../../../../core/Storage/shared_preference.dart';

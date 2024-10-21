@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../features/Screens/new_shipment_offer_based.dart';
 import '../Dialogs/action_dialog.dart';
-import '../Dialogs/loading.dart';
+import '../Dialogs/loading_dialog.dart';
 import '../Models/bulk_shipment.dart';
 import '../Models/courier_review.dart';
 import '../Models/display_bulk_shipment.dart';

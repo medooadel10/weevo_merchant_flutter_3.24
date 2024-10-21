@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 
-import '../Dialogs/loading.dart';
+import '../Dialogs/loading_dialog.dart';
 import '../Models/directions.dart';
 import '../Models/refresh_qr_code.dart';
 import '../Storage/shared_preference.dart';

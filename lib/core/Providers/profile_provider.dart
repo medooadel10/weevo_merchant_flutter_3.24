@@ -7,9 +7,9 @@ import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 import '../../features/Widgets/change_phone_number.dart';
-import '../../features/Widgets/loading_dialog.dart';
 import '../../features/Widgets/verify_new_number.dart';
 import '../Dialogs/action_dialog.dart';
+import '../Dialogs/loading_dialog.dart';
 import '../Models/check_otp_model.dart';
 import '../Storage/shared_preference.dart';
 import '../httpHelper/http_helper.dart';
@@ -22,7 +22,7 @@ class ProfileProvider with ChangeNotifier {
   static ProfileProvider listenFalse(BuildContext context) =>
       Provider.of<ProfileProvider>(context, listen: false);
   int _currentIndex = 0;
-  Widget _widget = ChangePhoneNumber();
+  Widget _widget = const ChangePhoneNumber();
   int start = 120;
   bool wait = false;
   final Preferences preferences = Preferences.instance;
@@ -42,10 +42,10 @@ class ProfileProvider with ChangeNotifier {
   void getCurrentPage() {
     switch (_currentIndex) {
       case 0:
-        _widget = ChangePhoneNumber();
+        _widget = const ChangePhoneNumber();
         break;
       case 1:
-        _widget = VerifyNewNumber();
+        _widget = const VerifyNewNumber();
         break;
     }
   }
@@ -70,7 +70,8 @@ class ProfileProvider with ChangeNotifier {
   Future<void> resendOtp() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => LoadingDialog());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       Response r =
           await HttpHelper.instance.httpPost('sendPhoneOtp', true, body: {
         "phone": phoneNumberController.text,
@@ -139,7 +140,8 @@ class ProfileProvider with ChangeNotifier {
   Future<void> checkOtp() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => LoadingDialog());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       otp = pinController.text;
       pinController.clear();
       Response r =
@@ -169,7 +171,8 @@ class ProfileProvider with ChangeNotifier {
   Future<void> sendOtp() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => LoadingDialog());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       Response r =
           await HttpHelper.instance.httpPost('sendPhoneOtp', true, body: {
         "phone": phoneNumberController.text,

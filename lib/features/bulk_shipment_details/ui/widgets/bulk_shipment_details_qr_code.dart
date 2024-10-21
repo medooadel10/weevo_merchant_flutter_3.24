@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/Dialogs/loading.dart';
+import '../../../../core/Dialogs/loading_dialog.dart';
 import '../../../../core/Dialogs/qr_dialog_code.dart';
 import '../../../../core/Models/refresh_qr_code.dart';
 import '../../../../core/Storage/shared_preference.dart';

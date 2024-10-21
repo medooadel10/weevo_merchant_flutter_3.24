@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/core/Dialogs/action_dialog.dart';
-import 'package:weevo_merchant_upgrade/core/Dialogs/loading.dart';
+import 'package:weevo_merchant_upgrade/core/Dialogs/loading_dialog.dart';
 import 'package:weevo_merchant_upgrade/core/Storage/shared_preference.dart';
 import 'package:weevo_merchant_upgrade/core/Utilits/colors.dart';
 import 'package:weevo_merchant_upgrade/core/router/router.dart';

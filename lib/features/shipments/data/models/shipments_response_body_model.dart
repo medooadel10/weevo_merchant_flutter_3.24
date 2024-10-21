@@ -4,16 +4,17 @@ class ShipmentsResponseBody {
   final List<ShipmentModel> shipments;
   final int currentPage;
   final int total;
+  final int? to;
 
-  ShipmentsResponseBody(this.shipments, this.currentPage, this.total);
+  ShipmentsResponseBody(this.shipments, this.currentPage, this.total, this.to);
 
   factory ShipmentsResponseBody.fromJson(Map<String, dynamic> json) {
     List<ShipmentModel> shipments = [];
     if (json['data'] != null) {
       if (json['data'] is List) {
-        (json['data'] as List).forEach((v) {
+        for (var v in (json['data'] as List)) {
           shipments.add(ShipmentModel.fromJson(v));
-        });
+        }
       } else if (json['data'] is Map) {
         (json['data'] as Map).forEach((key, value) {
           shipments.add(ShipmentModel.fromJson(value));
@@ -24,6 +25,7 @@ class ShipmentsResponseBody {
       shipments,
       json['current_page'],
       json['total'],
+      json['to'],
     );
   }
 }

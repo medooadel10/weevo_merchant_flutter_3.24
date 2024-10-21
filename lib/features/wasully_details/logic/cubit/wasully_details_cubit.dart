@@ -12,6 +12,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../../core/Models/shipment_tracking_model.dart';
 import '../../../../core/Providers/auth_provider.dart';
 import '../../../../core/Storage/shared_preference.dart';
+import '../../../../core_new/helpers/constants.dart';
 import '../../../../core_new/router/router.dart';
 import '../../../wasully_handle_shipment/ui/widgets/wasully_rating_dialog.dart';
 import '../../data/models/wasully_model.dart';
@@ -188,11 +189,11 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
   void cancelWasully() async {
     emit(WasullyCancelLoadingState());
     final result = await _wasullyDetailsRepo.cancelWasully(wasullyModel!.id,
-        cancellationReasons[selectedCancellationReasonIndex!]);
+        AppConstants.cancellationReasons[selectedCancellationReasonIndex!]);
     if (result.success) {
       if (wasullyModel?.courier != null) {
         String merchantPhoneNumber = Preferences.instance.getPhoneNumber;
-        String courierPhoneNumber = wasullyModel!.courier!.phone!;
+        String? courierPhoneNumber = wasullyModel!.courier?.phone;
         String locationId = '';
         if (merchantPhoneNumber.hashCode >= courierPhoneNumber.hashCode) {
           locationId =
@@ -202,29 +203,24 @@ class WasullyDetailsCubit extends Cubit<WasullyDetailsState> {
               '$courierPhoneNumber-$merchantPhoneNumber-${wasullyModel!.id}';
         }
 
-        FirebaseFirestore.instance.collection('locations').doc(locationId).set(
-          {
-            'status': 'closed',
-            'shipmentId': wasullyModel!.slug,
-          },
-        );
+        if (courierPhoneNumber != null) {
+          FirebaseFirestore.instance
+              .collection('locations')
+              .doc(locationId)
+              .set(
+            {
+              'status': 'closed',
+              'shipmentId': wasullyModel!.slug,
+            },
+          );
+        }
       }
       emit(WasullyCancelSuccessState());
     } else {
       emit(WasullyCancelErrorState(result.error!));
     }
-    selectedCancellationReasonIndex = null;
   }
 
-  final List<String> cancellationReasons = [
-    'شحنة كبيرة',
-    'خارج المنطقة',
-    'خارج ساعات العمل',
-    'مشكلة توفر المندوب السريع',
-    'رفع طلب من أجل الإختبار',
-    'تم رفع الطلب بالخطأ',
-    'أخرى',
-  ];
   int? selectedCancellationReasonIndex;
 
   void selectCancellationReason(int? index) {

@@ -41,7 +41,7 @@ import '../../features/shipment_details/ui/shipment_details_screen.dart';
 import '../../features/wasully_handle_shipment/ui/widgets/wasully_rating_dialog.dart';
 import '../../main.dart';
 import '../Dialogs/action_dialog.dart';
-import '../Dialogs/loading.dart';
+import '../Dialogs/loading_dialog.dart';
 import '../Dialogs/rating_dialog.dart';
 import '../Models/account_existed.dart';
 import '../Models/articles.dart';

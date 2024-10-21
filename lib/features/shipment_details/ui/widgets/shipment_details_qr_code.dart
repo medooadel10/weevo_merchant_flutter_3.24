@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/features/shipment_details/logic/cubit/shipment_details_cubit.dart';
 
 import '../../../../core/Dialogs/courier_to_merchant_qr_code_dialog.dart';
-import '../../../../core/Dialogs/loading.dart';
+import '../../../../core/Dialogs/loading_dialog.dart';
 import '../../../../core/Dialogs/qr_dialog_code.dart';
 import '../../../../core/Dialogs/share_save_qr_code_dialog.dart';
 import '../../../../core/Models/refresh_qr_code.dart';

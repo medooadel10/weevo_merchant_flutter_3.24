@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/Dialogs/content_dialog.dart';
-import '../../core/Dialogs/loading.dart';
+import '../../core/Dialogs/loading_dialog.dart';
 import '../../core/Models/plan_subscription.dart';
 import '../../core/Models/transaction_webview_model.dart';
 import '../../core/Providers/auth_provider.dart';

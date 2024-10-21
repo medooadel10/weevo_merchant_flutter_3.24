@@ -27,6 +27,7 @@ class ShipmentCancelBtn extends StatelessWidget {
                 value: cubit,
                 child: CancelShipmentDialog(
                   onOkPressed: () async {
+                    cubit.selectCancellationReason(null);
                     context.pop();
                     showModalBottomSheet(
                       context: context,

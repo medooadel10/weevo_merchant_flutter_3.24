@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../core/Dialogs/action_dialog.dart';
 import '../../../core/Dialogs/gender_bottom_sheet.dart';
 import '../../../core/Dialogs/image_picker_dialog.dart';
-import '../../../core/Dialogs/loading.dart';
+import '../../../core/Dialogs/loading_dialog.dart';
 import '../../../core/Models/image.dart';
 import '../../../core/Models/sign_up_data.dart';
 import '../../../core/Models/user_type.dart';

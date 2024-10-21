@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 import '../../features/Screens/Fragments/reset_password_0.dart';
 import '../../features/Screens/Fragments/reset_password_1.dart';
 import '../../features/Screens/Fragments/reset_password_2.dart';
-import '../../features/Widgets/loading_dialog.dart';
 import '../Dialogs/action_dialog.dart';
+import '../Dialogs/loading_dialog.dart';
 import '../Models/check_otp_model.dart';
 import '../Storage/shared_preference.dart';
 import '../httpHelper/http_helper.dart';
@@ -24,7 +24,7 @@ class ForgetPasswordProvider with ChangeNotifier {
       Provider.of<ForgetPasswordProvider>(context, listen: false);
 
   int resetPasswordIndex = 0;
-  Widget resetPasswordWidget = ResetPassword0();
+  Widget resetPasswordWidget = const ResetPassword0();
   int start = 120;
   bool wait = false;
   final Preferences preferences = Preferences.instance;
@@ -59,13 +59,13 @@ class ForgetPasswordProvider with ChangeNotifier {
   void getCurrentResetPasswordWidget(int i) {
     switch (i) {
       case 0:
-        resetPasswordWidget = ResetPassword0();
+        resetPasswordWidget = const ResetPassword0();
         break;
       case 1:
-        resetPasswordWidget = ResetPassword1();
+        resetPasswordWidget = const ResetPassword1();
         break;
       case 2:
-        resetPasswordWidget = ResetPassword2();
+        resetPasswordWidget = const ResetPassword2();
         break;
     }
   }
@@ -73,7 +73,8 @@ class ForgetPasswordProvider with ChangeNotifier {
   Future<void> resendOtp() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => LoadingDialog());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       Response r = await HttpHelper.instance.httpPost('sendOtp', false, body: {
         "phone": phoneNumberController.text,
       });
@@ -101,7 +102,8 @@ class ForgetPasswordProvider with ChangeNotifier {
   Future<void> changePassword() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => LoadingDialog());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       Response r =
           await HttpHelper.instance.httpPost('resetPassword', false, body: {
         "user_id": checkOtpModel?.userId,
@@ -144,7 +146,8 @@ class ForgetPasswordProvider with ChangeNotifier {
   Future<void> checkOtp() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => LoadingDialog());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       otp = pinController.text;
       pinController.clear();
       Response r = await HttpHelper.instance.httpPost('checkOtp', false, body: {
@@ -174,7 +177,8 @@ class ForgetPasswordProvider with ChangeNotifier {
   Future<void> sendOtp() async {
     try {
       showDialog(
-          context: navigator.currentContext!, builder: (_) => LoadingDialog());
+          context: navigator.currentContext!,
+          builder: (_) => const LoadingDialog());
       Response r = await HttpHelper.instance.httpPost('sendOtp', false, body: {
         "phone": phoneNumberController.text,
       });

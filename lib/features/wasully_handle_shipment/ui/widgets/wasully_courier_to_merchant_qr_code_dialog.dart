@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/Dialogs/done_dialog.dart';
-import '../../../../core/Dialogs/loading.dart';
+import '../../../../core/Dialogs/loading_dialog.dart';
 import '../../../../core/Dialogs/qr_code_scanner.dart';
 import '../../../../core/Dialogs/wallet_dialog.dart';
 import '../../../../core/Models/shipment_tracking_model.dart';

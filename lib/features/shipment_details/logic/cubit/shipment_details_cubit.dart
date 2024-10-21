@@ -15,6 +15,7 @@ import 'package:weevo_merchant_upgrade/features/shipment_details/data/models/shi
 import '../../../../core/Models/shipment_tracking_model.dart';
 import '../../../../core/Providers/auth_provider.dart';
 import '../../../../core/router/router.dart';
+import '../../../../core_new/helpers/constants.dart';
 import '../../data/repos/shipment_details_repo.dart';
 
 part 'shipment_details_cubit.freezed.dart';
@@ -52,13 +53,12 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
     emit(const ShipmentDetailsState.cancelShipmentLoading());
     final result = await _shipmentDetailsRepo.cancelShipment(
         shipmentDetails!.id,
-        cancellationReasons[selectedCancellationReasonIndex!]);
+        AppConstants.cancellationReasons[selectedCancellationReasonIndex!]);
     if (result.success) {
       emit(const ShipmentDetailsState.cancelShipmentSuccess());
     } else {
       emit(ShipmentDetailsState.cancelShipmentError(result.error!));
     }
-    selectedCancellationReasonIndex = null;
   }
 
   final shippingCostContoller = TextEditingController();
@@ -77,15 +77,6 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
     }
   }
 
-  final List<String> cancellationReasons = [
-    'شحنة كبيرة',
-    'خارج المنطقة',
-    'خارج ساعات العمل',
-    'مشكلة توفر المندوب السريع',
-    'رفع طلب من أجل الإختبار',
-    'تم رفع الطلب بالخطأ',
-    'أخرى',
-  ];
   int? selectedCancellationReasonIndex;
 
   void selectCancellationReason(int? index) {

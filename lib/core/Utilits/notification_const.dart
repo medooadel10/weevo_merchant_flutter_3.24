@@ -9,7 +9,7 @@ import '../../features/Screens/shipment_splash.dart';
 import '../../features/Screens/wallet.dart';
 import '../../features/Screens/weevo_plus_screen.dart';
 import '../../features/shipment_details/ui/shipment_details_screen.dart';
-import '../Dialogs/loading.dart';
+import '../Dialogs/loading_dialog.dart';
 import '../Dialogs/wallet_dialog.dart';
 import '../Models/chat_data.dart';
 import '../Models/shipment_notification.dart';

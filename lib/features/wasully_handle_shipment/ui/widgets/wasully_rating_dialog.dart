@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/Dialogs/content_dialog.dart';
-import '../../../../core/Dialogs/loading.dart';
+import '../../../../core/Dialogs/loading_dialog.dart';
 import '../../../../core/Models/shipment_tracking_model.dart';
 import '../../../../core/Storage/shared_preference.dart';
 import '../../../../core/Utilits/colors.dart';

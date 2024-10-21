@@ -20,7 +20,7 @@ import '../Utilits/colors.dart';
 import '../router/router.dart';
 import 'content_dialog.dart';
 import 'done_dialog.dart';
-import 'loading.dart';
+import 'loading_dialog.dart';
 
 class ShareSaveQrCodeDialog extends StatefulWidget {
   final RefreshQrcode data;

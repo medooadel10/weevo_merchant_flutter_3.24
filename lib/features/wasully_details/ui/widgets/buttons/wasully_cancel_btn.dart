@@ -27,6 +27,7 @@ class WasullyCancelBtn extends StatelessWidget {
                 child: CancelShipmentDialog(
                   onOkPressed: () {
                     MagicRouter.pop();
+                    cubit.selectCancellationReason(null);
                     showModalBottomSheet(
                       context: context,
                       enableDrag: true,

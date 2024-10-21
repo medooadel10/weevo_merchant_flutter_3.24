@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/ui/bulk_shipment_details_screen.dart';
 
 import '../../core/Dialogs/action_dialog.dart';
-import '../../core/Dialogs/loading.dart';
+import '../../core/Dialogs/loading_dialog.dart';
 import '../../core/Models/accept_merchant_offer.dart';
 import '../../core/Models/shipment_notification.dart';
 import '../../core/Providers/auth_provider.dart';

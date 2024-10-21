@@ -65,9 +65,9 @@ class ShipmentDetailsHeader extends StatelessWidget {
                                         .productInfo
                                         .productCategory
                                         .image,
-                                    width: 20.w,
-                                    height: 20.h,
-                                    fit: BoxFit.contain,
+                                    fit: BoxFit.cover,
+                                    isCircle: true,
+                                    radius: 16,
                                   ),
                                   horizontalSpace(5),
                                   Text(
