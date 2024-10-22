@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_image.dart';
+
 class CustomBottomSheet extends StatelessWidget {
   final List<BottomSheetItem> items;
 
@@ -8,6 +10,14 @@ class CustomBottomSheet extends StatelessWidget {
   static void show(BuildContext context, List<BottomSheetItem> items) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
+      enableDrag: true,
+      showDragHandle: true,
+      sheetAnimationStyle: AnimationStyle(
+        reverseCurve: Curves.easeInOut,
+        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 500),
+      ),
       builder: (context) => CustomBottomSheet(items: items),
     );
   }
@@ -27,7 +37,16 @@ class CustomBottomSheet extends StatelessWidget {
               items[index].onTap();
             },
             child: ListTile(
-              leading: Icon(items[index].icon),
+              leading: items[index].icon != null
+                  ? Icon(items[index].icon)
+                  : CustomImage(
+                      imageUrl: items[index].imageUrl,
+                      height: 24,
+                      width: 24,
+                      isCircle: true,
+                      fit: BoxFit.cover,
+                      radius: 20,
+                    ),
               title: Text(items[index].title),
             ),
           );
@@ -44,9 +63,14 @@ class CustomBottomSheet extends StatelessWidget {
 
 class BottomSheetItem {
   final String title;
-  final IconData icon;
+  final IconData? icon;
   final VoidCallback onTap;
+  final String? imageUrl;
 
-  BottomSheetItem(
-      {required this.title, required this.icon, required this.onTap});
+  BottomSheetItem({
+    required this.title,
+    this.icon,
+    required this.onTap,
+    this.imageUrl,
+  });
 }

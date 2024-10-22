@@ -10,8 +10,8 @@ extension NavigationEx on BuildContext {
     Navigator.pushReplacementNamed(this, routeName, arguments: arguments);
   }
 
-  void pop() {
-    Navigator.pop(this);
+  void pop({Object? data}) {
+    Navigator.pop(this, data);
   }
 
   void unfocus() {

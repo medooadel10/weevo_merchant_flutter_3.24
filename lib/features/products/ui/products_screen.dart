@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weevo_merchant_upgrade/core/Utilits/colors.dart';
-import 'package:weevo_merchant_upgrade/core/router/router.dart';
 import 'package:weevo_merchant_upgrade/core_new/di/dependency_injection.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/spacing.dart';
-import 'package:weevo_merchant_upgrade/features/add_product/ui/add_product_screen.dart';
 import 'package:weevo_merchant_upgrade/features/products/logic/cubit/products_cubit.dart';
 import 'package:weevo_merchant_upgrade/features/products/ui/widgets/products_scroll_view.dart';
 import 'package:weevo_merchant_upgrade/features/products/ui/widgets/products_search.dart';
@@ -28,16 +25,6 @@ class ProductsScreen extends StatelessWidget {
                 child: ProductsSearch(),
               ),
             ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            MagicRouter.navigateTo(const AddProductScreen());
-          },
-          backgroundColor: weevoPrimaryBlueColor,
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,

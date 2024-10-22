@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weevo_merchant_upgrade/features/products/ui/widgets/products_bloc_builder.dart';
 
+import '../../../../core/Utilits/colors.dart';
+import '../../../add_product/ui/add_product_screen.dart';
+import '../../data/models/products_response_body_model.dart';
 import '../../logic/cubit/products_cubit.dart';
 import 'products_header.dart';
 
@@ -38,22 +41,50 @@ class _ProductsScrollViewState extends State<ProductsScrollView> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => context.read<ProductsCubit>().getProducts(),
-      child: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            automaticallyImplyLeading: false,
-            flexibleSpace: const ProductsHeader(),
-            toolbarHeight: 48.h,
+    return Stack(
+      children: [
+        RefreshIndicator(
+          onRefresh: () => context.read<ProductsCubit>().getProducts(),
+          child: CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                automaticallyImplyLeading: false,
+                flexibleSpace: const ProductsHeader(),
+                toolbarHeight: 48.h,
+              ),
+              const SliverToBoxAdapter(
+                child: ProductsBlocBuilder(),
+              ),
+            ],
           ),
-          const SliverToBoxAdapter(
-            child: ProductsBlocBuilder(),
+        ),
+        Positioned(
+          bottom: 30.h,
+          right: 20.w,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddProductScreen(),
+                  )).then((value) async {
+                if (value is ProductModel) {
+                  if (context.mounted) {
+                    context.read<ProductsCubit>().getProducts();
+                  }
+                }
+              });
+            },
+            backgroundColor: weevoPrimaryBlueColor,
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
-        ],
-      ),
+        )
+      ],
     );
   }
 }

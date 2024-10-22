@@ -27,18 +27,18 @@ Map<String, dynamic> _$ProductsResponseBodyModelToJson(
     };
 
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
-      (json['id'] as num).toInt(),
-      json['name'] as String,
-      json['description'] as String?,
-      json['price'],
-      (json['category_id'] as num).toInt(),
-      json['image'] as String?,
-      json['length'],
-      json['width'],
-      json['height'],
-      json['weight'],
-      (json['merchant_id'] as num).toInt(),
-      ProductCategory.fromJson(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      description: json['description'] as String?,
+      price: json['price'],
+      categoryId: (json['category_id'] as num).toInt(),
+      image: json['image'] as String?,
+      length: json['length'] as String,
+      width: json['width'] as String,
+      height: json['height'] as String,
+      weight: json['weight'] as String,
+      merchantId: (json['merchant_id'] as num).toInt(),
+      category: CategoryData.fromJson(
           json['product_category'] as Map<String, dynamic>),
     );
 
@@ -55,5 +55,5 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'height': instance.height,
       'weight': instance.weight,
       'merchant_id': instance.merchantId,
-      'product_category': instance.productCategory,
+      'product_category': instance.category,
     };

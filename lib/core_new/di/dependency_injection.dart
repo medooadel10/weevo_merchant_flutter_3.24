@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import '../../core/Storage/shared_preference.dart';
+import '../../features/add_product/data/repos/add_product_repo.dart';
 import '../../features/bulk_shipment_details/data/repos/bulk_shipment_details_repo.dart';
 import '../../features/products/data/repos/products_repo.dart';
 import '../../features/shipment_details/data/repos/shipment_details_repo.dart';
@@ -46,4 +47,7 @@ Future<void> setupGetIt() async {
 
   // Products
   getIt.registerLazySingleton(() => ProductsRepo());
+
+  // Add Product
+  getIt.registerLazySingleton(() => AddProductRepo());
 }

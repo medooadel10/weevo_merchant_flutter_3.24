@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weevo_merchant_upgrade/core_new/data/models/product_category.dart';
+
+import '../../../../core/Models/category_data.dart';
 
 part 'products_response_body_model.g.dart';
 
@@ -29,27 +30,28 @@ class ProductModel {
   final dynamic price;
   final int categoryId;
   final String? image;
-  final dynamic length;
-  final dynamic width;
-  final dynamic height;
-  final dynamic weight;
+  final String length;
+  final String width;
+  final String height;
+  final String weight;
   final int merchantId;
-  final ProductCategory productCategory;
+  @JsonKey(name: "product_category")
+  final CategoryData category;
 
-  ProductModel(
-    this.id,
-    this.name,
-    this.description,
-    this.price,
-    this.categoryId,
-    this.image,
-    this.length,
-    this.width,
-    this.height,
-    this.weight,
-    this.merchantId,
-    this.productCategory,
-  );
+  ProductModel({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.categoryId,
+    required this.image,
+    required this.length,
+    required this.width,
+    required this.height,
+    required this.weight,
+    required this.merchantId,
+    required this.category,
+  });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);

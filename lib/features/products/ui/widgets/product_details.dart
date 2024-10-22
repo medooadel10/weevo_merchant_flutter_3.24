@@ -46,13 +46,13 @@ class ProductDetails extends StatelessWidget {
         Column(
           children: [
             CustomImage(
-              imageUrl: product.productCategory.image,
+              imageUrl: product.category.image,
               displayError: false,
               isCircle: true,
               radius: 16,
             ),
             Text(
-              product.productCategory.name,
+              product.category.name ?? '',
               style: TextStyle(
                 fontSize: 12.0.sp,
                 color: Colors.grey[500],
