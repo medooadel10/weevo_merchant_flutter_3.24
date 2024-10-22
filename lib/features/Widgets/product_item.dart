@@ -3,15 +3,16 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/product_details/ui/product_details_screen.dart';
 
 import '../../core/Models/product_model.dart';
 import '../../core/Providers/add_shipment_provider.dart';
 import '../../core/Utilits/colors.dart';
 import '../../core/Utilits/constants.dart';
 import '../../core_new/networking/api_constants.dart';
+import '../../core_new/router/router.dart';
 import '../../core_new/widgets/custom_image.dart';
 import '../Screens/add_shipment.dart';
-import '../Screens/product_details.dart';
 
 class ProductItem extends StatefulWidget {
   final Product product;
@@ -49,11 +50,9 @@ class _ProductItemState extends State<ProductItem> {
     log('${widget.product.name}');
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          ProductDetails.id,
-          arguments: widget.product.id,
-        );
+        MagicRouter.navigateTo(ProductDetailsScreen(
+          productId: widget.product.id!,
+        ));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

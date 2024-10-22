@@ -67,7 +67,9 @@ class CustomImage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                   ),
-                  child: const Icon(Icons.error),
+                  child: const Icon(
+                    Icons.image,
+                  ),
                 )
               : const CustomShimmer(),
         ),

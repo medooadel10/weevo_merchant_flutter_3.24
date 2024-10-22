@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/add_product/ui/add_product_screen.dart';
 
-import '../../features/Screens/add_product.dart';
 import '../../features/Widgets/edit_text.dart';
 import '../../features/Widgets/horizontal_reusable_item.dart';
-import '../Models/add_product_arg.dart';
 import '../Models/product_model.dart';
 import '../Providers/add_shipment_provider.dart';
 import '../Providers/product_provider.dart';
 import '../Storage/shared_preference.dart';
 import '../Utilits/colors.dart';
-import '../Utilits/constants.dart';
 import '../router/router.dart';
 import 'action_dialog.dart';
 
@@ -160,13 +158,8 @@ class _AddShipmentBottomSheetState extends State<AddShipmentBottomSheet> {
                     child: FloatingActionButton(
                       onPressed: () {
                         MagicRouter.pop();
-                        Navigator.pushNamed(
-                          navigator.currentContext!,
-                          AddProduct.id,
-                          arguments: AddProductArg(
-                              isUpdated: false,
-                              isDuplicate: false,
-                              from: add_shipment),
+                        MagicRouter.navigateTo(
+                          const AddProductScreen(),
                         );
                       },
                       backgroundColor: weevoPrimaryBlueColor,

@@ -4,7 +4,6 @@ import 'package:provider/single_child_widget.dart';
 
 import '../../features/Screens/Fragments/sign_up_phone_verification.dart';
 import '../../features/Screens/add_address.dart';
-import '../../features/Screens/add_product.dart';
 import '../../features/Screens/add_shipment.dart';
 import '../../features/Screens/after_choose_shipment.dart';
 import '../../features/Screens/after_registration.dart';
@@ -22,12 +21,10 @@ import '../../features/Screens/login.dart';
 import '../../features/Screens/map.dart';
 import '../../features/Screens/merchant_address.dart';
 import '../../features/Screens/merchant_feedback.dart';
-import '../../features/Screens/merchant_warehouse.dart';
 import '../../features/Screens/messages.dart';
 import '../../features/Screens/my_reviews.dart';
 import '../../features/Screens/new_shipment_offer_based.dart';
 import '../../features/Screens/onboarding_screens.dart';
-import '../../features/Screens/product_details.dart';
 import '../../features/Screens/profile_information.dart';
 import '../../features/Screens/promo_code.dart';
 import '../../features/Screens/reset_password.dart';
@@ -43,7 +40,6 @@ import '../../features/Screens/weevo_payment.dart';
 import '../../features/Screens/weevo_plus_plan_subscription.dart';
 import '../../features/Screens/weevo_plus_screen.dart';
 import '../../features/Screens/weevo_web_view_preview.dart';
-import '../Models/add_product_arg.dart';
 import '../Models/chat_data.dart';
 import '../Models/connectivity_enum.dart';
 import '../Models/feedback_data_arg.dart';
@@ -91,7 +87,7 @@ Map<String, Widget Function(BuildContext)> getRoutes() => {
       Wallet.id: (_) => const Wallet(),
       WeevoAds.id: (_) => const WeevoAds(),
       AddShipment.id: (_) => const AddShipment(),
-      MerchantWarehouse.id: (_) => const MerchantWarehouse(),
+      // MerchantWarehouse.id: (_) => const MerchantWarehouse(),
       AfterChooseShipment.id: (_) => const AfterChooseShipment(),
       ProfileInformation.id: (_) => const ProfileInformation(),
       ChangeYourEmail.id: (_) => const ChangeYourEmail(),
@@ -100,14 +96,15 @@ Map<String, Widget Function(BuildContext)> getRoutes() => {
     };
 
 Route<dynamic>? getOnGenerateRoute(RouteSettings settings) {
-  if (settings.name == ProductDetails.id) {
-    final int id = settings.arguments as int;
-    return MaterialPageRoute(
-      builder: (_) => ProductDetails(
-        productId: id,
-      ),
-    );
-  } else if (settings.name == MapScreen.id) {
+  // if (settings.name == ProductDetails.id) {
+  //   final int id = settings.arguments as int;
+  //   return MaterialPageRoute(
+  //     builder: (_) => ProductDetails(
+  //       productId: id,
+  //     ),
+  //   );
+  // }
+  if (settings.name == MapScreen.id) {
     final bool fromShipment = settings.arguments as bool;
     return MaterialPageRoute(
       builder: (_) => MapScreen(
@@ -178,16 +175,16 @@ Route<dynamic>? getOnGenerateRoute(RouteSettings settings) {
       builder: (context) =>
           ChooseCourier(shipmentNotification: shipmentNotification),
     );
-  } else if (settings.name == AddProduct.id) {
-    final AddProductArg arg = settings.arguments as AddProductArg;
-    return MaterialPageRoute(
-      builder: (_) => AddProduct(
-        isUpdated: arg.isUpdated,
-        isDuplicate: arg.isDuplicate,
-        product: arg.product,
-        from: arg.from ?? '',
-      ),
-    );
+    // } else if (settings.name == AddProduct.id) {
+    //   final AddProductArg arg = settings.arguments as AddProductArg;
+    //   return MaterialPageRoute(
+    //     builder: (_) => AddProduct(
+    //       isUpdated: arg.isUpdated,
+    //       isDuplicate: arg.isDuplicate,
+    //       product: arg.product,
+    //       from: arg.from ?? '',
+    //     ),
+    //   );
   }
   //  else if (settings.name == ChildShipmentDetails.id) {
   //   final int shipmentId = settings.arguments as int;

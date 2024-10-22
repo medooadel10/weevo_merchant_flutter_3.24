@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weevo_merchant_upgrade/core/router/router.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import 'package:weevo_merchant_upgrade/features/products/data/models/products_response_body_model.dart';
 
 import '../../../../core_new/helpers/spacing.dart';
+import '../../../product_details/ui/product_details_screen.dart';
+import '../../logic/cubit/products_cubit.dart';
 import 'product_charge.dart';
 import 'product_details.dart';
 import 'product_image.dart';
@@ -18,7 +22,17 @@ class ProductGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () {},
+      onTap: () {
+        MagicRouter.navigateTo(
+          ProductDetailsScreen(
+            productId: product.id,
+          ),
+        ).then((value) {
+          if (value is ProductModel) {
+            if (context.mounted) context.read<ProductsCubit>().getProducts();
+          }
+        });
+      },
       child: Container(
         width: context.width * 0.45,
         decoration: BoxDecoration(

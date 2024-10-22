@@ -4,7 +4,6 @@ import 'package:weevo_merchant_upgrade/features/bulk_shipment_details/ui/bulk_sh
 import '../../features/Screens/chat_screen.dart';
 import '../../features/Screens/choose_courier.dart';
 import '../../features/Screens/handle_shipment.dart';
-import '../../features/Screens/merchant_warehouse.dart';
 import '../../features/Screens/shipment_splash.dart';
 import '../../features/Screens/wallet.dart';
 import '../../features/Screens/weevo_plus_screen.dart';
@@ -35,7 +34,7 @@ const String createShipmentScreen = 'create_shipment_screen';
 void whereTo(BuildContext ctx, String link) {
   switch (link) {
     case 'screen://warehouse_screen?source=home-banner':
-      Navigator.pushNamed(ctx, MerchantWarehouse.id);
+      //Navigator.pushNamed(ctx, MerchantWarehouse.id);
       break;
     case 'screen://weevo_plus_screen?source=home-banner':
       if (Preferences.instance.getWeevoPlusPlanId.isNotEmpty) {

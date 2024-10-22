@@ -34,9 +34,9 @@ import '../../features/Screens/chat_screen.dart';
 import '../../features/Screens/choose_courier.dart';
 import '../../features/Screens/handle_shipment.dart';
 import '../../features/Screens/home.dart';
-import '../../features/Screens/merchant_warehouse.dart';
 import '../../features/Screens/onboarding_screens.dart';
 import '../../features/Screens/wallet.dart';
+import '../../features/products/ui/products_screen.dart';
 import '../../features/shipment_details/ui/shipment_details_screen.dart';
 import '../../features/wasully_handle_shipment/ui/widgets/wasully_rating_dialog.dart';
 import '../../main.dart';
@@ -1732,7 +1732,7 @@ class AuthProvider with ChangeNotifier {
           configLocalNotification((payload) {
             switch (m.data['screen_to']) {
               case productScreen:
-                Navigator.pushNamed(context, MerchantWarehouse.id);
+                MagicRouter.navigateTo(const ProductsScreen());
                 break;
               case wallet:
                 Navigator.pushReplacementNamed(context, Wallet.id);
@@ -1862,7 +1862,7 @@ class AuthProvider with ChangeNotifier {
           configLocalNotification((response) {
             switch (m.data['screen_to']) {
               case productScreen:
-                Navigator.pushNamed(context, MerchantWarehouse.id);
+                MagicRouter.navigateTo(const ProductsScreen());
                 break;
               case wallet:
                 Navigator.pushReplacementNamed(context, Wallet.id);

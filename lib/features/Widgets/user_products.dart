@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../Screens/merchant_warehouse.dart';
+import '../../core_new/router/router.dart';
+import '../products/ui/products_screen.dart';
 import 'home_page_view.dart';
 
 class UserProducts extends StatefulWidget {
@@ -35,7 +36,7 @@ class _UserProductsState extends State<UserProducts> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, MerchantWarehouse.id);
+                  MagicRouter.navigateTo(const ProductsScreen());
                 },
                 child: Text(
                   'عرض المزيد',

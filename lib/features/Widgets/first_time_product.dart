@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weevo_merchant_upgrade/features/add_product/ui/add_product_screen.dart';
 
-import '../../core/Models/add_product_arg.dart';
 import '../../core/Utilits/colors.dart';
-import '../Screens/add_product.dart';
+import '../../core_new/router/router.dart';
 import 'headline_text.dart';
 
 class FirstTimeProduct extends StatelessWidget {
@@ -15,8 +15,8 @@ class FirstTimeProduct extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: HeadLineText(
             title: 'المنتجات',
           ),
@@ -39,14 +39,7 @@ class FirstTimeProduct extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              AddProduct.id,
-              arguments: AddProductArg(
-                isUpdated: false,
-                isDuplicate: false,
-              ),
-            );
+            MagicRouter.navigateTo(const AddProductScreen());
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
