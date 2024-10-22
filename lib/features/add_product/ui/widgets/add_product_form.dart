@@ -62,6 +62,7 @@ class AddProductForm extends StatelessWidget {
                       ),
                     )
                     .toList(),
+                title: 'حدد نوع المنتج',
               );
             },
             suffixIcon: Icons.arrow_drop_down,

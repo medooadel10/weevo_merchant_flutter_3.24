@@ -7,7 +7,8 @@ class CustomBottomSheet extends StatelessWidget {
 
   const CustomBottomSheet({super.key, required this.items});
 
-  static void show(BuildContext context, List<BottomSheetItem> items) {
+  static void show(BuildContext context, List<BottomSheetItem> items,
+      {String? title}) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -18,7 +19,25 @@ class CustomBottomSheet extends StatelessWidget {
         curve: Curves.easeInOut,
         duration: const Duration(milliseconds: 500),
       ),
-      builder: (context) => CustomBottomSheet(items: items),
+      builder: (context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (title != null) ...[
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+          CustomBottomSheet(items: items),
+        ],
+      ),
     );
   }
 

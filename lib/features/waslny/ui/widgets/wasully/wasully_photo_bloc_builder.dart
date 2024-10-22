@@ -5,7 +5,6 @@ import 'package:weevo_merchant_upgrade/core/Utilits/colors.dart';
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import 'package:weevo_merchant_upgrade/core_new/widgets/custom_bottom_sheet.dart';
 
-import '../../../../../core/Storage/shared_preference.dart';
 import '../../../../../core_new/helpers/spacing.dart';
 import '../../../../../core_new/widgets/custom_image.dart';
 import '../../../logic/wasully_cubit/wasully_cubit.dart';
@@ -29,37 +28,25 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                 InkWell(
                   borderRadius: BorderRadius.circular(10.0),
                   onTap: () {
-                    showModalBottomSheet(
-                      context: navigator.currentContext!,
-                      enableDrag: true,
-                      showDragHandle: true,
-                      sheetAnimationStyle: AnimationStyle(
-                        curve: Curves.easeInOut,
-                        duration: const Duration(milliseconds: 500),
-                      ),
-                      builder: (_) {
-                        return BlocProvider.value(
-                          value: cubit,
-                          child: CustomBottomSheet(items: [
-                            BottomSheetItem(
-                              icon: Icons.camera_alt_outlined,
-                              title: 'الكاميرا',
-                              onTap: () {
-                                cubit.pickImage(true);
-                                Navigator.pop(context);
-                              },
-                            ),
-                            BottomSheetItem(
-                              icon: Icons.photo_library_outlined,
-                              title: 'المعرض',
-                              onTap: () {
-                                cubit.pickImage(false);
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ]),
-                        );
-                      },
+                    CustomBottomSheet.show(
+                      context,
+                      [
+                        BottomSheetItem(
+                          icon: Icons.camera_alt_outlined,
+                          title: 'الكاميرا',
+                          onTap: () {
+                            cubit.pickImage(true);
+                          },
+                        ),
+                        BottomSheetItem(
+                          icon: Icons.photo_library_outlined,
+                          title: 'المعرض',
+                          onTap: () {
+                            cubit.pickImage(false);
+                          },
+                        ),
+                      ],
+                      title: 'إختيار صورة',
                     );
                   },
                   child: AnimatedContainer(

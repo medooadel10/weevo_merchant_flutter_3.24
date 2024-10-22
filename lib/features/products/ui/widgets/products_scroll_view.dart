@@ -83,7 +83,7 @@ class _ProductsScrollViewState extends State<ProductsScrollView> {
               color: Colors.white,
             ),
           ),
-        )
+        ),
       ],
     );
   }

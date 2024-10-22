@@ -23,6 +23,23 @@ class AddProductRepo {
     }
   }
 
+  Future<DataResult<AddProductResponseModel>> updateProduct(
+    AddProductRequestModel data,
+    int id,
+  ) async {
+    try {
+      final response = await DioFactory.putData(
+        url: '${ApiConstants.products}/$id',
+        data: data.toJson(),
+        token: Preferences.instance.getAccessToken,
+      );
+      return DataResult.success(
+          AddProductResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      return DataResult.error(e.response?.data['message'] ?? 'حدث خطأ ما');
+    }
+  }
+
   Future<DataResult<String>> uploadImage(
       String imagePath, String fileName) async {
     final token = Preferences.instance.getAccessToken;

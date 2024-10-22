@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:weevo_merchant_upgrade/core_new/helpers/toasts.dart';
 import 'package:weevo_merchant_upgrade/features/products/data/models/products_response_body_model.dart';
 import 'package:weevo_merchant_upgrade/features/products/data/repos/products_repo.dart';
 
@@ -47,7 +46,6 @@ class ProductsCubit extends Cubit<ProductsState> {
       emit(Success(products ?? []));
       return;
     }
-    showToast('asd');
     List<ProductModel>? finalProducts = products
         ?.where(
           (element) =>
