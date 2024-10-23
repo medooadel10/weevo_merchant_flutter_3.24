@@ -4,7 +4,6 @@ import 'package:weevo_merchant_upgrade/core/Utilits/colors.dart';
 import 'package:weevo_merchant_upgrade/features/Widgets/weevo_button.dart';
 
 import '../../../../core_new/helpers/spacing.dart';
-import '../../data/entities/stepper_data.dart';
 import '../../logic/add_shipment_cubit.dart';
 
 class AddShipmentButtons extends StatelessWidget {
@@ -20,8 +19,10 @@ class AddShipmentButtons extends StatelessWidget {
             verticalSpace(10),
             WeevoButton(
               onTap: () {
-                if (cubit.currentIndex != StepperData.list.length - 1) {
-                  cubit.changeStepperIndex(cubit.currentIndex + 1);
+                if (cubit.currentIndex == 0) {
+                  if (cubit.formKeyFirst.currentState!.validate()) {
+                    cubit.changeStepperIndex(cubit.currentIndex + 1);
+                  }
                 }
               },
               title: 'التالي',

@@ -21,14 +21,14 @@ class StepperData {
     StepperData(
       title: 'منين',
       image: 'boxes',
-      description: 'مكان استلام الشحنة هيكون فين؟',
+      description: 'مكان استلام الطلب هيكون فين؟',
       body: const AddShipmentFirstBody(),
     ),
     StepperData(
       title: 'ل فين',
       image: 'address',
       body: const AddShipmentSecondBody(),
-      description: 'مكان تسليم الشحنة ومعلوماتها',
+      description: 'مكان تسليم الطلب ومعلوماتها',
     ),
     StepperData(
       title: 'الطلب',

@@ -265,7 +265,6 @@ class _AddShipment1State extends State<AddShipment1> {
                     );
                   }
                   if (dt != null && tod != null) {
-                    // if (tod.hour >= 10 && tod.hour <= 20) {
                     final dateTime = DateTime(
                         dt.year, dt.month, dt.day, tod.hour, tod.minute);
                     shipmentProvider
@@ -273,31 +272,6 @@ class _AddShipment1State extends State<AddShipment1> {
                     _shipDateTimeController.text =
                         intl.DateFormat('hh:mm a - E dd MMM y', 'ar-EG')
                             .format(dateTime);
-                    // }
-                    // else {
-                    //   showDialog(
-                    //       navigator.currentContext!,
-                    //       builder: (cx) => ActionDialog(
-                    //             content:
-                    //                 'وقت استلام الطلب يجب ان يكون من 10 صباحاً حتي 8 مساءاً',
-                    //             onApproveClick: () {
-                    //               Navigator.pop(cx);
-                    //             },
-                    //             approveAction: 'حسناً',
-                    //             onCancelClick: () {
-                    //               Navigator.pop(cx);
-                    //               final dateTime = DateTime(
-                    //                   dt.year, dt.month, (dt.day + 1), 10, 00);
-                    //               shipmentProvider.setRealDeliveryDateTime(
-                    //                   dateTime.toIso8601String());
-                    //               _shipDateTimeController.text =
-                    //                   intl.DateFormat(
-                    //                           'hh:mm a - E dd MMM y', 'ar-EG')
-                    //                       .format(dateTime);
-                    //             },
-                    //             cancelAction: 'استلام الطلب اليوم التالي',
-                    //           ));
-                    // }
                   }
                 } else {
                   showDialog(
