@@ -145,29 +145,30 @@ class _BeforeRegistrationState extends State<BeforeRegistration> {
                             SizedBox(
                               height: 5.h,
                             ),
-                          if (Platform.isAndroid)
-                            TextButton(
-                              onPressed: () async {
-                                await launchUrlString(
-                                    'https://play.google.com/store/apps/details?id=org.emarketingo.courier');
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'لو انت كابتن حمل',
-                                    style: TextStyle(
-                                        fontSize: 16.0.sp, color: Colors.white),
-                                  ),
-                                  Text(
-                                    ' تطبيق الكابتن',
-                                    style: TextStyle(
-                                        fontSize: 16.0.sp,
-                                        color: weevoPrimaryOrangeColor),
-                                  ),
-                                ],
-                              ),
-                            )
+                          TextButton(
+                            onPressed: () async {
+                              String url = Platform.isAndroid
+                                  ? 'https://play.google.com/store/apps/details?id=org.emarketingo.courier'
+                                  : 'https://apps.apple.com/eg/app/%D9%88%D9%8A%DA%A4%D9%88-%D9%83%D8%A7%D8%A8%D8%AA%D9%86-weevo-captain/id6670524179';
+                              await launchUrlString(url);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'لو انت كابتن حمل',
+                                  style: TextStyle(
+                                      fontSize: 16.0.sp, color: Colors.white),
+                                ),
+                                Text(
+                                  ' تطبيق الكابتن',
+                                  style: TextStyle(
+                                      fontSize: 16.0.sp,
+                                      color: weevoPrimaryOrangeColor),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),

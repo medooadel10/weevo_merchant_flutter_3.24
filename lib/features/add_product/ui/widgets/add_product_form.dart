@@ -49,7 +49,7 @@ class AddProductForm extends StatelessWidget {
             onTap: () {
               CustomBottomSheet.show(
                 context,
-                productProvider.categories
+                items: productProvider.categories
                     .map(
                       (e) => BottomSheetItem(
                         title: e.name ?? '',

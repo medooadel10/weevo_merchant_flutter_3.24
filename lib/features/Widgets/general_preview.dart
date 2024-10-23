@@ -131,8 +131,6 @@ class _GeneralPreviewState extends State<GeneralPreview> {
               Expanded(
                 child: GestureDetector(
                   onTap: () async {
-                    // log('getAnonymousId -> ${Weevo.facebookAppEvents.getAnonymousId() ?? ''}');
-                    // log('getApplicationId -> ${Weevo.facebookAppEvents.getApplicationId() ?? ''}');
                     Weevo.facebookAppEvents.setAutoLogAppEventsEnabled(true);
                     Weevo.facebookAppEvents
                         .setUserID(Preferences.instance.getUserId);
@@ -144,20 +142,6 @@ class _GeneralPreviewState extends State<GeneralPreview> {
                     );
                     log(mapProvider.state.name);
                     log(productProvider.productState!.name);
-                    // if (mapProvider.state == NetworkState.WAITING ||
-                    //     productProvider.productState == NetworkState.WAITING) {
-                    //   showDialog(
-                    //     context: navigator.currentContext!,
-                    //     builder: (ctx) => const ActionDialog(
-                    //       content: 'برجاء الانتظار',
-                    //     ),
-                    //   );
-                    //   Future.delayed(const Duration(milliseconds: 800), () {
-                    //     MagicRouter.pop();
-                    //   });
-                    // } else {
-
-                    // }
                     Navigator.pushNamed(
                       navigator.currentContext!,
                       ShipmentSplash.id,

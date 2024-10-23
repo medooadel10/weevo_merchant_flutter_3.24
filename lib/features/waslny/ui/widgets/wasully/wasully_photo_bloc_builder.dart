@@ -30,7 +30,7 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                   onTap: () {
                     CustomBottomSheet.show(
                       context,
-                      [
+                      items: [
                         BottomSheetItem(
                           icon: Icons.camera_alt_outlined,
                           title: 'الكاميرا',
@@ -60,7 +60,7 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                       border: Border.all(
                         color: cubit.wasullyModel?.image != null ||
                                 cubit.image != null
-                            ? weevoDarkGreen
+                            ? weevoPrimaryBlueColor
                             : Colors.grey[400]!,
                       ),
                     ),
@@ -75,7 +75,7 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                                   fontSize: 16.0.sp,
                                   color: cubit.wasullyModel?.image != null ||
                                           cubit.image != null
-                                      ? weevoDarkGreen
+                                      ? weevoPrimaryBlueColor
                                       : Colors.grey[600],
                                 ),
                               ),
@@ -84,7 +84,7 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                                 horizontalSpace(10),
                                 const Icon(
                                   Icons.check,
-                                  color: weevoDarkGreen,
+                                  color: weevoPrimaryBlueColor,
                                 ),
                               ],
                             ],
@@ -95,7 +95,7 @@ class WasullyPhotoBlocBuilder extends StatelessWidget {
                           Icons.camera_alt,
                           color: cubit.wasullyModel?.image != null ||
                                   cubit.image != null
-                              ? weevoDarkGreen
+                              ? weevoPrimaryBlueColor
                               : Colors.grey[600],
                         ),
                       ],

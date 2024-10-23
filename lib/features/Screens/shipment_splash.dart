@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:weevo_merchant_upgrade/features/add_shipment/ui/add_shipment_screen.dart';
 
 import '../../core/Providers/add_shipment_provider.dart';
 import '../../core/Utilits/colors.dart';
@@ -138,11 +139,13 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        shipmentProvider.setShipmentFromWhere(oneShipment);
-                        Navigator.pushNamed(
-                          context,
-                          AddShipment.id,
-                        );
+                        // shipmentProvider.setShipmentFromWhere(oneShipment);
+                        // Navigator.pushNamed(
+                        //   context,
+                        //   AddShipment.id,
+                        // );
+
+                        MagicRouter.navigateTo(const AddShipmentScreen());
                       },
                       child: Container(
                         padding: const EdgeInsets.only(

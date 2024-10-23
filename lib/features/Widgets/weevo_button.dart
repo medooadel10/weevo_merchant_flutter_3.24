@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 
 class WeevoButton extends StatefulWidget {
   final Function? onTap;
@@ -11,6 +12,7 @@ class WeevoButton extends StatefulWidget {
   final String? icon;
   final bool isExpand;
   final Widget? child;
+  final bool autoDelay;
   const WeevoButton({
     super.key,
     required this.onTap,
@@ -22,6 +24,7 @@ class WeevoButton extends StatefulWidget {
     this.icon,
     this.isExpand = false,
     this.child,
+    this.autoDelay = true,
   });
 
   @override
@@ -29,6 +32,8 @@ class WeevoButton extends StatefulWidget {
 }
 
 class _WeevoButtonState extends State<WeevoButton> {
+  bool isPressed = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -59,8 +64,20 @@ class _WeevoButtonState extends State<WeevoButton> {
           ),
         ),
         onPressed: widget.onTap != null
-            ? () {
-                FocusScope.of(context).unfocus();
+            ? () async {
+                if (widget.autoDelay) {
+                  setState(() {
+                    isPressed = true;
+                  });
+                  context.unfocus();
+                  widget.onTap!();
+                  await Future.delayed(const Duration(milliseconds: 300));
+                  setState(() {
+                    isPressed = false;
+                  });
+                  return;
+                }
+                context.unfocus();
                 widget.onTap!();
               }
             : null,

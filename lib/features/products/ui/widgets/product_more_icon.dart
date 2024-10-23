@@ -27,7 +27,7 @@ class ProductMoreIcon extends StatelessWidget {
         if (context.mounted) {
           CustomBottomSheet.show(
             context,
-            [
+            items: [
               BottomSheetItem(
                 title: 'تعديل المنتج',
                 onTap: () {
