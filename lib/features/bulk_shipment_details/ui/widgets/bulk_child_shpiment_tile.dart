@@ -33,9 +33,9 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
     return Stack(
       children: [
         CarouselSlider.builder(
-          itemCount: widget.child.products.length,
+          itemCount: widget.child.products?.length ?? 0,
           itemBuilder: (context, index, realIndex) {
-            final product = widget.child.products[index];
+            final product = widget.child.products?[index];
             return _bulildCartShipmentProductTile(product, context);
           },
           options: CarouselOptions(
@@ -105,7 +105,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                widget.child.products.length,
+                widget.child.products?.length ?? 0,
                 (index) => currentIndex == index
                     ? const CategoryDotes(
                         isActive: true,
@@ -124,7 +124,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
   }
 
   Widget _bulildCartShipmentProductTile(
-      ProductModel product, BuildContext context) {
+      ProductModel? product, BuildContext context) {
     return GestureDetector(
       onTap: () {
         MagicRouter.navigateTo(ShipmentDetailsScreen(id: widget.child.id));
@@ -144,7 +144,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
               child: Row(
                 children: [
                   CustomImage(
-                    imageUrl: product.productInfo.image,
+                    imageUrl: product?.productInfo?.image,
                     width: 100.w,
                     height: 100.h,
                   ),
@@ -160,7 +160,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    product.productInfo.name,
+                                    product?.productInfo?.name ?? 'غير محدد',
                                     style: TextStyle(
                                       fontSize: 16.0.sp,
                                       fontWeight: FontWeight.w600,
@@ -169,7 +169,8 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
-                                    product.productInfo.description,
+                                    product?.productInfo?.description ??
+                                        'غير محدد',
                                     style: TextStyle(
                                       fontSize: 12.0.sp,
                                     ),
@@ -226,7 +227,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
             horizontalSpace(5),
             Expanded(
               child: Text(
-                '${addShipmentProvider.getStateNameById(int.parse(widget.child.receivingState))} - ${addShipmentProvider.getCityNameById(int.parse(widget.child.receivingState), int.parse(widget.child.receivingCity)) ?? ''}',
+                '${addShipmentProvider.getStateNameById(int.tryParse(widget.child.receivingState ?? '')) ?? 'غير محدد'} - ${addShipmentProvider.getCityNameById(int.tryParse(widget.child.receivingState ?? ''), int.parse(widget.child.receivingCity ?? '')) ?? 'غير محدد'}',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
@@ -259,7 +260,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
             horizontalSpace(5),
             Expanded(
               child: Text(
-                '${addShipmentProvider.getStateNameById(int.parse(widget.child.deliveringState))} - ${addShipmentProvider.getCityNameById(int.parse(widget.child.deliveringState), int.parse(widget.child.deliveringCity)) ?? ''}',
+                '${addShipmentProvider.getStateNameById(int.tryParse(widget.child.deliveringState ?? '')) ?? 'غير محدد'} - ${addShipmentProvider.getCityNameById(int.tryParse(widget.child.deliveringState ?? 'غير محدد'), int.parse(widget.child.deliveringCity ?? 'غير محدد')) ?? 'غير محدد'}',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
@@ -274,7 +275,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
     );
   }
 
-  Widget _buildShipmentPrices(BuildContext context, ProductModel product) {
+  Widget _buildShipmentPrices(BuildContext context, ProductModel? product) {
     return Container(
       height: 40.h,
       padding: const EdgeInsets.all(8.0),
@@ -298,7 +299,7 @@ class _BulkChildShpimentTileState extends State<BulkChildShpimentTile> {
                   horizontalSpace(5),
                   Expanded(
                     child: Text(
-                      '${product.price.toString().toStringAsFixed0()} جنية',
+                      '${product?.price.toString().toStringAsFixed0() ?? 'غير محدد'} جنية',
                       style: TextStyle(
                         fontSize: 12.0.sp,
                         fontWeight: FontWeight.w600,

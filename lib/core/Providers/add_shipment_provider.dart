@@ -136,10 +136,10 @@ class AddShipmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String? getStateNameById(int id) =>
+  String? getStateNameById(int? id) =>
       states.firstWhereOrNull((i) => i.id == id)?.name;
 
-  String? getCityNameById(int stateId, int cityId) {
+  String? getCityNameById(int? stateId, int? cityId) {
     Cities? cities;
     States? state = states.firstWhereOrNull((x) => x.id == stateId);
     cities = state?.cities?.firstWhereOrNull((y) => y.id == cityId);
@@ -276,29 +276,31 @@ class AddShipmentProvider with ChangeNotifier {
         ? paymentList[1].paymentMethodTitle
         : paymentList[0].paymentMethodTitle;
     _landmarkName = model.receivingLandmark;
-    _cityName = getCityNameById(int.tryParse(model.receivingState) ?? 0,
-        int.tryParse(model.receivingCity) ?? 0);
-    _stateName = getStateNameById(int.tryParse(model.receivingState) ?? 0);
+    _cityName = getCityNameById(int.tryParse(model.receivingState ?? '') ?? 0,
+        int.tryParse(model.receivingCity ?? '') ?? 0);
+    _stateName =
+        getStateNameById(int.tryParse(model.receivingState ?? '') ?? 0);
     _clientPhoneNumber = model.clientPhone;
     _otherDetails = model.notes;
     _chosenProducts = model.products
-        .map((e) => Product(
-              id: e.productInfo.id,
-              name: e.productInfo.name,
-              width: e.productInfo.width,
-              height: e.productInfo.height,
-              length: e.productInfo.length,
-              weight: e.productInfo.weight,
-              quantity: e.qty,
-              image: e.productInfo.image,
-              price: e.price,
-              description: e.productInfo.description,
-              categoryId: e.productInfo.categoryId,
-            ))
-        .toList();
+            ?.map((e) => Product(
+                  id: e.productInfo?.id,
+                  name: e.productInfo?.name,
+                  width: e.productInfo?.width,
+                  height: e.productInfo?.height,
+                  length: e.productInfo?.length,
+                  weight: e.productInfo?.weight,
+                  quantity: e.qty,
+                  image: e.productInfo?.image,
+                  price: e.price,
+                  description: e.productInfo?.description,
+                  categoryId: e.productInfo?.categoryId,
+                ))
+            .toList() ??
+        [];
     _shipmentFee = model.expectedShippingCost ?? '0';
     // _productTotalPrice = model.amount;
-    _total = double.parse(model.amount);
+    _total = double.tryParse(model.amount ?? '0') ?? 0;
     _isNotEmpty = _chosenProducts.isNotEmpty;
     notifyListeners();
   }

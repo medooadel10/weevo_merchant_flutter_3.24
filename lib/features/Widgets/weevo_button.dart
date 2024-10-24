@@ -72,9 +72,11 @@ class _WeevoButtonState extends State<WeevoButton> {
                   context.unfocus();
                   widget.onTap!();
                   await Future.delayed(const Duration(milliseconds: 300));
-                  setState(() {
-                    isPressed = false;
-                  });
+                  if (mounted) {
+                    setState(() {
+                      isPressed = false;
+                    });
+                  }
                   return;
                 }
                 context.unfocus();

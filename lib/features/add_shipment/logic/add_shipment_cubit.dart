@@ -1,9 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:provider/provider.dart';
 
 import '../../../core/Models/address.dart';
+import '../../../core/Models/address_fill.dart';
+import '../../../core/Models/city.dart';
+import '../../../core/Models/state.dart';
 import '../../../core/Providers/map_provider.dart';
 
 part 'add_shipment_cubit.freezed.dart';
@@ -41,7 +45,51 @@ class AddShipmentCubit extends Cubit<AddShipmentState> {
     receiverAddressController.text = receiverAddress?.name ?? '';
   }
 
-  void changeRecieverDateTime(String dateTime) {
-    receiverDateTime = dateTime;
+  void changeRecieverDateTime(DateTime dateTime) {
+    receiverDateTime = dateTime.toIso8601String();
+    receiverDateTimeController.text =
+        intl.DateFormat('hh:mm a - E dd MMM y', 'ar-EG').format(dateTime);
+  }
+
+  final formKeySecond = GlobalKey<FormState>();
+  final stateController = TextEditingController();
+  final cityController = TextEditingController();
+  final fullDeliveryAddressController = TextEditingController();
+  final deliveyAdressController = TextEditingController();
+  final deliveryDateTimeController = TextEditingController();
+  final clientNameController = TextEditingController();
+  final clientPhoneController = TextEditingController();
+  final notesController = TextEditingController();
+  String? deliveryDateTime;
+  States? currentState;
+  AddressFill? deliveryAddressFill;
+
+  void changeState(States state) {
+    if (currentState != state) {
+      currentCity = null;
+      cityController.text = '';
+    }
+    currentState = state;
+    stateController.text = state.name ?? '';
+    emit(AddShipmentState.changeState(state));
+  }
+
+  Cities? currentCity;
+  void changeCity(Cities city) {
+    currentCity = city;
+    cityController.text = city.name ?? '';
+    emit(AddShipmentState.changeCity(city));
+  }
+
+  void changeDeliveryDateTime(DateTime dateTime) {
+    deliveryDateTime = dateTime.toIso8601String();
+    deliveryDateTimeController.text =
+        intl.DateFormat('hh:mm a - E dd MMM y', 'ar-EG').format(dateTime);
+  }
+
+  void changeDeliveryAddressFill(AddressFill? addressFill) {
+    deliveryAddressFill = addressFill;
+    deliveyAdressController.text =
+        '${addressFill?.administrativeArea} - ${addressFill?.subAdministrativeArea}';
   }
 }

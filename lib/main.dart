@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,6 +20,7 @@ import 'core/Storage/shared_preference.dart';
 import 'core/Utilits/app_routes.dart';
 import 'core/Utilits/firebase_notification.dart';
 import 'core_new/di/dependency_injection.dart';
+import 'core_new/helpers/toasts.dart';
 import 'core_new/networking/dio_factory.dart';
 import 'core_new/style/app_theme.dart';
 import 'features/wasully_details/logic/cubit/wasully_details_cubit.dart';
@@ -59,6 +62,15 @@ void main() async {
               storageBucket: 'weevo-bfa67.appspot.com',
             ));
 
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+  FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
+    // Handle token update
+    showToast("New FCM Token: $newToken");
+  });
   Freshchat.init(
     '2540a172-9d87-4e8d-a28d-05b2fcef08fb',
     '90f02877-838c-42d2-876a-ef1b94346565',
@@ -70,18 +82,31 @@ void main() async {
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.instance.setAutoInitEnabled(true);
-  final token = await FirebaseMessaging.instance.getToken();
-  Freshchat.setPushRegistrationToken(token ?? '');
+  await Future.delayed(const Duration(seconds: 1));
+  await FirebaseNotification.iOSPermission();
 
+  String? token;
+  try {
+    token = Platform.isIOS
+        ? await FirebaseMessaging.instance.getAPNSToken()
+        : await FirebaseMessaging.instance.getToken();
+  } catch (e) {
+    token = '';
+    showToast(e.toString());
+  }
+  Freshchat.setPushRegistrationToken(token ?? '');
   FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true, badge: true, sound: true);
-  FirebaseNotification.iOSPermission();
+    alert: true,
+    badge: true,
+    sound: true,
+  );
 
   setupGetIt();
   await Preferences.initPref();
   DioFactory.init();
   log('Token ->> ${Preferences.instance.getAccessToken}');
   log('Fcm access token -> ${Preferences.instance.getFCMAccessToken}');
+
   runApp(const Weevo());
 }
 

@@ -15,7 +15,7 @@ class ShipmentModel {
   final String? deliveringState;
   final String? deliveringStreet;
   final String? paymentMethod;
-  final String amount; // Product Price
+  final String? amount; // Product Price
   final String? price; // Shipment price // nullable for normal shipment
   final String createdAt;
   final List<ShipmentProductModel>? products; // nullable for wasully shipment
@@ -28,7 +28,7 @@ class ShipmentModel {
   final List<ShipmentModel>?
       children; // nullable for normal shipment && wasully
   final String status;
-  final int isOfferBased;
+  final int? isOfferBased;
   final String? agreedShippingCostAfterDiscount;
   final String? flags;
   ShipmentModel({

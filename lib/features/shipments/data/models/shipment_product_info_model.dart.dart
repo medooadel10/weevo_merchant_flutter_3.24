@@ -2,16 +2,16 @@ import '../../../../core_new/data/models/product_category.dart';
 
 class ShipmentProductInfoModel {
   final int id;
-  final String name;
-  final int defaultPrice;
-  final String description;
-  final int categoryId;
+  final String? name;
+  final int? defaultPrice;
+  final String? description;
+  final int? categoryId;
   final String? image;
-  final String length;
-  final String width;
-  final String height;
-  final String weight;
-  final ProductCategory productCategory;
+  final String? length;
+  final String? width;
+  final String? height;
+  final String? weight;
+  final ProductCategory? productCategory;
 
   ShipmentProductInfoModel({
     required this.id,
@@ -53,6 +53,6 @@ class ShipmentProductInfoModel {
         'width': width,
         'height': height,
         'weight': weight,
-        'product_category': productCategory.toJson(),
+        'product_category': productCategory?.toJson(),
       };
 }

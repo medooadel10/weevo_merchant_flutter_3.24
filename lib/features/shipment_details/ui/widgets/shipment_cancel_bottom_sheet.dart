@@ -88,9 +88,9 @@ class ShipmentCancelReasonBottomSheet extends StatelessWidget {
                       BlocListener<ShipmentDetailsCubit, ShipmentDetailsState>(
                     listener: (context, state) {
                       if (state is CancelShipmentSuccess) {
+                        context.pop();
                         showToast('تم الغاء الطلب بنجاح');
-                        MagicRouter.navigateAndPopUntilFirstPage(
-                            const ShipmentsScreen(
+                        MagicRouter.navigateAndPop(const ShipmentsScreen(
                           filterIndex: 6,
                         ));
                       }

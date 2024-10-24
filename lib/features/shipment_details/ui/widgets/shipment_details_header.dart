@@ -11,16 +11,30 @@ import '../../../../core_new/widgets/custom_image.dart';
 import 'shipment_details_price_info.dart';
 
 class ShipmentDetailsHeader extends StatelessWidget {
-  final String image;
-  const ShipmentDetailsHeader({super.key, required this.image});
+  const ShipmentDetailsHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
       builder: (context, state) {
         final cubit = context.read<ShipmentDetailsCubit>();
+        if (cubit.shipmentDetails!.products?.isEmpty ?? true) {
+          return SizedBox(
+            height: 260.h,
+            child: Center(
+              child: Text(
+                'لا يوجد منتجات',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          );
+        }
         return CarouselSlider.builder(
-          itemCount: cubit.shipmentDetails!.products.length,
+          itemCount: cubit.shipmentDetails!.products?.length ?? 0,
           itemBuilder: (context, index, realIndex) {
             return Stack(
               children: [
@@ -32,8 +46,8 @@ class ShipmentDetailsHeader extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomImage(
-                        imageUrl: cubit
-                            .shipmentDetails!.products[index].productInfo.image,
+                        imageUrl: cubit.shipmentDetails!.products?[index]
+                            .productInfo?.image,
                         width: double.infinity,
                         height: 120.h,
                         radius: 12,
@@ -45,8 +59,9 @@ class ShipmentDetailsHeader extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  cubit.shipmentDetails!.products[index]
-                                      .productInfo.name,
+                                  cubit.shipmentDetails!.products?[index]
+                                          .productInfo?.name ??
+                                      'غير محدد',
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.bold,
@@ -61,18 +76,23 @@ class ShipmentDetailsHeader extends StatelessWidget {
                                   CustomImage(
                                     imageUrl: cubit
                                         .shipmentDetails!
-                                        .products[index]
+                                        .products?[index]
                                         .productInfo
-                                        .productCategory
-                                        .image,
+                                        ?.productCategory
+                                        ?.image,
                                     fit: BoxFit.cover,
                                     isCircle: true,
                                     radius: 16,
                                   ),
                                   horizontalSpace(5),
                                   Text(
-                                    cubit.shipmentDetails!.products[index]
-                                        .productInfo.productCategory.name,
+                                    cubit
+                                            .shipmentDetails!
+                                            .products?[index]
+                                            .productInfo
+                                            ?.productCategory
+                                            ?.name ??
+                                        'غير محدد',
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
@@ -85,8 +105,9 @@ class ShipmentDetailsHeader extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            cubit.shipmentDetails!.products[index].productInfo
-                                .description,
+                            cubit.shipmentDetails!.products?[index].productInfo
+                                    ?.description ??
+                                'غير محدد',
                             style: TextStyle(
                               fontSize: 14.0.sp,
                             ),
@@ -99,7 +120,7 @@ class ShipmentDetailsHeader extends StatelessWidget {
                               ShipmentDetailsPriceInfo(
                                 priceImage: 'weevo_money',
                                 price: cubit
-                                        .shipmentDetails?.products[index].price
+                                        .shipmentDetails?.products?[index].price
                                         .toString() ??
                                     '',
                                 title: 'قيمة الطلب',
@@ -116,8 +137,8 @@ class ShipmentDetailsHeader extends StatelessWidget {
                               horizontalSpace(10),
                               ShipmentDetailsPriceInfo(
                                 priceImage: 'van_icon',
-                                price: cubit.shipmentDetails?.products[index]
-                                        .productInfo.weight ??
+                                price: cubit.shipmentDetails?.products?[index]
+                                        .productInfo?.weight ??
                                     '',
                                 title: 'الوزن',
                                 subTitle: 'كيلو',
@@ -147,7 +168,7 @@ class ShipmentDetailsHeader extends StatelessWidget {
                       color: weevoPrimaryOrangeColor,
                     ),
                     child: Text(
-                      'الكمية : ${cubit.shipmentDetails?.products[index].qty}',
+                      'الكمية : ${cubit.shipmentDetails?.products?[index].qty}',
                       style: TextStyle(
                         fontSize: 12.0.sp,
                         fontWeight: FontWeight.bold,

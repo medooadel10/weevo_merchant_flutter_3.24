@@ -20,18 +20,24 @@ mixin _$AddShipmentState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int index) changeStepperIndex,
+    required TResult Function(States state) changeState,
+    required TResult Function(Cities city) changeCity,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int index)? changeStepperIndex,
+    TResult? Function(States state)? changeState,
+    TResult? Function(Cities city)? changeCity,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int index)? changeStepperIndex,
+    TResult Function(States state)? changeState,
+    TResult Function(Cities city)? changeCity,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$AddShipmentState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(ChangeStepperIndex value) changeStepperIndex,
+    required TResult Function(ChangeState value) changeState,
+    required TResult Function(ChangeCity value) changeCity,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult? Function(ChangeState value)? changeState,
+    TResult? Function(ChangeCity value)? changeCity,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult Function(ChangeState value)? changeState,
+    TResult Function(ChangeCity value)? changeCity,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +132,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int index) changeStepperIndex,
+    required TResult Function(States state) changeState,
+    required TResult Function(Cities city) changeCity,
   }) {
     return initial();
   }
@@ -129,6 +143,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int index)? changeStepperIndex,
+    TResult? Function(States state)? changeState,
+    TResult? Function(Cities city)? changeCity,
   }) {
     return initial?.call();
   }
@@ -138,6 +154,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int index)? changeStepperIndex,
+    TResult Function(States state)? changeState,
+    TResult Function(Cities city)? changeCity,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -151,6 +169,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(ChangeStepperIndex value) changeStepperIndex,
+    required TResult Function(ChangeState value) changeState,
+    required TResult Function(ChangeCity value) changeCity,
   }) {
     return initial(this);
   }
@@ -160,6 +180,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult? Function(ChangeState value)? changeState,
+    TResult? Function(ChangeCity value)? changeCity,
   }) {
     return initial?.call(this);
   }
@@ -169,6 +191,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult Function(ChangeState value)? changeState,
+    TResult Function(ChangeCity value)? changeCity,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -253,6 +277,8 @@ class _$ChangeStepperIndexImpl implements ChangeStepperIndex {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(int index) changeStepperIndex,
+    required TResult Function(States state) changeState,
+    required TResult Function(Cities city) changeCity,
   }) {
     return changeStepperIndex(index);
   }
@@ -262,6 +288,8 @@ class _$ChangeStepperIndexImpl implements ChangeStepperIndex {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(int index)? changeStepperIndex,
+    TResult? Function(States state)? changeState,
+    TResult? Function(Cities city)? changeCity,
   }) {
     return changeStepperIndex?.call(index);
   }
@@ -271,6 +299,8 @@ class _$ChangeStepperIndexImpl implements ChangeStepperIndex {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(int index)? changeStepperIndex,
+    TResult Function(States state)? changeState,
+    TResult Function(Cities city)? changeCity,
     required TResult orElse(),
   }) {
     if (changeStepperIndex != null) {
@@ -284,6 +314,8 @@ class _$ChangeStepperIndexImpl implements ChangeStepperIndex {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(ChangeStepperIndex value) changeStepperIndex,
+    required TResult Function(ChangeState value) changeState,
+    required TResult Function(ChangeCity value) changeCity,
   }) {
     return changeStepperIndex(this);
   }
@@ -293,6 +325,8 @@ class _$ChangeStepperIndexImpl implements ChangeStepperIndex {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult? Function(ChangeState value)? changeState,
+    TResult? Function(ChangeCity value)? changeCity,
   }) {
     return changeStepperIndex?.call(this);
   }
@@ -302,6 +336,8 @@ class _$ChangeStepperIndexImpl implements ChangeStepperIndex {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult Function(ChangeState value)? changeState,
+    TResult Function(ChangeCity value)? changeCity,
     required TResult orElse(),
   }) {
     if (changeStepperIndex != null) {
@@ -320,5 +356,309 @@ abstract class ChangeStepperIndex implements AddShipmentState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeStepperIndexImplCopyWith<_$ChangeStepperIndexImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeStateImplCopyWith<$Res> {
+  factory _$$ChangeStateImplCopyWith(
+          _$ChangeStateImpl value, $Res Function(_$ChangeStateImpl) then) =
+      __$$ChangeStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({States state});
+}
+
+/// @nodoc
+class __$$ChangeStateImplCopyWithImpl<$Res>
+    extends _$AddShipmentStateCopyWithImpl<$Res, _$ChangeStateImpl>
+    implements _$$ChangeStateImplCopyWith<$Res> {
+  __$$ChangeStateImplCopyWithImpl(
+      _$ChangeStateImpl _value, $Res Function(_$ChangeStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddShipmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? state = null,
+  }) {
+    return _then(_$ChangeStateImpl(
+      null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as States,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeStateImpl implements ChangeState {
+  const _$ChangeStateImpl(this.state);
+
+  @override
+  final States state;
+
+  @override
+  String toString() {
+    return 'AddShipmentState.changeState(state: $state)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeStateImpl &&
+            (identical(other.state, state) || other.state == state));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, state);
+
+  /// Create a copy of AddShipmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeStateImplCopyWith<_$ChangeStateImpl> get copyWith =>
+      __$$ChangeStateImplCopyWithImpl<_$ChangeStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(int index) changeStepperIndex,
+    required TResult Function(States state) changeState,
+    required TResult Function(Cities city) changeCity,
+  }) {
+    return changeState(state);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(int index)? changeStepperIndex,
+    TResult? Function(States state)? changeState,
+    TResult? Function(Cities city)? changeCity,
+  }) {
+    return changeState?.call(state);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int index)? changeStepperIndex,
+    TResult Function(States state)? changeState,
+    TResult Function(Cities city)? changeCity,
+    required TResult orElse(),
+  }) {
+    if (changeState != null) {
+      return changeState(state);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(ChangeStepperIndex value) changeStepperIndex,
+    required TResult Function(ChangeState value) changeState,
+    required TResult Function(ChangeCity value) changeCity,
+  }) {
+    return changeState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult? Function(ChangeState value)? changeState,
+    TResult? Function(ChangeCity value)? changeCity,
+  }) {
+    return changeState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult Function(ChangeState value)? changeState,
+    TResult Function(ChangeCity value)? changeCity,
+    required TResult orElse(),
+  }) {
+    if (changeState != null) {
+      return changeState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeState implements AddShipmentState {
+  const factory ChangeState(final States state) = _$ChangeStateImpl;
+
+  States get state;
+
+  /// Create a copy of AddShipmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangeStateImplCopyWith<_$ChangeStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeCityImplCopyWith<$Res> {
+  factory _$$ChangeCityImplCopyWith(
+          _$ChangeCityImpl value, $Res Function(_$ChangeCityImpl) then) =
+      __$$ChangeCityImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Cities city});
+}
+
+/// @nodoc
+class __$$ChangeCityImplCopyWithImpl<$Res>
+    extends _$AddShipmentStateCopyWithImpl<$Res, _$ChangeCityImpl>
+    implements _$$ChangeCityImplCopyWith<$Res> {
+  __$$ChangeCityImplCopyWithImpl(
+      _$ChangeCityImpl _value, $Res Function(_$ChangeCityImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AddShipmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? city = null,
+  }) {
+    return _then(_$ChangeCityImpl(
+      null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as Cities,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeCityImpl implements ChangeCity {
+  const _$ChangeCityImpl(this.city);
+
+  @override
+  final Cities city;
+
+  @override
+  String toString() {
+    return 'AddShipmentState.changeCity(city: $city)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeCityImpl &&
+            (identical(other.city, city) || other.city == city));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, city);
+
+  /// Create a copy of AddShipmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeCityImplCopyWith<_$ChangeCityImpl> get copyWith =>
+      __$$ChangeCityImplCopyWithImpl<_$ChangeCityImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(int index) changeStepperIndex,
+    required TResult Function(States state) changeState,
+    required TResult Function(Cities city) changeCity,
+  }) {
+    return changeCity(city);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(int index)? changeStepperIndex,
+    TResult? Function(States state)? changeState,
+    TResult? Function(Cities city)? changeCity,
+  }) {
+    return changeCity?.call(city);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int index)? changeStepperIndex,
+    TResult Function(States state)? changeState,
+    TResult Function(Cities city)? changeCity,
+    required TResult orElse(),
+  }) {
+    if (changeCity != null) {
+      return changeCity(city);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(ChangeStepperIndex value) changeStepperIndex,
+    required TResult Function(ChangeState value) changeState,
+    required TResult Function(ChangeCity value) changeCity,
+  }) {
+    return changeCity(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult? Function(ChangeState value)? changeState,
+    TResult? Function(ChangeCity value)? changeCity,
+  }) {
+    return changeCity?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(ChangeStepperIndex value)? changeStepperIndex,
+    TResult Function(ChangeState value)? changeState,
+    TResult Function(ChangeCity value)? changeCity,
+    required TResult orElse(),
+  }) {
+    if (changeCity != null) {
+      return changeCity(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeCity implements AddShipmentState {
+  const factory ChangeCity(final Cities city) = _$ChangeCityImpl;
+
+  Cities get city;
+
+  /// Create a copy of AddShipmentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangeCityImplCopyWith<_$ChangeCityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

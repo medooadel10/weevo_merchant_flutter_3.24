@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:weevo_merchant_upgrade/features/add_shipment/ui/add_shipment_screen.dart';
 
 import '../../core/Providers/add_shipment_provider.dart';
 import '../../core/Utilits/colors.dart';
 import '../../core/Utilits/constants.dart';
 import '../../core/router/router.dart';
 import '../../core_new/helpers/spacing.dart';
+import '../add_shipment/ui/add_shipment_screen.dart';
 import '../waslny/ui/screens/wasully_screen.dart';
 import 'add_shipment.dart';
 
@@ -144,7 +144,6 @@ class _ShipmentSplashState extends State<ShipmentSplash> {
                         //   context,
                         //   AddShipment.id,
                         // );
-
                         MagicRouter.navigateTo(const AddShipmentScreen());
                       },
                       child: Container(

@@ -122,14 +122,16 @@ class CustomBottomSheet extends StatelessWidget {
               child: ListTile(
                 leading: items![index].icon != null
                     ? Icon(items![index].icon)
-                    : CustomImage(
-                        imageUrl: items![index].imageUrl,
-                        height: 24,
-                        width: 24,
-                        isCircle: true,
-                        fit: BoxFit.cover,
-                        radius: 20,
-                      ),
+                    : items![index].imageUrl != null
+                        ? CustomImage(
+                            imageUrl: items![index].imageUrl,
+                            height: 24,
+                            width: 24,
+                            isCircle: true,
+                            fit: BoxFit.cover,
+                            radius: 20,
+                          )
+                        : null,
                 title: Text(items![index].title),
               ),
             );

@@ -1,15 +1,15 @@
 import 'shipment_product_info_model.dart.dart';
 
 class ShipmentProductModel {
-  final int id;
-  final int shipmentId;
-  final int productId;
-  final int qty;
-  final int price;
-  final int total;
-  final String createdAt;
-  final String updatedAt;
-  final ShipmentProductInfoModel productInfo;
+  final int? id;
+  final int? shipmentId;
+  final int? productId;
+  final int? qty;
+  final int? price;
+  final int? total;
+  final String? createdAt;
+  final String? updatedAt;
+  final ShipmentProductInfoModel? productInfo;
 
   ShipmentProductModel({
     required this.id,
@@ -44,6 +44,6 @@ class ShipmentProductModel {
         'total': total,
         'created_at': createdAt,
         'updated_at': updatedAt,
-        'product_info': productInfo.toJson(),
+        'product_info': productInfo?.toJson(),
       };
 }

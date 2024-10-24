@@ -108,7 +108,7 @@ class _ShipmentTileState extends State<ShipmentTile> {
                   children: [
                     ShipmentImage(
                       image: product != null
-                          ? product.productInfo.image
+                          ? product.productInfo?.image
                           : widget.shipment.image,
                     ),
                     horizontalSpace(10),
@@ -207,7 +207,7 @@ class _ShipmentTileState extends State<ShipmentTile> {
                                             const EdgeInsets.only(right: 5.5),
                                         child: CustomImage(
                                           imageUrl: shipment.children![i]
-                                              .products![0].productInfo.image,
+                                              .products?[0].productInfo?.image,
                                         ),
                                       ),
                                       shipment.children!.length > 1
@@ -259,8 +259,9 @@ class _ShipmentTileState extends State<ShipmentTile> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              shipment.children![i].products![0]
-                                                  .productInfo.name,
+                                              shipment.children![i].products?[0]
+                                                      .productInfo?.name ??
+                                                  'غير محدد',
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               textDirection: TextDirection.rtl,
@@ -270,8 +271,12 @@ class _ShipmentTileState extends State<ShipmentTile> {
                                               ),
                                             ),
                                             Text(
-                                              shipment.children![i].products![0]
-                                                  .productInfo.description,
+                                              shipment
+                                                      .children![i]
+                                                      .products?[0]
+                                                      .productInfo
+                                                      ?.description ??
+                                                  'غير محدد',
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               textDirection: TextDirection.rtl,
@@ -407,7 +412,7 @@ class _ShipmentTileState extends State<ShipmentTile> {
                                         horizontalSpace(5),
                                         Expanded(
                                           child: Text(
-                                            '${double.parse(shipment.children![i].amount).toInt()} جنيه',
+                                            '${double.tryParse(shipment.children![i].amount ?? '')?.toInt() ?? 'غير محدد'} جنيه',
                                             style: TextStyle(
                                               fontSize: 12.0.sp,
                                               fontWeight: FontWeight.w600,

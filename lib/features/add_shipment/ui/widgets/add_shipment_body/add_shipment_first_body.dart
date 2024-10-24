@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart' as intl;
 import 'package:weevo_merchant_upgrade/core_new/helpers/extensions.dart';
 import 'package:weevo_merchant_upgrade/core_new/widgets/custom_bottom_sheet.dart';
 import 'package:weevo_merchant_upgrade/features/add_shipment/logic/add_shipment_cubit.dart';
@@ -157,10 +156,7 @@ class AddShipmentFirstBody extends StatelessWidget {
                   if (dt != null && tod != null) {
                     final dateTime = DateTime(
                         dt.year, dt.month, dt.day, tod.hour, tod.minute);
-                    cubit.changeRecieverDateTime(dateTime.toIso8601String());
-                    cubit.receiverDateTimeController.text =
-                        intl.DateFormat('hh:mm a - E dd MMM y', 'ar-EG')
-                            .format(dateTime);
+                    cubit.changeRecieverDateTime(dateTime);
                   }
                 },
                 readOnly: true,

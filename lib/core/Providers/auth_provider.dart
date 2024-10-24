@@ -1442,7 +1442,8 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> getToken() async {
     try {
-      String? token = await fcm.getToken();
+      String? token =
+          Platform.isIOS ? await fcm.getAPNSToken() : await fcm.getToken();
       await _preferences!.setFcmToken(token ?? '');
       log('token received $token');
     } on Exception catch (e) {
@@ -1459,7 +1460,8 @@ class AuthProvider with ChangeNotifier {
       largeIcon: "large_icon",
       smallIcon: "small_icon",
     );
-    final token = await fcm.getToken();
+    final token =
+        Platform.isIOS ? await fcm.getAPNSToken() : await fcm.getToken();
     freshChat.Freshchat.setPushRegistrationToken(
       Platform.isAndroid ? token! : await fcm.getAPNSToken() ?? '',
     );

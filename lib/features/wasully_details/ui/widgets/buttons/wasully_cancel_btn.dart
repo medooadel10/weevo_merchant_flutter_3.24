@@ -41,7 +41,7 @@ class WasullyCancelBtn extends StatelessWidget {
                       builder: (_) {
                         return BlocProvider.value(
                           value: cubit,
-                          child: const WasullyCancelReasonBottomSheet(),
+                          child: const WasullyCancelBottomSheet(),
                         );
                       },
                     );

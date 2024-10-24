@@ -100,7 +100,7 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
     String msg;
     StringBuffer sb = StringBuffer();
     sb.write(
-        "اسم المنتج : ${shipmentDetails!.products[currentProductIndex].productInfo.name} \n");
+        "اسم المنتج : ${shipmentDetails!.products?[currentProductIndex].productInfo?.name} \n");
     sb.write("مبلغ الشحنه : ${shipmentDetails?.amount} \n");
     sb.write(
         "تكلفة التوصيل : ${shipmentDetails!.expectedShippingCost ?? shipmentDetails!.agreedShippingCost ?? '0'} \n");
@@ -109,7 +109,8 @@ class ShipmentDetailsCubit extends Cubit<ShipmentDetailsState> {
     sb.write(shareLink);
     msg = sb.toString();
     var request = await HttpClient().getUrl(Uri.parse(
-        shipmentDetails!.products[currentProductIndex].productInfo.image));
+        shipmentDetails!.products?[currentProductIndex].productInfo?.image ??
+            ''));
     var response = await request.close();
     Uint8List bytes = await consolidateHttpClientResponseBytes(response);
     XFile? imageFile = XFile.fromData(bytes, name: 'amlog.jpg');

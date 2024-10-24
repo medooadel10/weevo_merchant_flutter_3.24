@@ -20,7 +20,12 @@ class AddShipmentButtons extends StatelessWidget {
             WeevoButton(
               onTap: () {
                 if (cubit.currentIndex == 0) {
-                  if (cubit.formKeyFirst.currentState!.validate()) {
+                  if (cubit.formKeyFirst.currentState?.validate() ?? false) {
+                    cubit.changeStepperIndex(cubit.currentIndex + 1);
+                  }
+                }
+                if (cubit.currentIndex == 1) {
+                  if (cubit.formKeySecond.currentState?.validate() ?? false) {
                     cubit.changeStepperIndex(cubit.currentIndex + 1);
                   }
                 }

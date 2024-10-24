@@ -4,13 +4,13 @@ part 'product_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class ProductModel {
-  final int id;
-  final int productId;
-  final int shipmentId;
-  final double price;
+  final int? id;
+  final int? productId;
+  final int? shipmentId;
+  final double? price;
   final double? total;
-  final int qty;
-  final ProductInfoModel productInfo;
+  final int? qty;
+  final ProductInfoModel? productInfo;
 
   ProductModel(this.id, this.productId, this.shipmentId, this.price, this.total,
       this.productInfo, this.qty);
@@ -23,16 +23,16 @@ class ProductModel {
 @JsonSerializable(fieldRename: FieldRename.snake)
 class ProductInfoModel {
   final int id;
-  final String name;
-  final String description;
-  final double defaultPrice;
-  final String image;
-  final int categoryId;
-  final String length;
-  final String width;
-  final String height;
-  final String weight;
-  final ProductCategoryModel productCategory;
+  final String? name;
+  final String? description;
+  final double? defaultPrice;
+  final String? image;
+  final int? categoryId;
+  final String? length;
+  final String? width;
+  final String? height;
+  final String? weight;
+  final ProductCategoryModel? productCategory;
 
   ProductInfoModel(
       this.id,
@@ -54,9 +54,9 @@ class ProductInfoModel {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class ProductCategoryModel {
-  final int id;
-  final String name;
-  final String image;
+  final int? id;
+  final String? name;
+  final String? image;
 
   ProductCategoryModel(this.id, this.name, this.image);
 

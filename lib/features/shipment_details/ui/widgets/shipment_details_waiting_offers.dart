@@ -25,11 +25,11 @@ class ShipmentDetailsWaitingOffers extends StatelessWidget {
               merchantName: authProvider.name,
               merchantImage: authProvider.photo,
               merchantFcmToken: authProvider.fcmToken,
-              receivingState: cubit.shipmentDetails!.receivingStateModel.name,
-              receivingCity: cubit.shipmentDetails!.receivingCityModel.name,
-              deliveryCity: cubit.shipmentDetails!.deliveringCityModel.name,
+              receivingState: cubit.shipmentDetails!.receivingStateModel?.name,
+              receivingCity: cubit.shipmentDetails!.receivingCityModel?.name,
+              deliveryCity: cubit.shipmentDetails!.deliveringCityModel?.name,
               childrenShipment: 0,
-              deliveryState: cubit.shipmentDetails!.deliveringStateModel.name,
+              deliveryState: cubit.shipmentDetails!.deliveringStateModel?.name,
               shipmentId: cubit.shipmentDetails!.id,
               shippingCost:
                   cubit.shipmentDetails!.agreedShippingCostAfterDiscount ??
